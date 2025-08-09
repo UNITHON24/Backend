@@ -54,9 +54,3 @@ CREATE TABLE IF NOT EXISTS menu_option (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (menu_id) REFERENCES menu(id)
 );
-
--- 인덱스 생성
-CREATE INDEX idx_menu_category_id ON menu(category_id);
-CREATE INDEX idx_menu_active ON menu(is_active);
-CREATE INDEX idx_synonym_menu_id ON menu_synonym(menu_id);
-CREATE INDEX idx_option_menu_id ON menu_option(menu_id); 

@@ -64,7 +64,6 @@ INSERT INTO menu_synonym (menu_id, synonym, priority) VALUES
 
 -- 카페라떼 동의어
 (2, '라떼', 1),
-(2, '라떼', 2),
 
 -- 콜라 동의어
 (5, '콜라', 1),
