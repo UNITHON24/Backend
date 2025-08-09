@@ -52,3 +52,7 @@ out/
 
 # QueryDSL generated classes
 src/main/generated/**/Q*.java
+
+### Logs ###
+logs/
+*.log
