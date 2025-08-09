@@ -1,4 +1,4 @@
-package com.example.unithon.controller;
+package com.example.unithon.domain.menu.controller;
 
 import com.example.unithon.global.client.gemini.GeminiService;
 import com.example.unithon.global.client.gemini.GeminiProperties;
