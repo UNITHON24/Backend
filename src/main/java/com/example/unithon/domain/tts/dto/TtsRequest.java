@@ -1,0 +1,10 @@
+package com.example.unithon.domain.tts.dto;
+
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+public class TtsRequest {
+    private String text;
+}

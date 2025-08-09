@@ -61,6 +61,10 @@ dependencies {
     // === Test ===
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+    // === GCP ===
+    implementation 'com.google.cloud:google-cloud-speech:4.65.0'
+    implementation 'com.google.cloud:google-cloud-texttospeech:2.19.0'
 }
 
 tasks.named('test') {

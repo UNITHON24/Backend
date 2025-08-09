@@ -56,3 +56,6 @@ src/main/generated/**/Q*.java
 ### Logs ###
 logs/
 *.log
+
+# gcp credentials
+src/main/resources/unithon-4b2df7873498.json

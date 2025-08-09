@@ -19,6 +19,12 @@ public enum GlobalExceptionMessage implements ExceptionMessage {
 	DATA_NOT_READABLE_MESSAGE(BAD_REQUEST, "읽을 수 없는 응답 데이터입니다."),
 	UNSUPPORTED_MEDIA_TYPE_MESSAGE(UNSUPPORTED_MEDIA_TYPE, "지원되지 않는 content-type 입니다."),
 	UNPROCESSABLE_ENTITY(HttpStatus.UNPROCESSABLE_ENTITY, "서버에서 본문을 처리할 수 없습니다."),
+	
+	// STT/TTS 관련 에러
+	STT_SERVICE_ERROR(INTERNAL_SERVER_ERROR, "음성 인식 서비스에 오류가 발생했습니다."),
+	TTS_SERVICE_ERROR(INTERNAL_SERVER_ERROR, "음성 합성 서비스에 오류가 발생했습니다."),
+	AUDIO_FILE_INVALID(BAD_REQUEST, "올바르지 않은 오디오 파일입니다."),
+	TEXT_EMPTY(BAD_REQUEST, "변환할 텍스트가 비어있습니다."),
 	;
 
 	private final HttpStatus httpStatus;

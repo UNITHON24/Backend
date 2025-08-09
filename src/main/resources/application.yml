@@ -4,6 +4,12 @@ spring:
   config:
     import: optional:file:./.env.properties
   
+  # File upload configuration
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
+  
   # Database configuration
   datasource:
     url: jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/${DB_NAME:unithon}?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Seoul
@@ -26,6 +32,11 @@ spring:
   sql:
     init:
       mode: ${SQL_INIT_MODE:always}
+
+google:
+  cloud:
+    credentials:
+      encoded-key: ${GCP_CREDENTIALS_ENCODED}
 
 # Server configuration
 server:
