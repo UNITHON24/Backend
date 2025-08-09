@@ -1,0 +1,24 @@
+package com.example.unithon.global.config;
+
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.socket.config.annotation.EnableWebSocket;
+import org.springframework.web.socket.config.annotation.WebSocketConfigurer;
+import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry;
+
+import com.example.unithon.domain.chat.handler.ChatWebSocketHandler;
+
+import lombok.RequiredArgsConstructor;
+
+@Configuration
+@EnableWebSocket
+@RequiredArgsConstructor
+public class WebSocketConfig implements WebSocketConfigurer {
+
+    private final ChatWebSocketHandler chatWebSocketHandler;
+
+    @Override
+    public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
+        registry.addHandler(chatWebSocketHandler, "/chat")
+                .setAllowedOrigins("*"); // 개발용, 프로덕션에서는 제한 필요
+    }
+} 

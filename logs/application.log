@@ -899,3 +899,891 @@ Identify and stop the process that's listening on port 8080 or configure this ap
 2025-08-10 00:48:18 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
 2025-08-10 00:48:18 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
 2025-08-10 00:48:18 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-08-10 01:03:13 [main] INFO  c.example.unithon.UnithonApplication - Starting UnithonApplication using Java 21.0.4 with PID 35740 (/Users/yunjeong/Desktop/unithon/build/classes/java/main started by yunjeong in /Users/yunjeong/Desktop/unithon)
+2025-08-10 01:03:13 [main] DEBUG c.example.unithon.UnithonApplication - Running with Spring Boot v3.5.4, Spring v6.2.9
+2025-08-10 01:03:13 [main] INFO  c.example.unithon.UnithonApplication - No active profile set, falling back to 1 default profile: "default"
+2025-08-10 01:03:14 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-08-10 01:03:14 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 30 ms. Found 3 JPA repository interfaces.
+2025-08-10 01:03:14 [main] INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=112049d1-3845-3d87-8e05-9cb5de088356
+2025-08-10 01:03:14 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-08-10 01:03:14 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-08-10 01:03:14 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.43]
+2025-08-10 01:03:14 [main] INFO  o.a.c.c.C.[.[localhost].[/api] - Initializing Spring embedded WebApplicationContext
+2025-08-10 01:03:14 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 594 ms
+2025-08-10 01:03:14 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-08-10 01:03:14 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.22.Final
+2025-08-10 01:03:14 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-08-10 01:03:14 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-08-10 01:03:14 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-08-10 01:03:14 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@12270a01
+2025-08-10 01:03:14 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-08-10 01:03:14 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-08-10 01:03:14 [main] WARN  org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-08-10 01:03:14 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-08-10 01:03:15 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-08-10 01:03:15 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-08-10 01:03:15 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-08-10 01:03:15 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-08-10 01:03:15 [main] DEBUG o.s.w.s.s.s.WebSocketHandlerMapping - Patterns [/chat] in 'webSocketHandlerMapping'
+2025-08-10 01:03:15 [main] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - 13 mappings in 'requestMappingHandlerMapping'
+2025-08-10 01:03:15 [main] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Patterns [/webjars/**, /**, /swagger-ui*/*swagger-initializer.js, /swagger-ui*/**] in 'resourceHandlerMapping'
+2025-08-10 01:03:15 [main] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerAdapter - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-08-10 01:03:15 [main] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-08-10 01:03:16 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/api'
+2025-08-10 01:03:16 [main] INFO  c.example.unithon.UnithonApplication - Started UnithonApplication in 2.893 seconds (process running for 3.169)
+2025-08-10 01:11:24 [HikariPool-1:housekeeper] WARN  com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@66ad8469 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2025-08-10 01:11:27 [HikariPool-1:housekeeper] WARN  com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@12270a01 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2025-08-10 01:11:54 [HikariPool-1:housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=5m10s30ms).
+2025-08-10 01:13:59 [HikariPool-1:housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2m4s686ms).
+2025-08-10 01:22:45 [HikariPool-1:housekeeper] WARN  com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@7551ef15 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2025-08-10 01:22:49 [HikariPool-1:housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=8m49s539ms).
+2025-08-10 01:23:39 [HikariPool-1:housekeeper] WARN  com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@2656c0bc (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2025-08-10 01:26:08 [HikariPool-1:housekeeper] WARN  com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@23bac123 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2025-08-10 01:26:09 [HikariPool-1:housekeeper] WARN  com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@71a57b3d (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2025-08-10 01:26:10 [HikariPool-1:housekeeper] WARN  com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@61e61695 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2025-08-10 01:26:24 [HikariPool-1:housekeeper] WARN  com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@75b995a1 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2025-08-10 01:26:27 [HikariPool-1:housekeeper] WARN  com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@fff1ec (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2025-08-10 01:28:35 [HikariPool-1:housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=5m46s907ms).
+2025-08-10 01:28:36 [HikariPool-1:housekeeper] WARN  com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@5a590e5d (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2025-08-10 01:28:37 [HikariPool-1:housekeeper] WARN  com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@3277717a (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2025-08-10 01:44:49 [HikariPool-1:housekeeper] WARN  com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@4d789649 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2025-08-10 01:44:50 [HikariPool-1:housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=16m14s435ms).
+2025-08-10 01:45:40 [HikariPool-1:housekeeper] WARN  com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@30edb99 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2025-08-10 01:45:40 [HikariPool-1:housekeeper] WARN  com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@33883fb (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2025-08-10 01:45:43 [HikariPool-1:housekeeper] WARN  com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@56be7a7b (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2025-08-10 01:45:44 [HikariPool-1:housekeeper] WARN  com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@2399b126 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2025-08-10 01:45:53 [HikariPool-1:housekeeper] WARN  com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@7585e1f8 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2025-08-10 01:45:58 [HikariPool-1:housekeeper] WARN  com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@172d5a6d (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2025-08-10 01:45:59 [HikariPool-1:housekeeper] WARN  com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@23836ddc (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2025-08-10 01:46:05 [HikariPool-1:housekeeper] WARN  com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@3de7d097 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2025-08-10 01:46:16 [HikariPool-1:housekeeper] WARN  com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@271938e6 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2025-08-10 01:48:12 [main] INFO  c.example.unithon.UnithonApplication - Starting UnithonApplication using Java 21.0.4 with PID 40839 (/Users/yunjeong/Desktop/unithon/build/classes/java/main started by yunjeong in /Users/yunjeong/Desktop/unithon)
+2025-08-10 01:48:12 [main] DEBUG c.example.unithon.UnithonApplication - Running with Spring Boot v3.5.4, Spring v6.2.9
+2025-08-10 01:48:12 [main] INFO  c.example.unithon.UnithonApplication - No active profile set, falling back to 1 default profile: "default"
+2025-08-10 01:48:13 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-08-10 01:48:13 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 15 ms. Found 3 JPA repository interfaces.
+2025-08-10 01:48:13 [main] INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=3aea7bf1-352f-37ec-b393-0b60bc142e55
+2025-08-10 01:48:13 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-08-10 01:48:13 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-08-10 01:48:13 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.43]
+2025-08-10 01:48:13 [main] INFO  o.a.c.c.C.[.[localhost].[/api] - Initializing Spring embedded WebApplicationContext
+2025-08-10 01:48:13 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 550 ms
+2025-08-10 01:48:13 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-08-10 01:48:13 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.22.Final
+2025-08-10 01:48:13 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-08-10 01:48:13 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-08-10 01:48:13 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-08-10 01:48:13 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1b732dd
+2025-08-10 01:48:13 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-08-10 01:48:14 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-08-10 01:48:14 [main] WARN  org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-08-10 01:48:14 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-08-10 01:48:14 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-08-10 01:48:14 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-08-10 01:48:14 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-08-10 01:48:15 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-08-10 01:48:15 [main] DEBUG o.s.w.s.s.s.WebSocketHandlerMapping - Patterns [/chat] in 'webSocketHandlerMapping'
+2025-08-10 01:48:15 [main] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - 13 mappings in 'requestMappingHandlerMapping'
+2025-08-10 01:48:15 [main] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Patterns [/webjars/**, /**, /swagger-ui*/*swagger-initializer.js, /swagger-ui*/**] in 'resourceHandlerMapping'
+2025-08-10 01:48:15 [main] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerAdapter - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-08-10 01:48:15 [main] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-08-10 01:48:15 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
+2025-08-10 01:48:15 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-08-10 01:48:15 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-08-10 01:48:15 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-08-10 01:48:15 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLogger - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-08-10 01:48:15 [main] ERROR o.s.b.d.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8080 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
+
+2025-08-10 01:49:15 [main] INFO  c.example.unithon.UnithonApplication - Starting UnithonApplication using Java 21.0.4 with PID 41575 (/Users/yunjeong/Desktop/unithon/build/classes/java/main started by yunjeong in /Users/yunjeong/Desktop/unithon)
+2025-08-10 01:49:15 [main] DEBUG c.example.unithon.UnithonApplication - Running with Spring Boot v3.5.4, Spring v6.2.9
+2025-08-10 01:49:15 [main] INFO  c.example.unithon.UnithonApplication - No active profile set, falling back to 1 default profile: "default"
+2025-08-10 01:49:15 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-08-10 01:49:15 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 24 ms. Found 3 JPA repository interfaces.
+2025-08-10 01:49:15 [main] INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=3aea7bf1-352f-37ec-b393-0b60bc142e55
+2025-08-10 01:49:15 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-08-10 01:49:15 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-08-10 01:49:15 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.43]
+2025-08-10 01:49:15 [main] INFO  o.a.c.c.C.[.[localhost].[/api] - Initializing Spring embedded WebApplicationContext
+2025-08-10 01:49:15 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 546 ms
+2025-08-10 01:49:15 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-08-10 01:49:15 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.22.Final
+2025-08-10 01:49:15 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-08-10 01:49:16 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-08-10 01:49:16 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-08-10 01:49:16 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2ba9f743
+2025-08-10 01:49:16 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-08-10 01:49:16 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-08-10 01:49:16 [main] WARN  org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-08-10 01:49:16 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-08-10 01:49:16 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-08-10 01:49:16 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-08-10 01:49:16 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-08-10 01:49:17 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-08-10 01:49:17 [main] DEBUG o.s.w.s.s.s.WebSocketHandlerMapping - Patterns [/chat] in 'webSocketHandlerMapping'
+2025-08-10 01:49:17 [main] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - 13 mappings in 'requestMappingHandlerMapping'
+2025-08-10 01:49:17 [main] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Patterns [/webjars/**, /**, /swagger-ui*/*swagger-initializer.js, /swagger-ui*/**] in 'resourceHandlerMapping'
+2025-08-10 01:49:17 [main] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerAdapter - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-08-10 01:49:17 [main] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-08-10 01:49:17 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/api'
+2025-08-10 01:49:17 [main] INFO  c.example.unithon.UnithonApplication - Started UnithonApplication in 2.821 seconds (process running for 3.137)
+2025-08-10 01:54:03 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-08-10 01:54:03 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-08-10 01:54:03 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-08-10 01:54:03 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-08-10 01:54:03 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-08-10 01:54:05 [main] INFO  c.example.unithon.UnithonApplication - Starting UnithonApplication using Java 21.0.4 with PID 44152 (/Users/yunjeong/Desktop/unithon/build/classes/java/main started by yunjeong in /Users/yunjeong/Desktop/unithon)
+2025-08-10 01:54:05 [main] DEBUG c.example.unithon.UnithonApplication - Running with Spring Boot v3.5.4, Spring v6.2.9
+2025-08-10 01:54:05 [main] INFO  c.example.unithon.UnithonApplication - No active profile set, falling back to 1 default profile: "default"
+2025-08-10 01:54:05 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-08-10 01:54:05 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 16 ms. Found 3 JPA repository interfaces.
+2025-08-10 01:54:05 [main] INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=3aea7bf1-352f-37ec-b393-0b60bc142e55
+2025-08-10 01:54:06 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-08-10 01:54:06 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-08-10 01:54:06 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.43]
+2025-08-10 01:54:06 [main] INFO  o.a.c.c.C.[.[localhost].[/api] - Initializing Spring embedded WebApplicationContext
+2025-08-10 01:54:06 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 565 ms
+2025-08-10 01:54:06 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-08-10 01:54:06 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.22.Final
+2025-08-10 01:54:06 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-08-10 01:54:06 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-08-10 01:54:06 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-08-10 01:54:06 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@72b1df49
+2025-08-10 01:54:06 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-08-10 01:54:06 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-08-10 01:54:06 [main] WARN  org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-08-10 01:54:06 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-08-10 01:54:06 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-08-10 01:54:07 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-08-10 01:54:07 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-08-10 01:54:07 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-08-10 01:54:07 [main] DEBUG o.s.w.s.s.s.WebSocketHandlerMapping - Patterns [/chat] in 'webSocketHandlerMapping'
+2025-08-10 01:54:07 [main] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - 13 mappings in 'requestMappingHandlerMapping'
+2025-08-10 01:54:07 [main] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Patterns [/webjars/**, /**, /swagger-ui*/*swagger-initializer.js, /swagger-ui*/**] in 'resourceHandlerMapping'
+2025-08-10 01:54:07 [main] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerAdapter - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-08-10 01:54:07 [main] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-08-10 01:54:08 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/api'
+2025-08-10 01:54:08 [main] INFO  c.example.unithon.UnithonApplication - Started UnithonApplication in 3.073 seconds (process running for 3.601)
+2025-08-10 02:06:01 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-08-10 02:06:01 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-08-10 02:06:01 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-08-10 02:06:01 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-08-10 02:06:01 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-08-10 02:06:03 [main] INFO  c.example.unithon.UnithonApplication - Starting UnithonApplication using Java 21.0.4 with PID 50115 (/Users/yunjeong/Desktop/unithon/build/classes/java/main started by yunjeong in /Users/yunjeong/Desktop/unithon)
+2025-08-10 02:06:03 [main] DEBUG c.example.unithon.UnithonApplication - Running with Spring Boot v3.5.4, Spring v6.2.9
+2025-08-10 02:06:03 [main] INFO  c.example.unithon.UnithonApplication - No active profile set, falling back to 1 default profile: "default"
+2025-08-10 02:06:03 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-08-10 02:06:03 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 18 ms. Found 3 JPA repository interfaces.
+2025-08-10 02:06:03 [main] INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=3aea7bf1-352f-37ec-b393-0b60bc142e55
+2025-08-10 02:06:04 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-08-10 02:06:04 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-08-10 02:06:04 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.43]
+2025-08-10 02:06:04 [main] INFO  o.a.c.c.C.[.[localhost].[/api] - Initializing Spring embedded WebApplicationContext
+2025-08-10 02:06:04 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 611 ms
+2025-08-10 02:06:04 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-08-10 02:06:04 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.22.Final
+2025-08-10 02:06:04 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-08-10 02:06:04 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-08-10 02:06:04 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-08-10 02:06:04 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@3458dab6
+2025-08-10 02:06:04 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-08-10 02:06:04 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-08-10 02:06:04 [main] WARN  org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-08-10 02:06:04 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-08-10 02:06:04 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-08-10 02:06:04 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-08-10 02:06:05 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-08-10 02:06:05 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-08-10 02:06:05 [main] DEBUG o.s.w.s.s.s.WebSocketHandlerMapping - Patterns [/chat] in 'webSocketHandlerMapping'
+2025-08-10 02:06:05 [main] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - 13 mappings in 'requestMappingHandlerMapping'
+2025-08-10 02:06:05 [main] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Patterns [/webjars/**, /**, /swagger-ui*/*swagger-initializer.js, /swagger-ui*/**] in 'resourceHandlerMapping'
+2025-08-10 02:06:05 [main] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerAdapter - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-08-10 02:06:05 [main] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-08-10 02:06:06 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/api'
+2025-08-10 02:06:06 [main] INFO  c.example.unithon.UnithonApplication - Started UnithonApplication in 3.02 seconds (process running for 3.571)
+2025-08-10 02:06:55 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-08-10 02:06:55 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-08-10 02:06:55 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-08-10 02:06:55 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-08-10 02:06:55 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-08-10 02:07:05 [Test worker] INFO  c.e.unithon.UnithonApplicationTests - Starting UnithonApplicationTests using Java 21.0.4 with PID 50775 (started by yunjeong in /Users/yunjeong/Desktop/unithon)
+2025-08-10 02:07:05 [Test worker] DEBUG c.e.unithon.UnithonApplicationTests - Running with Spring Boot v3.5.4, Spring v6.2.9
+2025-08-10 02:07:05 [Test worker] INFO  c.e.unithon.UnithonApplicationTests - No active profile set, falling back to 1 default profile: "default"
+2025-08-10 02:07:05 [Test worker] DEBUG o.s.w.c.s.GenericWebApplicationContext - Refreshing org.springframework.web.context.support.GenericWebApplicationContext@4c777e7b
+2025-08-10 02:07:05 [Test worker] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-08-10 02:07:05 [Test worker] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 17 ms. Found 3 JPA repository interfaces.
+2025-08-10 02:07:05 [Test worker] INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=79b2becc-2598-3dce-a109-4221bb649dbc
+2025-08-10 02:07:05 [Test worker] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-08-10 02:07:05 [Test worker] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.22.Final
+2025-08-10 02:07:05 [Test worker] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-08-10 02:07:05 [Test worker] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-08-10 02:07:05 [Test worker] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-08-10 02:07:05 [Test worker] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2173e4d5
+2025-08-10 02:07:05 [Test worker] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-08-10 02:07:05 [Test worker] WARN  org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-08-10 02:07:05 [Test worker] WARN  org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-08-10 02:07:05 [Test worker] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-08-10 02:07:06 [Test worker] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-08-10 02:07:06 [Test worker] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-08-10 02:07:06 [Test worker] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-08-10 02:07:06 [Test worker] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-08-10 02:07:06 [Test worker] DEBUG o.s.w.s.s.s.WebSocketHandlerMapping - Patterns [/chat] in 'webSocketHandlerMapping'
+2025-08-10 02:07:07 [Test worker] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - 13 mappings in 'requestMappingHandlerMapping'
+2025-08-10 02:07:07 [Test worker] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Patterns [/webjars/**, /**, /swagger-ui*/*swagger-initializer.js, /swagger-ui*/**] in 'resourceHandlerMapping'
+2025-08-10 02:07:07 [Test worker] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerAdapter - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-08-10 02:07:07 [Test worker] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-08-10 02:07:07 [Test worker] INFO  c.e.unithon.UnithonApplicationTests - Started UnithonApplicationTests in 2.788 seconds (process running for 3.351)
+2025-08-10 02:07:08 [SpringApplicationShutdownHook] DEBUG o.s.w.c.s.GenericWebApplicationContext - Closing org.springframework.web.context.support.GenericWebApplicationContext@4c777e7b, started on Sun Aug 10 02:07:05 KST 2025
+2025-08-10 02:07:08 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-08-10 02:07:08 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-08-10 02:07:08 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-08-10 02:07:20 [main] INFO  c.example.unithon.UnithonApplication - Starting UnithonApplication using Java 21.0.4 with PID 51238 (/Users/yunjeong/Desktop/unithon/build/classes/java/main started by yunjeong in /Users/yunjeong/Desktop/unithon)
+2025-08-10 02:07:20 [main] DEBUG c.example.unithon.UnithonApplication - Running with Spring Boot v3.5.4, Spring v6.2.9
+2025-08-10 02:07:20 [main] INFO  c.example.unithon.UnithonApplication - No active profile set, falling back to 1 default profile: "default"
+2025-08-10 02:07:20 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-08-10 02:07:20 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 19 ms. Found 3 JPA repository interfaces.
+2025-08-10 02:07:20 [main] INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=112049d1-3845-3d87-8e05-9cb5de088356
+2025-08-10 02:07:21 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-08-10 02:07:21 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-08-10 02:07:21 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.43]
+2025-08-10 02:07:21 [main] INFO  o.a.c.c.C.[.[localhost].[/api] - Initializing Spring embedded WebApplicationContext
+2025-08-10 02:07:21 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 523 ms
+2025-08-10 02:07:21 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-08-10 02:07:21 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.22.Final
+2025-08-10 02:07:21 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-08-10 02:07:21 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-08-10 02:07:21 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-08-10 02:07:21 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@351e86b2
+2025-08-10 02:07:21 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-08-10 02:07:21 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-08-10 02:07:21 [main] WARN  org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-08-10 02:07:21 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-08-10 02:07:22 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-08-10 02:07:22 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-08-10 02:07:22 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-08-10 02:07:22 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-08-10 02:07:22 [main] DEBUG o.s.w.s.s.s.WebSocketHandlerMapping - Patterns [/chat] in 'webSocketHandlerMapping'
+2025-08-10 02:07:22 [main] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - 13 mappings in 'requestMappingHandlerMapping'
+2025-08-10 02:07:22 [main] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Patterns [/webjars/**, /**, /swagger-ui*/*swagger-initializer.js, /swagger-ui*/**] in 'resourceHandlerMapping'
+2025-08-10 02:07:22 [main] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerAdapter - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-08-10 02:07:22 [main] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-08-10 02:07:23 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/api'
+2025-08-10 02:07:23 [main] INFO  c.example.unithon.UnithonApplication - Started UnithonApplication in 3.031 seconds (process running for 3.27)
+2025-08-10 02:08:54 [http-nio-8080-exec-5] INFO  o.a.c.c.C.[.[localhost].[/api] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-08-10 02:08:54 [http-nio-8080-exec-5] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-08-10 02:08:54 [http-nio-8080-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - Detected StandardServletMultipartResolver
+2025-08-10 02:08:54 [http-nio-8080-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - Detected AcceptHeaderLocaleResolver
+2025-08-10 02:08:54 [http-nio-8080-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - Detected FixedThemeResolver
+2025-08-10 02:08:54 [http-nio-8080-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@a426150
+2025-08-10 02:08:54 [http-nio-8080-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - Detected org.springframework.web.servlet.support.SessionFlashMapManager@4201bd3
+2025-08-10 02:08:54 [http-nio-8080-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2025-08-10 02:08:54 [http-nio-8080-exec-5] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 19 ms
+2025-08-10 02:08:54 [http-nio-8080-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - GET "/api/chat", parameters={}
+2025-08-10 02:08:54 [http-nio-8080-exec-5] DEBUG o.s.w.s.s.s.WebSocketHandlerMapping - Mapped to org.springframework.web.socket.server.support.WebSocketHttpRequestHandler@38794a3
+2025-08-10 02:08:54 [http-nio-8080-exec-5] DEBUG o.s.w.s.s.s.WebSocketHttpRequestHandler - GET /api/chat
+2025-08-10 02:08:54 [http-nio-8080-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - Completed 101 SWITCHING_PROTOCOLS
+2025-08-10 02:08:54 [http-nio-8080-exec-5] DEBUG o.s.w.s.h.LoggingWebSocketHandlerDecorator - New StandardWebSocketSession[id=8ad163b2-ba62-344a-ea9f-6a3e7f063053, uri=ws://localhost:8080/api/chat]
+2025-08-10 02:08:54 [http-nio-8080-exec-5] INFO  c.e.u.d.c.h.ChatWebSocketHandler - WebSocket 연결 성공: 8ad163b2-ba62-344a-ea9f-6a3e7f063053
+2025-08-10 02:08:54 [http-nio-8080-exec-5] DEBUG c.e.u.d.c.h.ChatWebSocketHandler - 메시지 전송 [8ad163b2-ba62-344a-ea9f-6a3e7f063053]: connection
+2025-08-10 02:09:28 [main] INFO  c.example.unithon.UnithonApplication - Starting UnithonApplication using Java 21.0.4 with PID 52608 (/Users/yunjeong/Desktop/unithon/build/classes/java/main started by yunjeong in /Users/yunjeong/Desktop/unithon)
+2025-08-10 02:09:28 [main] DEBUG c.example.unithon.UnithonApplication - Running with Spring Boot v3.5.4, Spring v6.2.9
+2025-08-10 02:09:28 [main] INFO  c.example.unithon.UnithonApplication - No active profile set, falling back to 1 default profile: "default"
+2025-08-10 02:09:28 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-08-10 02:09:28 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 14 ms. Found 3 JPA repository interfaces.
+2025-08-10 02:09:28 [main] INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=efb109c1-7d98-3f96-97fc-a61a66401d77
+2025-08-10 02:09:29 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-08-10 02:09:29 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-08-10 02:09:29 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.43]
+2025-08-10 02:09:29 [main] INFO  o.a.c.c.C.[.[localhost].[/api] - Initializing Spring embedded WebApplicationContext
+2025-08-10 02:09:29 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 521 ms
+2025-08-10 02:09:29 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-08-10 02:09:29 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.22.Final
+2025-08-10 02:09:29 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-08-10 02:09:29 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-08-10 02:09:29 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-08-10 02:09:29 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7d80e1b3
+2025-08-10 02:09:29 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-08-10 02:09:29 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-08-10 02:09:29 [main] WARN  org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-08-10 02:09:29 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-08-10 02:09:29 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-08-10 02:09:30 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-08-10 02:09:30 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-08-10 02:09:30 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-08-10 02:09:30 [main] DEBUG o.s.w.s.s.s.WebSocketHandlerMapping - Patterns [/chat] in 'webSocketHandlerMapping'
+2025-08-10 02:09:30 [main] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - 13 mappings in 'requestMappingHandlerMapping'
+2025-08-10 02:09:30 [main] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Patterns [/webjars/**, /**, /swagger-ui*/*swagger-initializer.js, /swagger-ui*/**] in 'resourceHandlerMapping'
+2025-08-10 02:09:30 [main] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerAdapter - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-08-10 02:09:30 [main] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-08-10 02:09:31 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
+2025-08-10 02:09:31 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-08-10 02:09:31 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-08-10 02:09:31 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-08-10 02:09:31 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLogger - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-08-10 02:09:31 [main] ERROR o.s.b.d.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8080 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
+
+2025-08-10 02:10:06 [http-nio-8080-exec-6] DEBUG o.s.w.s.h.LoggingWebSocketHandlerDecorator - Transport error in StandardWebSocketSession[id=8ad163b2-ba62-344a-ea9f-6a3e7f063053, uri=ws://localhost:8080/api/chat]
+java.io.EOFException: null
+	at org.apache.tomcat.util.net.NioEndpoint$NioSocketWrapper.fillReadBuffer(NioEndpoint.java:1331)
+	at org.apache.tomcat.util.net.NioEndpoint$NioSocketWrapper.read(NioEndpoint.java:1219)
+	at org.apache.tomcat.websocket.server.WsFrameServer.onDataAvailable(WsFrameServer.java:74)
+	at org.apache.tomcat.websocket.server.WsFrameServer.doOnDataAvailable(WsFrameServer.java:184)
+	at org.apache.tomcat.websocket.server.WsFrameServer.notifyDataAvailable(WsFrameServer.java:164)
+	at org.apache.tomcat.websocket.server.WsHttpUpgradeHandler.upgradeDispatch(WsHttpUpgradeHandler.java:152)
+	at org.apache.coyote.http11.upgrade.UpgradeProcessorInternal.dispatch(UpgradeProcessorInternal.java:60)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:57)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1769)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1189)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:658)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+2025-08-10 02:10:06 [http-nio-8080-exec-6] ERROR c.e.u.d.c.h.ChatWebSocketHandler - WebSocket 전송 오류 [8ad163b2-ba62-344a-ea9f-6a3e7f063053]: null
+java.io.EOFException: null
+	at org.apache.tomcat.util.net.NioEndpoint$NioSocketWrapper.fillReadBuffer(NioEndpoint.java:1331)
+	at org.apache.tomcat.util.net.NioEndpoint$NioSocketWrapper.read(NioEndpoint.java:1219)
+	at org.apache.tomcat.websocket.server.WsFrameServer.onDataAvailable(WsFrameServer.java:74)
+	at org.apache.tomcat.websocket.server.WsFrameServer.doOnDataAvailable(WsFrameServer.java:184)
+	at org.apache.tomcat.websocket.server.WsFrameServer.notifyDataAvailable(WsFrameServer.java:164)
+	at org.apache.tomcat.websocket.server.WsHttpUpgradeHandler.upgradeDispatch(WsHttpUpgradeHandler.java:152)
+	at org.apache.coyote.http11.upgrade.UpgradeProcessorInternal.dispatch(UpgradeProcessorInternal.java:60)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:57)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1769)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1189)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:658)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+2025-08-10 02:10:06 [http-nio-8080-exec-6] DEBUG o.s.w.s.h.LoggingWebSocketHandlerDecorator - StandardWebSocketSession[id=8ad163b2-ba62-344a-ea9f-6a3e7f063053, uri=ws://localhost:8080/api/chat] closed with CloseStatus[code=1006, reason=null]
+2025-08-10 02:10:06 [http-nio-8080-exec-6] INFO  c.e.u.d.chat.service.ChatService - 세션 정리 [8ad163b2-ba62-344a-ea9f-6a3e7f063053]
+2025-08-10 02:10:06 [http-nio-8080-exec-6] INFO  c.e.u.d.c.h.ChatWebSocketHandler - WebSocket 연결 종료 [8ad163b2-ba62-344a-ea9f-6a3e7f063053]: CloseStatus[code=1006, reason=null]
+2025-08-10 02:10:09 [main] INFO  c.example.unithon.UnithonApplication - Starting UnithonApplication using Java 21.0.4 with PID 53105 (/Users/yunjeong/Desktop/unithon/build/classes/java/main started by yunjeong in /Users/yunjeong/Desktop/unithon)
+2025-08-10 02:10:09 [main] DEBUG c.example.unithon.UnithonApplication - Running with Spring Boot v3.5.4, Spring v6.2.9
+2025-08-10 02:10:09 [main] INFO  c.example.unithon.UnithonApplication - No active profile set, falling back to 1 default profile: "default"
+2025-08-10 02:10:10 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-08-10 02:10:10 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 15 ms. Found 3 JPA repository interfaces.
+2025-08-10 02:10:10 [main] INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=efb109c1-7d98-3f96-97fc-a61a66401d77
+2025-08-10 02:10:10 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-08-10 02:10:10 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-08-10 02:10:10 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.43]
+2025-08-10 02:10:10 [main] INFO  o.a.c.c.C.[.[localhost].[/api] - Initializing Spring embedded WebApplicationContext
+2025-08-10 02:10:10 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 538 ms
+2025-08-10 02:10:10 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-08-10 02:10:10 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.22.Final
+2025-08-10 02:10:10 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-08-10 02:10:10 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-08-10 02:10:10 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-08-10 02:10:10 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@53432aef
+2025-08-10 02:10:10 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-08-10 02:10:10 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-08-10 02:10:10 [main] WARN  org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-08-10 02:10:10 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-08-10 02:10:11 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-08-10 02:10:11 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-08-10 02:10:11 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-08-10 02:10:11 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-08-10 02:10:11 [main] DEBUG o.s.w.s.s.s.WebSocketHandlerMapping - Patterns [/chat] in 'webSocketHandlerMapping'
+2025-08-10 02:10:11 [main] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - 13 mappings in 'requestMappingHandlerMapping'
+2025-08-10 02:10:11 [main] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Patterns [/webjars/**, /**, /swagger-ui*/*swagger-initializer.js, /swagger-ui*/**] in 'resourceHandlerMapping'
+2025-08-10 02:10:11 [main] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerAdapter - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-08-10 02:10:11 [main] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-08-10 02:10:12 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
+2025-08-10 02:10:12 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-08-10 02:10:12 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-08-10 02:10:12 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-08-10 02:10:12 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLogger - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-08-10 02:10:12 [main] ERROR o.s.b.d.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8080 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
+
+2025-08-10 02:10:32 [main] INFO  c.example.unithon.UnithonApplication - Starting UnithonApplication using Java 21.0.4 with PID 53377 (/Users/yunjeong/Desktop/unithon/build/classes/java/main started by yunjeong in /Users/yunjeong/Desktop/unithon)
+2025-08-10 02:10:32 [main] DEBUG c.example.unithon.UnithonApplication - Running with Spring Boot v3.5.4, Spring v6.2.9
+2025-08-10 02:10:32 [main] INFO  c.example.unithon.UnithonApplication - No active profile set, falling back to 1 default profile: "default"
+2025-08-10 02:10:33 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-08-10 02:10:33 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 17 ms. Found 3 JPA repository interfaces.
+2025-08-10 02:10:33 [main] INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=efb109c1-7d98-3f96-97fc-a61a66401d77
+2025-08-10 02:10:33 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-08-10 02:10:33 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-08-10 02:10:33 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.43]
+2025-08-10 02:10:33 [main] INFO  o.a.c.c.C.[.[localhost].[/api] - Initializing Spring embedded WebApplicationContext
+2025-08-10 02:10:33 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 490 ms
+2025-08-10 02:10:33 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-08-10 02:10:33 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.22.Final
+2025-08-10 02:10:33 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-08-10 02:10:33 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-08-10 02:10:33 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-08-10 02:10:33 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@53432aef
+2025-08-10 02:10:33 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-08-10 02:10:33 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-08-10 02:10:33 [main] WARN  org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-08-10 02:10:33 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-08-10 02:10:34 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-08-10 02:10:34 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-08-10 02:10:34 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-08-10 02:10:34 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-08-10 02:10:34 [main] DEBUG o.s.w.s.s.s.WebSocketHandlerMapping - Patterns [/chat] in 'webSocketHandlerMapping'
+2025-08-10 02:10:34 [main] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - 13 mappings in 'requestMappingHandlerMapping'
+2025-08-10 02:10:34 [main] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Patterns [/webjars/**, /**, /swagger-ui*/*swagger-initializer.js, /swagger-ui*/**] in 'resourceHandlerMapping'
+2025-08-10 02:10:34 [main] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerAdapter - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-08-10 02:10:34 [main] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-08-10 02:10:35 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/api'
+2025-08-10 02:10:35 [main] INFO  c.example.unithon.UnithonApplication - Started UnithonApplication in 2.633 seconds (process running for 2.941)
+2025-08-10 02:10:44 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[.[localhost].[/api] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-08-10 02:10:44 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-08-10 02:10:44 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected StandardServletMultipartResolver
+2025-08-10 02:10:44 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected AcceptHeaderLocaleResolver
+2025-08-10 02:10:44 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected FixedThemeResolver
+2025-08-10 02:10:44 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@1330d15e
+2025-08-10 02:10:44 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected org.springframework.web.servlet.support.SessionFlashMapManager@19f19f89
+2025-08-10 02:10:44 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2025-08-10 02:10:44 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2025-08-10 02:10:44 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - GET "/api/websocket-test.html", parameters={}
+2025-08-10 02:10:44 [http-nio-8080-exec-1] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [static/]]
+2025-08-10 02:10:44 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2025-08-10 02:10:44 [http-nio-8080-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - GET "/api/chat", parameters={}
+2025-08-10 02:10:44 [http-nio-8080-exec-2] DEBUG o.s.w.s.s.s.WebSocketHandlerMapping - Mapped to org.springframework.web.socket.server.support.WebSocketHttpRequestHandler@1f9a472e
+2025-08-10 02:10:44 [http-nio-8080-exec-2] DEBUG o.s.w.s.s.s.WebSocketHttpRequestHandler - GET /api/chat
+2025-08-10 02:10:44 [http-nio-8080-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - Completed 101 SWITCHING_PROTOCOLS
+2025-08-10 02:10:44 [http-nio-8080-exec-2] DEBUG o.s.w.s.h.LoggingWebSocketHandlerDecorator - New StandardWebSocketSession[id=9474ff46-14fd-4153-bf78-4320dda6c0e1, uri=ws://localhost:8080/api/chat]
+2025-08-10 02:10:44 [http-nio-8080-exec-2] INFO  c.e.u.d.c.h.ChatWebSocketHandler - WebSocket 연결 성공: 9474ff46-14fd-4153-bf78-4320dda6c0e1
+2025-08-10 02:10:44 [http-nio-8080-exec-2] DEBUG c.e.u.d.c.h.ChatWebSocketHandler - 메시지 전송 [9474ff46-14fd-4153-bf78-4320dda6c0e1]: connection
+2025-08-10 02:10:53 [http-nio-8080-exec-5] INFO  c.e.u.d.c.h.ChatWebSocketHandler - 수신 메시지 [9474ff46-14fd-4153-bf78-4320dda6c0e1]: {"type":"client.text","message":"치즈버거 주세요"}
+2025-08-10 02:10:53 [http-nio-8080-exec-5] INFO  c.e.u.d.c.h.ChatWebSocketHandler - 텍스트 메시지 처리 [9474ff46-14fd-4153-bf78-4320dda6c0e1]: 치즈버거 주세요
+2025-08-10 02:10:53 [http-nio-8080-exec-5] INFO  c.e.u.d.chat.service.ChatService - 메시지 처리 시작 [9474ff46-14fd-4153-bf78-4320dda6c0e1]: 치즈버거 주세요
+2025-08-10 02:10:54 [http-nio-8080-exec-5] INFO  c.e.u.d.menu.service.MenuService - 메뉴 검색 시작: 치즈버거 주세요
+2025-08-10 02:10:54 [http-nio-8080-exec-5] INFO  c.e.u.g.client.gemini.GeminiService - Calling Gemini API with prompt: 사용자가 '치즈버거 주세요'를 주문했습니다.
+이것은 맥도날드 매장입니다. 다음은 현재 판매 중인 메뉴입니다:
+
+버거/세트: 빅맥, 쿼터파운더, 맥스파이시 상하이 버거, 불고기 버거
+커피: 아메리카노, 카페라떼, 카푸치노, 캐러멜 마키아토
+음료: 코카콜라, 코카콜라 제로, 스프라이트, 오렌지 주스
+사이드: 프렌치프라이, 치킨 너겟, 애플파이
+디저트: 맥플러리 오레오, 소프트 콘
+
+판단 기준:
+1. 요청한 음식이 맥도날드에서 파는 종류의 음식인가?
+2. 위 메뉴와 유사한 것이 있는가?
+
+응답 규칙:
+- 맥도날드와 전혀 관련 없는 음식(짜장면, 김치찌개, 초밥 등)이면 → NO_MATCH
+- 유사한 메뉴가 있으면 → 다음 기준으로 추천:
+  1. 카테고리가 같은 메뉴를 우선 추천 (커피→커피, 버거→버거)
+  2. 맛, 재료, 특성이 유사한 메뉴를 선택
+  3. 가격대가 비슷한 메뉴를 우선 고려
+  4. 반드시 위 메뉴 목록에 있는 정확한 메뉴명만 추천
+
+예시:
+바닐라 라떼' → '카페라떼', '캐러멜 마키아토' 추천
+'치즈버거' → '빅맥', '불고기 버거' 추천
+'짜장면' → NO_MATCH (맥도날드 음식이 아님)
+'김치찌개' → NO_MATCH (맥도날드 음식이 아님)
+
+응답 형식: JSON
+{
+  "recommended": ["메뉴명1", "메뉴명2"] 또는 "NO_MATCH",
+  "reason": "판단 이유"
+}
+2025-08-10 02:10:55 [http-nio-8080-exec-5] DEBUG o.s.w.c.HttpMessageConverterExtractor - Reading to [com.example.unithon.global.client.gemini.GeminiResponse]
+2025-08-10 02:10:55 [http-nio-8080-exec-5] INFO  c.e.u.g.client.gemini.GeminiService - Received response from Gemini API: ```json
+{
+  "recommended": ["빅맥", "불고기 버거"],
+  "reason": "주문하신 '치즈버거'는 맥도날드 메뉴에는 없지만, 버거 종류이므로 맥도날드에서 판매하는 다른 버거인 '빅맥'과 '불고기 버거'를 추천합니다."
+}
+```
+
+2025-08-10 02:10:55 [http-nio-8080-exec-5] INFO  c.e.u.d.menu.service.MenuService - Gemini 응답: ```json
+{
+  "recommended": ["빅맥", "불고기 버거"],
+  "reason": "주문하신 '치즈버거'는 맥도날드 메뉴에는 없지만, 버거 종류이므로 맥도날드에서 판매하는 다른 버거인 '빅맥'과 '불고기 버거'를 추천합니다."
+}
+```
+
+2025-08-10 02:10:55 [http-nio-8080-exec-5] INFO  c.e.u.d.menu.service.MenuService - Gemini 응답에서 파싱된 추천 메뉴: [빅맥, 불고기 버거]
+2025-08-10 02:10:55 [http-nio-8080-exec-5] DEBUG c.e.u.d.c.h.ChatWebSocketHandler - 메시지 전송 [9474ff46-14fd-4153-bf78-4320dda6c0e1]: bot.reply
+2025-08-10 02:11:35 [http-nio-8080-exec-6] INFO  c.e.u.d.c.h.ChatWebSocketHandler - 수신 메시지 [9474ff46-14fd-4153-bf78-4320dda6c0e1]: {"type":"client.text","message":"빅맥주세요"}
+2025-08-10 02:11:35 [http-nio-8080-exec-6] INFO  c.e.u.d.c.h.ChatWebSocketHandler - 텍스트 메시지 처리 [9474ff46-14fd-4153-bf78-4320dda6c0e1]: 빅맥주세요
+2025-08-10 02:11:35 [http-nio-8080-exec-6] INFO  c.e.u.d.chat.service.ChatService - 메시지 처리 시작 [9474ff46-14fd-4153-bf78-4320dda6c0e1]: 빅맥주세요
+2025-08-10 02:11:35 [http-nio-8080-exec-6] INFO  c.e.u.d.menu.service.MenuService - 메뉴 검색 시작: 빅맥주세요
+2025-08-10 02:11:35 [http-nio-8080-exec-6] INFO  c.e.u.g.client.gemini.GeminiService - Calling Gemini API with prompt: 사용자가 '빅맥주세요'를 주문했습니다.
+이것은 맥도날드 매장입니다. 다음은 현재 판매 중인 메뉴입니다:
+
+버거/세트: 빅맥, 쿼터파운더, 맥스파이시 상하이 버거, 불고기 버거
+커피: 아메리카노, 카페라떼, 카푸치노, 캐러멜 마키아토
+음료: 코카콜라, 코카콜라 제로, 스프라이트, 오렌지 주스
+사이드: 프렌치프라이, 치킨 너겟, 애플파이
+디저트: 맥플러리 오레오, 소프트 콘
+
+판단 기준:
+1. 요청한 음식이 맥도날드에서 파는 종류의 음식인가?
+2. 위 메뉴와 유사한 것이 있는가?
+
+응답 규칙:
+- 맥도날드와 전혀 관련 없는 음식(짜장면, 김치찌개, 초밥 등)이면 → NO_MATCH
+- 유사한 메뉴가 있으면 → 다음 기준으로 추천:
+  1. 카테고리가 같은 메뉴를 우선 추천 (커피→커피, 버거→버거)
+  2. 맛, 재료, 특성이 유사한 메뉴를 선택
+  3. 가격대가 비슷한 메뉴를 우선 고려
+  4. 반드시 위 메뉴 목록에 있는 정확한 메뉴명만 추천
+
+예시:
+바닐라 라떼' → '카페라떼', '캐러멜 마키아토' 추천
+'치즈버거' → '빅맥', '불고기 버거' 추천
+'짜장면' → NO_MATCH (맥도날드 음식이 아님)
+'김치찌개' → NO_MATCH (맥도날드 음식이 아님)
+
+응답 형식: JSON
+{
+  "recommended": ["메뉴명1", "메뉴명2"] 또는 "NO_MATCH",
+  "reason": "판단 이유"
+}
+2025-08-10 02:11:36 [http-nio-8080-exec-6] DEBUG o.s.w.c.HttpMessageConverterExtractor - Reading to [com.example.unithon.global.client.gemini.GeminiResponse]
+2025-08-10 02:11:36 [http-nio-8080-exec-6] INFO  c.e.u.g.client.gemini.GeminiService - Received response from Gemini API: ```json
+{
+  "recommended": ["빅맥"],
+  "reason": "사용자가 빅맥을 주문했고, 빅맥은 메뉴에 있습니다."
+}
+```
+
+2025-08-10 02:11:36 [http-nio-8080-exec-6] INFO  c.e.u.d.menu.service.MenuService - Gemini 응답: ```json
+{
+  "recommended": ["빅맥"],
+  "reason": "사용자가 빅맥을 주문했고, 빅맥은 메뉴에 있습니다."
+}
+```
+
+2025-08-10 02:11:36 [http-nio-8080-exec-6] INFO  c.e.u.d.menu.service.MenuService - Gemini 응답에서 파싱된 추천 메뉴: [빅맥]
+2025-08-10 02:11:36 [http-nio-8080-exec-6] DEBUG c.e.u.d.c.h.ChatWebSocketHandler - 메시지 전송 [9474ff46-14fd-4153-bf78-4320dda6c0e1]: bot.reply
+2025-08-10 02:11:48 [http-nio-8080-exec-7] INFO  c.e.u.d.c.h.ChatWebSocketHandler - 수신 메시지 [9474ff46-14fd-4153-bf78-4320dda6c0e1]: {"type":"client.command","action":"confirm"}
+2025-08-10 02:11:48 [http-nio-8080-exec-7] INFO  c.e.u.d.c.h.ChatWebSocketHandler - 명령 메시지 처리 [9474ff46-14fd-4153-bf78-4320dda6c0e1]: confirm
+2025-08-10 02:11:48 [http-nio-8080-exec-7] INFO  c.e.u.d.chat.service.ChatService - 주문 확정 [9474ff46-14fd-4153-bf78-4320dda6c0e1]
+2025-08-10 02:11:48 [http-nio-8080-exec-7] DEBUG c.e.u.d.c.h.ChatWebSocketHandler - 메시지 전송 [9474ff46-14fd-4153-bf78-4320dda6c0e1]: macro.trigger
+2025-08-10 02:11:59 [http-nio-8080-exec-8] INFO  c.e.u.d.c.h.ChatWebSocketHandler - 수신 메시지 [9474ff46-14fd-4153-bf78-4320dda6c0e1]: {"type":"client.command","action":"repeat"}
+2025-08-10 02:11:59 [http-nio-8080-exec-8] INFO  c.e.u.d.c.h.ChatWebSocketHandler - 명령 메시지 처리 [9474ff46-14fd-4153-bf78-4320dda6c0e1]: repeat
+2025-08-10 02:11:59 [http-nio-8080-exec-8] DEBUG c.e.u.d.c.h.ChatWebSocketHandler - 메시지 전송 [9474ff46-14fd-4153-bf78-4320dda6c0e1]: bot.reply
+2025-08-10 02:12:07 [http-nio-8080-exec-9] INFO  c.e.u.d.c.h.ChatWebSocketHandler - 수신 메시지 [9474ff46-14fd-4153-bf78-4320dda6c0e1]: {"type":"client.text","message":"하이"}
+2025-08-10 02:12:07 [http-nio-8080-exec-9] INFO  c.e.u.d.c.h.ChatWebSocketHandler - 텍스트 메시지 처리 [9474ff46-14fd-4153-bf78-4320dda6c0e1]: 하이
+2025-08-10 02:12:07 [http-nio-8080-exec-9] INFO  c.e.u.d.chat.service.ChatService - 메시지 처리 시작 [9474ff46-14fd-4153-bf78-4320dda6c0e1]: 하이
+2025-08-10 02:12:08 [http-nio-8080-exec-9] INFO  c.e.u.d.menu.service.MenuService - 메뉴 검색 시작: 하이
+2025-08-10 02:12:08 [http-nio-8080-exec-9] INFO  c.e.u.g.client.gemini.GeminiService - Calling Gemini API with prompt: 사용자가 '하이'를 주문했습니다.
+이것은 맥도날드 매장입니다. 다음은 현재 판매 중인 메뉴입니다:
+
+버거/세트: 빅맥, 쿼터파운더, 맥스파이시 상하이 버거, 불고기 버거
+커피: 아메리카노, 카페라떼, 카푸치노, 캐러멜 마키아토
+음료: 코카콜라, 코카콜라 제로, 스프라이트, 오렌지 주스
+사이드: 프렌치프라이, 치킨 너겟, 애플파이
+디저트: 맥플러리 오레오, 소프트 콘
+
+판단 기준:
+1. 요청한 음식이 맥도날드에서 파는 종류의 음식인가?
+2. 위 메뉴와 유사한 것이 있는가?
+
+응답 규칙:
+- 맥도날드와 전혀 관련 없는 음식(짜장면, 김치찌개, 초밥 등)이면 → NO_MATCH
+- 유사한 메뉴가 있으면 → 다음 기준으로 추천:
+  1. 카테고리가 같은 메뉴를 우선 추천 (커피→커피, 버거→버거)
+  2. 맛, 재료, 특성이 유사한 메뉴를 선택
+  3. 가격대가 비슷한 메뉴를 우선 고려
+  4. 반드시 위 메뉴 목록에 있는 정확한 메뉴명만 추천
+
+예시:
+바닐라 라떼' → '카페라떼', '캐러멜 마키아토' 추천
+'치즈버거' → '빅맥', '불고기 버거' 추천
+'짜장면' → NO_MATCH (맥도날드 음식이 아님)
+'김치찌개' → NO_MATCH (맥도날드 음식이 아님)
+
+응답 형식: JSON
+{
+  "recommended": ["메뉴명1", "메뉴명2"] 또는 "NO_MATCH",
+  "reason": "판단 이유"
+}
+2025-08-10 02:12:09 [http-nio-8080-exec-9] DEBUG o.s.w.c.HttpMessageConverterExtractor - Reading to [com.example.unithon.global.client.gemini.GeminiResponse]
+2025-08-10 02:12:09 [http-nio-8080-exec-9] INFO  c.e.u.g.client.gemini.GeminiService - Received response from Gemini API: ```json
+{
+  "recommended": "NO_MATCH",
+  "reason": "맥도날드 메뉴에 '하이'라는 음식이 없습니다."
+}
+```
+
+2025-08-10 02:12:09 [http-nio-8080-exec-9] INFO  c.e.u.d.menu.service.MenuService - Gemini 응답: ```json
+{
+  "recommended": "NO_MATCH",
+  "reason": "맥도날드 메뉴에 '하이'라는 음식이 없습니다."
+}
+```
+
+2025-08-10 02:12:09 [http-nio-8080-exec-9] INFO  c.e.u.d.menu.service.MenuService - Gemini 응답: 맥도날드 메뉴와 관련 없는 요청으로 판단됨
+2025-08-10 02:12:09 [http-nio-8080-exec-9] DEBUG c.e.u.d.c.h.ChatWebSocketHandler - 메시지 전송 [9474ff46-14fd-4153-bf78-4320dda6c0e1]: bot.reply
+2025-08-10 02:12:18 [http-nio-8080-exec-10] INFO  c.e.u.d.c.h.ChatWebSocketHandler - 수신 메시지 [9474ff46-14fd-4153-bf78-4320dda6c0e1]: {"type":"client.text","message":"불고기버거 주세요"}
+2025-08-10 02:12:18 [http-nio-8080-exec-10] INFO  c.e.u.d.c.h.ChatWebSocketHandler - 텍스트 메시지 처리 [9474ff46-14fd-4153-bf78-4320dda6c0e1]: 불고기버거 주세요
+2025-08-10 02:12:18 [http-nio-8080-exec-10] INFO  c.e.u.d.chat.service.ChatService - 메시지 처리 시작 [9474ff46-14fd-4153-bf78-4320dda6c0e1]: 불고기버거 주세요
+2025-08-10 02:12:18 [http-nio-8080-exec-10] INFO  c.e.u.d.menu.service.MenuService - 메뉴 검색 시작: 불고기버거 주세요
+2025-08-10 02:12:18 [http-nio-8080-exec-10] INFO  c.e.u.g.client.gemini.GeminiService - Calling Gemini API with prompt: 사용자가 '불고기버거 주세요'를 주문했습니다.
+이것은 맥도날드 매장입니다. 다음은 현재 판매 중인 메뉴입니다:
+
+버거/세트: 빅맥, 쿼터파운더, 맥스파이시 상하이 버거, 불고기 버거
+커피: 아메리카노, 카페라떼, 카푸치노, 캐러멜 마키아토
+음료: 코카콜라, 코카콜라 제로, 스프라이트, 오렌지 주스
+사이드: 프렌치프라이, 치킨 너겟, 애플파이
+디저트: 맥플러리 오레오, 소프트 콘
+
+판단 기준:
+1. 요청한 음식이 맥도날드에서 파는 종류의 음식인가?
+2. 위 메뉴와 유사한 것이 있는가?
+
+응답 규칙:
+- 맥도날드와 전혀 관련 없는 음식(짜장면, 김치찌개, 초밥 등)이면 → NO_MATCH
+- 유사한 메뉴가 있으면 → 다음 기준으로 추천:
+  1. 카테고리가 같은 메뉴를 우선 추천 (커피→커피, 버거→버거)
+  2. 맛, 재료, 특성이 유사한 메뉴를 선택
+  3. 가격대가 비슷한 메뉴를 우선 고려
+  4. 반드시 위 메뉴 목록에 있는 정확한 메뉴명만 추천
+
+예시:
+바닐라 라떼' → '카페라떼', '캐러멜 마키아토' 추천
+'치즈버거' → '빅맥', '불고기 버거' 추천
+'짜장면' → NO_MATCH (맥도날드 음식이 아님)
+'김치찌개' → NO_MATCH (맥도날드 음식이 아님)
+
+응답 형식: JSON
+{
+  "recommended": ["메뉴명1", "메뉴명2"] 또는 "NO_MATCH",
+  "reason": "판단 이유"
+}
+2025-08-10 02:12:19 [http-nio-8080-exec-10] DEBUG o.s.w.c.HttpMessageConverterExtractor - Reading to [com.example.unithon.global.client.gemini.GeminiResponse]
+2025-08-10 02:12:19 [http-nio-8080-exec-10] INFO  c.e.u.g.client.gemini.GeminiService - Received response from Gemini API: ```json
+{
+  "recommended": ["불고기 버거"],
+  "reason": "주문하신 '불고기 버거'는 맥도날드에서 판매하는 메뉴입니다."
+}
+```
+
+2025-08-10 02:12:19 [http-nio-8080-exec-10] INFO  c.e.u.d.menu.service.MenuService - Gemini 응답: ```json
+{
+  "recommended": ["불고기 버거"],
+  "reason": "주문하신 '불고기 버거'는 맥도날드에서 판매하는 메뉴입니다."
+}
+```
+
+2025-08-10 02:12:19 [http-nio-8080-exec-10] INFO  c.e.u.d.menu.service.MenuService - Gemini 응답에서 파싱된 추천 메뉴: [불고기 버거]
+2025-08-10 02:12:19 [http-nio-8080-exec-10] DEBUG c.e.u.d.c.h.ChatWebSocketHandler - 메시지 전송 [9474ff46-14fd-4153-bf78-4320dda6c0e1]: bot.reply
+2025-08-10 02:12:36 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-08-10 02:12:36 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-08-10 02:12:36 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-08-10 02:12:36 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-08-10 02:12:36 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-08-10 02:12:36 [SpringApplicationShutdownHook] DEBUG o.s.w.s.h.LoggingWebSocketHandlerDecorator - Transport error in StandardWebSocketSession[id=9474ff46-14fd-4153-bf78-4320dda6c0e1, uri=ws://localhost:8080/api/chat]
+java.io.IOException: java.nio.channels.ClosedChannelException
+	at org.apache.tomcat.websocket.WsRemoteEndpointImplBase.sendMessageBlockInternal(WsRemoteEndpointImplBase.java:326)
+	at org.apache.tomcat.websocket.WsRemoteEndpointImplBase.sendMessageBlock(WsRemoteEndpointImplBase.java:266)
+	at org.apache.tomcat.websocket.WsSession.sendCloseMessage(WsSession.java:778)
+	at org.apache.tomcat.websocket.WsSession.doClose(WsSession.java:575)
+	at org.apache.tomcat.websocket.WsSession.doClose(WsSession.java:542)
+	at org.apache.tomcat.websocket.WsSession.close(WsSession.java:530)
+	at org.apache.tomcat.websocket.WsWebSocketContainer.destroy(WsWebSocketContainer.java:1022)
+	at org.apache.tomcat.websocket.server.WsContextListener.contextDestroyed(WsContextListener.java:46)
+	at org.apache.catalina.core.StandardContext.listenerStop(StandardContext.java:4090)
+	at org.apache.catalina.core.StandardContext.stopInternal(StandardContext.java:4700)
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:235)
+	at org.apache.catalina.core.ContainerBase$StopChild.call(ContainerBase.java:1219)
+	at org.apache.catalina.core.ContainerBase$StopChild.call(ContainerBase.java:1208)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:145)
+	at org.apache.catalina.core.ContainerBase.stopInternal(ContainerBase.java:814)
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:235)
+	at org.apache.catalina.core.ContainerBase$StopChild.call(ContainerBase.java:1219)
+	at org.apache.catalina.core.ContainerBase$StopChild.call(ContainerBase.java:1208)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:145)
+	at org.apache.catalina.core.ContainerBase.stopInternal(ContainerBase.java:814)
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:235)
+	at org.apache.catalina.core.StandardService.stopInternal(StandardService.java:468)
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:235)
+	at org.apache.catalina.core.StandardServer.stopInternal(StandardServer.java:915)
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:235)
+	at org.apache.catalina.startup.Tomcat.stop(Tomcat.java:448)
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.stopTomcat(TomcatWebServer.java:301)
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.destroy(TomcatWebServer.java:374)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.doClose(ServletWebServerApplicationContext.java:182)
+	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:1126)
+	at org.springframework.boot.SpringApplicationShutdownHook.closeAndWait(SpringApplicationShutdownHook.java:147)
+	at java.base/java.lang.Iterable.forEach(Iterable.java:75)
+	at org.springframework.boot.SpringApplicationShutdownHook.run(SpringApplicationShutdownHook.java:116)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+Caused by: java.nio.channels.ClosedChannelException: null
+	at org.apache.tomcat.util.net.NioChannel$1.write(NioChannel.java:282)
+	at org.apache.tomcat.util.net.NioEndpoint$NioSocketWrapper$NioOperationState.run(NioEndpoint.java:1665)
+	at org.apache.tomcat.util.net.SocketWrapperBase$OperationState.start(SocketWrapperBase.java:987)
+	at org.apache.tomcat.util.net.SocketWrapperBase.vectoredOperation(SocketWrapperBase.java:1358)
+	at org.apache.tomcat.util.net.SocketWrapperBase.write(SocketWrapperBase.java:1287)
+	at org.apache.tomcat.util.net.SocketWrapperBase.write(SocketWrapperBase.java:1262)
+	at org.apache.tomcat.websocket.server.WsRemoteEndpointImplServer.doWrite(WsRemoteEndpointImplServer.java:171)
+	at org.apache.tomcat.websocket.WsRemoteEndpointImplBase.writeMessagePart(WsRemoteEndpointImplBase.java:521)
+	at org.apache.tomcat.websocket.WsRemoteEndpointImplBase.sendMessageBlockInternal(WsRemoteEndpointImplBase.java:313)
+	... 37 common frames omitted
+2025-08-10 02:12:36 [SpringApplicationShutdownHook] ERROR c.e.u.d.c.h.ChatWebSocketHandler - WebSocket 전송 오류 [9474ff46-14fd-4153-bf78-4320dda6c0e1]: java.nio.channels.ClosedChannelException
+java.io.IOException: java.nio.channels.ClosedChannelException
+	at org.apache.tomcat.websocket.WsRemoteEndpointImplBase.sendMessageBlockInternal(WsRemoteEndpointImplBase.java:326)
+	at org.apache.tomcat.websocket.WsRemoteEndpointImplBase.sendMessageBlock(WsRemoteEndpointImplBase.java:266)
+	at org.apache.tomcat.websocket.WsSession.sendCloseMessage(WsSession.java:778)
+	at org.apache.tomcat.websocket.WsSession.doClose(WsSession.java:575)
+	at org.apache.tomcat.websocket.WsSession.doClose(WsSession.java:542)
+	at org.apache.tomcat.websocket.WsSession.close(WsSession.java:530)
+	at org.apache.tomcat.websocket.WsWebSocketContainer.destroy(WsWebSocketContainer.java:1022)
+	at org.apache.tomcat.websocket.server.WsContextListener.contextDestroyed(WsContextListener.java:46)
+	at org.apache.catalina.core.StandardContext.listenerStop(StandardContext.java:4090)
+	at org.apache.catalina.core.StandardContext.stopInternal(StandardContext.java:4700)
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:235)
+	at org.apache.catalina.core.ContainerBase$StopChild.call(ContainerBase.java:1219)
+	at org.apache.catalina.core.ContainerBase$StopChild.call(ContainerBase.java:1208)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:145)
+	at org.apache.catalina.core.ContainerBase.stopInternal(ContainerBase.java:814)
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:235)
+	at org.apache.catalina.core.ContainerBase$StopChild.call(ContainerBase.java:1219)
+	at org.apache.catalina.core.ContainerBase$StopChild.call(ContainerBase.java:1208)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:145)
+	at org.apache.catalina.core.ContainerBase.stopInternal(ContainerBase.java:814)
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:235)
+	at org.apache.catalina.core.StandardService.stopInternal(StandardService.java:468)
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:235)
+	at org.apache.catalina.core.StandardServer.stopInternal(StandardServer.java:915)
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:235)
+	at org.apache.catalina.startup.Tomcat.stop(Tomcat.java:448)
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.stopTomcat(TomcatWebServer.java:301)
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.destroy(TomcatWebServer.java:374)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.doClose(ServletWebServerApplicationContext.java:182)
+	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:1126)
+	at org.springframework.boot.SpringApplicationShutdownHook.closeAndWait(SpringApplicationShutdownHook.java:147)
+	at java.base/java.lang.Iterable.forEach(Iterable.java:75)
+	at org.springframework.boot.SpringApplicationShutdownHook.run(SpringApplicationShutdownHook.java:116)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+Caused by: java.nio.channels.ClosedChannelException: null
+	at org.apache.tomcat.util.net.NioChannel$1.write(NioChannel.java:282)
+	at org.apache.tomcat.util.net.NioEndpoint$NioSocketWrapper$NioOperationState.run(NioEndpoint.java:1665)
+	at org.apache.tomcat.util.net.SocketWrapperBase$OperationState.start(SocketWrapperBase.java:987)
+	at org.apache.tomcat.util.net.SocketWrapperBase.vectoredOperation(SocketWrapperBase.java:1358)
+	at org.apache.tomcat.util.net.SocketWrapperBase.write(SocketWrapperBase.java:1287)
+	at org.apache.tomcat.util.net.SocketWrapperBase.write(SocketWrapperBase.java:1262)
+	at org.apache.tomcat.websocket.server.WsRemoteEndpointImplServer.doWrite(WsRemoteEndpointImplServer.java:171)
+	at org.apache.tomcat.websocket.WsRemoteEndpointImplBase.writeMessagePart(WsRemoteEndpointImplBase.java:521)
+	at org.apache.tomcat.websocket.WsRemoteEndpointImplBase.sendMessageBlockInternal(WsRemoteEndpointImplBase.java:313)
+	... 37 common frames omitted
+2025-08-10 02:12:36 [SpringApplicationShutdownHook] DEBUG o.s.w.s.h.LoggingWebSocketHandlerDecorator - StandardWebSocketSession[id=9474ff46-14fd-4153-bf78-4320dda6c0e1, uri=ws://localhost:8080/api/chat] closed with CloseStatus[code=1001, reason=The web application is stopping]
+2025-08-10 02:12:36 [SpringApplicationShutdownHook] INFO  c.e.u.d.chat.service.ChatService - 세션 정리 [9474ff46-14fd-4153-bf78-4320dda6c0e1]
+2025-08-10 02:12:36 [SpringApplicationShutdownHook] INFO  c.e.u.d.c.h.ChatWebSocketHandler - WebSocket 연결 종료 [9474ff46-14fd-4153-bf78-4320dda6c0e1]: CloseStatus[code=1001, reason=The web application is stopping]
