@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>맥도날드 키오스크 챗봇 테스트</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #d62300;
+            text-align: center;
+        }
+        .status {
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+        .connected { background-color: #d4edda; color: #155724; }
+        .disconnected { background-color: #f8d7da; color: #721c24; }
+        .chat-container {
+            height: 400px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 10px;
+            overflow-y: auto;
+            background-color: #fafafa;
+            margin: 20px 0;
+        }
+        .message {
+            margin: 10px 0;
+            padding: 8px;
+            border-radius: 5px;
+        }
+        .user-message {
+            background-color: #007bff;
+            color: white;
+            text-align: right;
+            margin-left: 20%;
+        }
+        .bot-message {
+            background-color: #e9ecef;
+            color: #333;
+            margin-right: 20%;
+        }
+        .system-message {
+            background-color: #fff3cd;
+            color: #856404;
+            text-align: center;
+            font-style: italic;
+        }
+        .input-area {
+            display: flex;
+            gap: 10px;
+            margin: 20px 0;
+        }
+        input[type="text"] {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .command-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin: 10px 0;
+        }
+        .command-btn {
+            background-color: #6c757d;
+            font-size: 14px;
+            padding: 8px 16px;
+        }
+        .command-btn:hover {
+            background-color: #545b62;
+        }
+        .examples {
+            background-color: #e7f3ff;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        .examples h3 {
+            margin-top: 0;
+            color: #0066cc;
+        }
+        .example-item {
+            margin: 5px 0;
+            cursor: pointer;
+            color: #0066cc;
+            text-decoration: underline;
+        }
+        .example-item:hover {
+            background-color: #f0f8ff;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🍔 맥도날드 키오스크 챗봇 테스트</h1>
+        
+        <div id="status" class="status disconnected">연결 해제됨</div>
+        
+        <div class="examples">
+            <h3>📝 테스트 예제 (클릭하면 자동 입력)</h3>
+            <div class="example-item" onclick="sendExample('아아')">🔹 아아 (DB 동의어 테스트)</div>
+            <div class="example-item" onclick="sendExample('라떼')">🔹 라떼 (DB 동의어 테스트)</div>
+            <div class="example-item" onclick="sendExample('감튀')">🔹 감튀 (DB 동의어 테스트)</div>
+            <div class="example-item" onclick="sendExample('바닐라 플랫화이트')">🔹 바닐라 플랫화이트 (Gemini 추천 테스트)</div>
+            <div class="example-item" onclick="sendExample('치즈버거')">🔹 치즈버거 (Gemini 추천 테스트)</div>
+            <div class="example-item" onclick="sendExample('짜장면')">🔹 짜장면 (NO_MATCH 테스트)</div>
+        </div>
+        
+        <div id="chatContainer" class="chat-container"></div>
+        
+        <div class="input-area">
+            <input type="text" id="messageInput" placeholder="메뉴를 말씀해주세요..." onkeypress="handleKeyPress(event)">
+            <button onclick="sendMessage()">전송</button>
+        </div>
+        
+        <div class="command-buttons">
+            <button class="command-btn" onclick="sendCommand('confirm')">주문 확정</button>
+            <button class="command-btn" onclick="sendCommand('cancel')">주문 취소</button>
+            <button class="command-btn" onclick="sendCommand('repeat')">다시 듣기</button>
+        </div>
+        
+        <div class="command-buttons">
+            <button class="command-btn" onclick="connect()">연결</button>
+            <button class="command-btn" onclick="disconnect()">연결 해제</button>
+            <button class="command-btn" onclick="clearChat()">채팅 지우기</button>
+        </div>
+    </div>
+
+    <script>
+        let ws = null;
+        const chatContainer = document.getElementById('chatContainer');
+        const statusElement = document.getElementById('status');
+        const messageInput = document.getElementById('messageInput');
+
+        function connect() {
+            if (ws && ws.readyState === WebSocket.OPEN) {
+                addMessage('이미 연결되어 있습니다.', 'system');
+                return;
+            }
+
+            ws = new WebSocket('ws://localhost:8080/api/chat');
+
+            ws.onopen = function() {
+                updateStatus('connected', '연결됨');
+                addMessage('WebSocket 연결이 성공했습니다.', 'system');
+            };
+
+            ws.onmessage = function(event) {
+                try {
+                    const data = JSON.parse(event.data);
+                    console.log('수신:', data);
+                    
+                    let messageType = '';
+                    switch(data.type) {
+                        case 'connection':
+                            messageType = '🔗 ';
+                            break;
+                        case 'bot.reply':
+                            messageType = '🤖 ';
+                            break;
+                        case 'macro.trigger':
+                            messageType = '🎯 매크로: ';
+                            break;
+                        case 'server.error':
+                            messageType = '❌ 오류: ';
+                            break;
+                        default:
+                            messageType = '📄 ';
+                    }
+                    
+                    addMessage(messageType + data.message, 'bot');
+                } catch (e) {
+                    addMessage('메시지 파싱 오류: ' + event.data, 'system');
+                }
+            };
+
+            ws.onclose = function() {
+                updateStatus('disconnected', '연결 해제됨');
+                addMessage('WebSocket 연결이 해제되었습니다.', 'system');
+            };
+
+            ws.onerror = function(error) {
+                updateStatus('disconnected', '연결 오류');
+                addMessage('WebSocket 오류가 발생했습니다.', 'system');
+                console.error('WebSocket 오류:', error);
+            };
+        }
+
+        function disconnect() {
+            if (ws) {
+                ws.close();
+            }
+        }
+
+        function sendMessage() {
+            const message = messageInput.value.trim();
+            if (!message) return;
+
+            if (!ws || ws.readyState !== WebSocket.OPEN) {
+                addMessage('WebSocket이 연결되지 않았습니다. 먼저 연결해주세요.', 'system');
+                return;
+            }
+
+            addMessage('👤 ' + message, 'user');
+            
+            const messageData = {
+                type: 'client.text',
+                message: message
+            };
+
+            ws.send(JSON.stringify(messageData));
+            messageInput.value = '';
+        }
+
+        function sendCommand(action) {
+            if (!ws || ws.readyState !== WebSocket.OPEN) {
+                addMessage('WebSocket이 연결되지 않았습니다.', 'system');
+                return;
+            }
+
+            addMessage(`👤 [${action.toUpperCase()}]`, 'user');
+            
+            const commandData = {
+                type: 'client.command',
+                action: action
+            };
+
+            ws.send(JSON.stringify(commandData));
+        }
+
+        function sendExample(message) {
+            messageInput.value = message;
+            sendMessage();
+        }
+
+        function addMessage(message, type) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${type}-message`;
+            messageDiv.textContent = message;
+            
+            chatContainer.appendChild(messageDiv);
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+
+        function updateStatus(statusType, statusText) {
+            statusElement.className = `status ${statusType}`;
+            statusElement.textContent = statusText;
+        }
+
+        function clearChat() {
+            chatContainer.innerHTML = '';
+        }
+
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+
+        // 페이지 로드 시 자동 연결
+        window.onload = function() {
+            connect();
+        };
+    </script>
+</body>
+</html> 

@@ -44,6 +44,7 @@ dependencies {
     // === Web ===
     implementation 'org.springframework.boot:spring-boot-starter-validation'
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-websocket'
 
     // === Querydsl ===
     implementation 'com.querydsl:querydsl-jpa:5.0.0:jakarta'
