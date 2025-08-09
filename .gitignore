@@ -6,7 +6,7 @@ build/
 !**/src/test/**/build/
 
 ### .env ###
-.env
+.env.properties
 src/main/resources/application-env.properties
 
 ### src/test/resources ###

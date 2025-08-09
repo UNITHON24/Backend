@@ -1,6 +1,8 @@
 spring:
   application:
     name: unithon
+  config:
+    import: optional:file:./.env.properties
   
   # Database configuration
   datasource:
@@ -36,7 +38,7 @@ gemini:
   api:
     key: ${GEMINI_API_KEY}
     url: ${GEMINI_API_URL:https://generativelanguage.googleapis.com}
-    path: ${GEMINI_API_PATH:/v1beta/models/gemini-pro:generateContent}
+    path: ${GEMINI_API_PATH:/v1beta/models/gemini-1.5-flash:generateContent}
 
 # Logging configuration
 logging:
