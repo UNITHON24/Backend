@@ -9,6 +9,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.socket.*;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 @Component
@@ -70,6 +72,16 @@ public class ChatWebSocketHandler implements WebSocketHandler {
         String botResponse = chatService.processMessage(sessionId, userMessage);
 
         sendMessage(session, "bot.reply", botResponse);
+        
+        // 주문 완료 시 연결 종료
+        if (botResponse.contains("결제 해주시길 바랍니다")) {
+            log.info("주문 완료로 인한 WebSocket 연결 종료 [{}]", sessionId);
+            try {
+                session.close();
+            } catch (Exception e) {
+                log.error("WebSocket 연결 종료 실패 [{}]: {}", sessionId, e.getMessage());
+            }
+        }
     }
 
     /**
@@ -104,16 +116,20 @@ public class ChatWebSocketHandler implements WebSocketHandler {
      */
     private void sendMessage(WebSocketSession session, String type, String message) throws IOException {
         if (session.isOpen()) {
-            String jsonMessage = String.format("""
-                {
-                    "type": "%s",
-                    "message": "%s",
-                    "timestamp": %d
-                }
-                """, type, message, System.currentTimeMillis());
-            
-            session.sendMessage(new TextMessage(jsonMessage));
-            log.debug("메시지 전송 [{}]: {}", session.getId(), type);
+            try {
+                // JSON 안전한 메시지 생성
+                Map<String, Object> messageData = new HashMap<>();
+                messageData.put("type", type);
+                messageData.put("message", message);
+                messageData.put("timestamp", System.currentTimeMillis());
+                
+                String jsonMessage = objectMapper.writeValueAsString(messageData);
+                
+                session.sendMessage(new TextMessage(jsonMessage));
+                log.debug("메시지 전송 [{}]: {}", session.getId(), type);
+            } catch (Exception e) {
+                log.error("메시지 전송 실패 [{}]: {}", session.getId(), e.getMessage());
+            }
         }
     }
 

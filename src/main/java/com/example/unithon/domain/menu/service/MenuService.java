@@ -32,12 +32,15 @@ public class MenuService {
     public MenuSearchResult searchMenu(String userInput) {
         log.info("메뉴 검색 시작: {}", userInput);
 
-        String normalizedInput = normalizeInput(userInput);
-
-        Optional<Menu> directMatch = menuSynonymRepository.findMenuBySynonym(normalizedInput);
-        if (directMatch.isPresent()) {
-            log.info("DB 동의어 매칭 성공: {} → {}", userInput, directMatch.get().getDisplayName());
-            return MenuSearchResult.directMatch(directMatch.get());
+        // 여러 키워드로 동의어 검색 시도
+        List<String> keywords = extractKeywords(userInput);
+        
+        for (String keyword : keywords) {
+            Optional<Menu> directMatch = menuSynonymRepository.findMenuBySynonym(keyword);
+            if (directMatch.isPresent()) {
+                log.info("DB 동의어 매칭 성공: {} → {}", userInput, directMatch.get().getDisplayName());
+                return MenuSearchResult.directMatch(directMatch.get());
+            }
         }
 
         return searchWithGemini(userInput);
@@ -166,6 +169,30 @@ public class MenuService {
         }
     }
 
+
+    /**
+     * 사용자 입력에서 메뉴 키워드 추출
+     */
+    private List<String> extractKeywords(String input) {
+        if (input == null) return new ArrayList<>();
+        
+        List<String> keywords = new ArrayList<>();
+        
+        // 1. 전체 정규화
+        String normalized = normalizeInput(input);
+        keywords.add(normalized);
+        
+        // 2. 공백 기준 단어 분리 후 정규화
+        String[] words = input.trim().split("\\s+");
+        for (String word : words) {
+            String normalizedWord = normalizeInput(word);
+            if (!normalizedWord.isEmpty() && !keywords.contains(normalizedWord)) {
+                keywords.add(normalizedWord);
+            }
+        }
+        
+        return keywords;
+    }
 
     private String normalizeInput(String input) {
         if (input == null) return "";
