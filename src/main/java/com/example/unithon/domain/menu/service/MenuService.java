@@ -32,14 +32,22 @@ public class MenuService {
     public MenuSearchResult searchMenu(String userInput) {
         log.info("메뉴 검색 시작: {}", userInput);
 
-        // 여러 키워드로 동의어 검색 시도
+        // 여러 키워드로 검색 시도
         List<String> keywords = extractKeywords(userInput);
         
         for (String keyword : keywords) {
-            Optional<Menu> directMatch = menuSynonymRepository.findMenuBySynonym(keyword);
-            if (directMatch.isPresent()) {
-                log.info("DB 동의어 매칭 성공: {} → {}", userInput, directMatch.get().getDisplayName());
-                return MenuSearchResult.directMatch(directMatch.get());
+            // 1. 메뉴 display_name 직접 매칭
+            Optional<Menu> displayNameMatch = menuRepository.findByDisplayNameContaining(keyword);
+            if (displayNameMatch.isPresent()) {
+                log.info("DB display_name 매칭 성공: {} → {}", userInput, displayNameMatch.get().getDisplayName());
+                return MenuSearchResult.directMatch(displayNameMatch.get());
+            }
+            
+            // 2. 동의어 테이블 검색
+            Optional<Menu> synonymMatch = menuSynonymRepository.findMenuBySynonym(keyword);
+            if (synonymMatch.isPresent()) {
+                log.info("DB 동의어 매칭 성공: {} → {}", userInput, synonymMatch.get().getDisplayName());
+                return MenuSearchResult.directMatch(synonymMatch.get());
             }
         }
 

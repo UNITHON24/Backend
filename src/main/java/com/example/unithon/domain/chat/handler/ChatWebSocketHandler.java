@@ -9,6 +9,7 @@ import com.example.unithon.domain.chat.dto.ServerErrorEvent;
 import com.example.unithon.global.gcp.SttStreamingService;
 import com.example.unithon.global.gcp.TtsStreamingService;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 
 import org.springframework.context.event.EventListener;
@@ -25,13 +26,20 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 @Component
-@RequiredArgsConstructor
 @Slf4j
 public class ChatWebSocketHandler implements WebSocketHandler {
 
     private final ChatService chatService;
-    private final SttStreamingService sttStreamingService;
-    private final TtsStreamingService ttsStreamingService;
+    
+    @Autowired(required = false)
+    private SttStreamingService sttStreamingService;
+    
+    @Autowired(required = false)
+    private TtsStreamingService ttsStreamingService;
+    
+    public ChatWebSocketHandler(ChatService chatService) {
+        this.chatService = chatService;
+    }
     private final ObjectMapper objectMapper = new ObjectMapper();
 
     @Value("${feature.tts:false}")
@@ -173,6 +181,11 @@ public class ChatWebSocketHandler implements WebSocketHandler {
         String sessionId = session.getId();
         sessions.remove(sessionId);
 
+        // STT 세션 정리
+        if (sttStreamingService != null) {
+            sttStreamingService.stopStreaming(sessionId);
+        }
+        
         chatService.clearSession(sessionId);
         
         log.info("WebSocket 연결 종료 [{}]: {}", sessionId, closeStatus);
@@ -222,6 +235,16 @@ public class ChatWebSocketHandler implements WebSocketHandler {
                 session.sendMessage(new TextMessage(jsonMessage));
                 
                 log.info("macro.trigger 이벤트 발송 완료 [{}]", sessionId);
+                
+                // 주문 완료 후 대화 종료 신호 전송
+                Map<String, Object> completeEvent = new HashMap<>();
+                completeEvent.put("type", "conversation.complete");
+                completeEvent.put("message", "주문이 완료되었습니다. 대화를 종료합니다.");
+                
+                String completeJsonMessage = objectMapper.writeValueAsString(completeEvent);
+                session.sendMessage(new TextMessage(completeJsonMessage));
+                
+                log.info("conversation.complete 이벤트 발송 완료 [{}]", sessionId);
             } catch (Exception e) {
                 log.error("macro.trigger 이벤트 발송 실패 [{}]: {}", sessionId, e.getMessage(), e);
             }
@@ -282,6 +305,19 @@ public class ChatWebSocketHandler implements WebSocketHandler {
         String sessionId = session.getId();
         log.info("오디오 스트리밍 시작 [{}]", sessionId);
         
+        if (sttStreamingService == null) {
+            log.warn("STT 서비스가 비활성화됨 [{}]", sessionId);
+            try {
+                sendMessage(session, "server.error", "음성 인식 서비스가 비활성화되어 있습니다.");
+            } catch (IOException e) {
+                log.error("에러 메시지 전송 실패 [{}]: {}", sessionId, e.getMessage());
+            }
+            return;
+        }
+        
+        // 기존 STT 세션이 있으면 먼저 정리
+        sttStreamingService.stopStreaming(sessionId);
+        
         // STT 스트리밍 세션 시작
         sttStreamingService.startStreaming(
             sessionId,
@@ -318,7 +354,9 @@ public class ChatWebSocketHandler implements WebSocketHandler {
             byte[] audioData = java.util.Base64.getDecoder().decode(audioDataBase64);
             
             // STT 서비스로 오디오 청크 전송
-            sttStreamingService.sendAudioChunk(sessionId, audioData);
+            if (sttStreamingService != null) {
+                sttStreamingService.sendAudioChunk(sessionId, audioData);
+            }
             
             log.debug("오디오 청크 처리 [{}]: {} bytes", sessionId, audioData.length);
         } catch (Exception e) {
@@ -333,7 +371,10 @@ public class ChatWebSocketHandler implements WebSocketHandler {
         String sessionId = session.getId();
         log.info("오디오 스트리밍 종료 [{}]", sessionId);
 
-        sttStreamingService.stopStreaming(sessionId);
+        if (sttStreamingService != null) {
+            // STT에게 오디오 스트림 종료 알림 (최종 인식 결과를 받기 위해)
+            sttStreamingService.endAudioStream(sessionId);
+        }
     }
 
     /**
@@ -365,6 +406,11 @@ public class ChatWebSocketHandler implements WebSocketHandler {
      */
     private void startTtsSynthesis(WebSocketSession session, String text) {
         String sessionId = session.getId();
+        
+        if (ttsStreamingService == null) {
+            log.warn("TTS 서비스가 비활성화됨 [{}]", sessionId);
+            return;
+        }
         
         // 비동기로 TTS 처리
         new Thread(() -> {
@@ -417,6 +463,22 @@ public class ChatWebSocketHandler implements WebSocketHandler {
             
             String jsonMessage = objectMapper.writeValueAsString(message);
             session.sendMessage(new TextMessage(jsonMessage));
+        }
+    }
+
+    /**
+     * 마이크 중지 신호 전송
+     */
+    private void sendMicrophoneStop(WebSocketSession session, String reason) throws Exception {
+        if (session.isOpen()) {
+            Map<String, Object> message = new HashMap<>();
+            message.put("type", "mic.stop");
+            message.put("reason", reason);
+            message.put("timestamp", System.currentTimeMillis());
+            
+            String jsonMessage = objectMapper.writeValueAsString(message);
+            session.sendMessage(new TextMessage(jsonMessage));
+            log.info("마이크 중지 신호 전송 [{}]: {}", session.getId(), reason);
         }
     }
 } 

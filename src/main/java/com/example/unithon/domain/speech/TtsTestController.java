@@ -3,6 +3,7 @@ package com.example.unithon.domain.speech;
 import com.example.unithon.domain.speech.dto.TtsRequest;
 import com.example.unithon.global.gcp.TtsService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/tts")
 @RequiredArgsConstructor
+@ConditionalOnProperty(name = "feature.tts", havingValue = "true")
 public class TtsTestController {
 
     private final TtsService ttsService;

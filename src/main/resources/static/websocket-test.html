@@ -155,8 +155,8 @@
 
         <!-- 음성 제어 -->
         <div class="voice-controls">
-            <button id="startRecording" class="btn-success" disabled>🎤 음성 녹음 시작</button>
-            <button id="stopRecording" class="btn-danger" disabled>🛑 녹음 중지</button>
+            <button id="startRecording" class="btn-success" disabled>🎤 음성 대화 시작</button>
+            <button id="stopRecording" class="btn-danger" disabled>🛑 대화 종료</button>
             <div class="volume-indicator">
                 <div id="volumeBar" class="volume-bar"></div>
             </div>
@@ -192,6 +192,10 @@
         let isRecording = false;
         let audioChunks = [];
         let currentAudio = null; // 현재 재생 중인 오디오
+        let isConversationActive = false; // 연속 대화 세션 활성화 여부
+        let autoRestartTimeout = null; // 자동 재시작 타이머
+        let silenceTimeout = null; // 무음 감지 타이머
+        let lastVolumeTime = Date.now(); // 마지막 음성 감지 시간
 
         // DOM 요소
         const statusDiv = document.getElementById('status');
@@ -214,8 +218,8 @@
         });
 
         // 음성 녹음 제어
-        startRecordingBtn.addEventListener('click', startRecording);
-        stopRecordingBtn.addEventListener('click', stopRecording);
+        startRecordingBtn.addEventListener('click', startConversation);
+        stopRecordingBtn.addEventListener('click', stopConversation);
 
         function connect() {
             try {
@@ -248,6 +252,12 @@
                     sendBtn.disabled = true;
                     startRecordingBtn.disabled = true;
                     stopRecordingBtn.disabled = true;
+                    
+                    // 진행 중인 대화 종료
+                    if (isConversationActive) {
+                        stopConversation();
+                    }
+                    
                     addMessage('시스템', '❌ WebSocket 연결이 해제되었습니다.', 'system-message');
                 };
                 
@@ -267,8 +277,8 @@
                 socket.close();
                 socket = null;
             }
-            if (mediaRecorder && isRecording) {
-                stopRecording();
+            if (isConversationActive) {
+                stopConversation();
             }
         }
 
@@ -295,6 +305,15 @@
                     break;
                 case 'tts.complete':
                     console.log('TTS 완료');
+                    // TTS 완료 후 자동으로 다음 음성 입력 대기
+                    if (isConversationActive) {
+                        autoRestartTimeout = setTimeout(() => {
+                            console.log('TTS 완료 후 자동 녹음 재시작');
+                            if (!isRecording && isConversationActive) {
+                                startRecording();
+                            }
+                        }, 1000); // 1초 후 자동 재시작
+                    }
                     break;
                 case 'dialog.state':
                     console.log('대화 상태:', data.state);
@@ -304,6 +323,15 @@
                     break;
                 case 'macro.trigger':
                     addMessage('시스템', '💳 주문이 매크로팀에게 전달되었습니다.', 'system-message');
+                    break;
+                case 'conversation.complete':
+                    addMessage('시스템', '✅ ' + data.message, 'system-message');
+                    // 자동으로 대화 종료
+                    if (isConversationActive) {
+                        setTimeout(() => {
+                            stopConversation();
+                        }, 2000); // 2초 후 자동 종료
+                    }
                     break;
                 default:
                     console.log('알 수 없는 메시지:', data);
@@ -435,6 +463,50 @@
             }
         }
 
+        // 연속 대화 시작
+        function startConversation() {
+            isConversationActive = true;
+            startRecordingBtn.disabled = true;
+            stopRecordingBtn.disabled = false;
+            startRecordingBtn.textContent = '🎤 대화 진행 중...';
+            stopRecordingBtn.textContent = '🛑 대화 종료';
+            recordingStatus.textContent = '🟢 대화 활성화';
+            
+            addMessage('시스템', '🎤 음성 대화가 시작되었습니다. 말씀해 주세요!', 'system-message');
+            
+            // 첫 번째 녹음 시작
+            startRecording();
+        }
+
+        // 연속 대화 종료
+        function stopConversation() {
+            isConversationActive = false;
+            
+            // 진행 중인 녹음 중지
+            if (isRecording) {
+                stopRecording();
+            }
+            
+            // 자동 재시작 타이머 클리어
+            if (autoRestartTimeout) {
+                clearTimeout(autoRestartTimeout);
+                autoRestartTimeout = null;
+            }
+            
+            if (silenceTimeout) {
+                clearTimeout(silenceTimeout);
+                silenceTimeout = null;
+            }
+            
+            startRecordingBtn.disabled = false;
+            stopRecordingBtn.disabled = true;
+            startRecordingBtn.textContent = '🎤 음성 대화 시작';
+            stopRecordingBtn.textContent = '🛑 대화 종료';
+            recordingStatus.textContent = '준비됨';
+            
+            addMessage('시스템', '🛑 음성 대화가 종료되었습니다.', 'system-message');
+        }
+
         // 음성 레벨 모니터링
         function monitorVolume() {
             if (!analyser || !isRecording) return;
@@ -451,6 +523,31 @@
             const volumePercent = (average / 255) * 100;
             
             volumeBar.style.width = volumePercent + '%';
+
+            // 무음 감지 로직 (연속 대화 모드에서만)
+            if (isConversationActive && isRecording) {
+                const SILENCE_THRESHOLD = 15; // 무음 임계값
+                const SILENCE_DURATION = 2000; // 2초간 무음이면 자동 종료
+                
+                if (volumePercent > SILENCE_THRESHOLD) {
+                    // 음성 감지됨 - 타이머 리셋
+                    lastVolumeTime = Date.now();
+                    if (silenceTimeout) {
+                        clearTimeout(silenceTimeout);
+                        silenceTimeout = null;
+                    }
+                } else {
+                    // 무음 상태 - 타이머 시작
+                    if (!silenceTimeout && (Date.now() - lastVolumeTime > 500)) {
+                        silenceTimeout = setTimeout(() => {
+                            console.log('무음 감지 - 자동 녹음 종료');
+                            if (isRecording && isConversationActive) {
+                                stopRecording();
+                            }
+                        }, SILENCE_DURATION);
+                    }
+                }
+            }
 
             if (isRecording) {
                 requestAnimationFrame(monitorVolume);

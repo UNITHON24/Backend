@@ -5,7 +5,9 @@ import com.google.api.gax.rpc.ResponseObserver;
 import com.google.api.gax.rpc.StreamController;
 import com.google.cloud.speech.v1.*;
 import com.google.protobuf.ByteString;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
@@ -14,8 +16,11 @@ import java.util.function.Consumer;
 
 @Service
 @Slf4j
+@RequiredArgsConstructor
+@ConditionalOnProperty(name = "feature.stt", havingValue = "true")
 public class SttStreamingService {
 
+    private final SpeechClient speechClient;
     private final Map<String, StreamingSession> streamingSessions = new ConcurrentHashMap<>();
 
     /**
@@ -23,8 +28,11 @@ public class SttStreamingService {
      */
     public void startStreaming(String sessionId, Consumer<String> onTranscript, Consumer<String> onFinalTranscript) {
         try {
-            SpeechClient speechClient = SpeechClient.create();
-
+            // 기존 세션이 있으면 먼저 정리
+            stopStreaming(sessionId);
+            
+            log.info("새로운 STT 세션 시작 [{}]", sessionId);
+            // Spring에서 주입받은 SpeechClient 사용
             RecognitionConfig recognitionConfig = RecognitionConfig.newBuilder()
                 .setEncoding(RecognitionConfig.AudioEncoding.WEBM_OPUS)  // WebSocket에서 많이 사용
                 .setSampleRateHertz(16000)
@@ -82,7 +90,7 @@ public class SttStreamingService {
                 .build();
             clientStream.send(configRequest);
 
-            StreamingSession session = new StreamingSession(speechClient, clientStream);
+            StreamingSession session = new StreamingSession(clientStream);
             streamingSessions.put(sessionId, session);
 
         } catch (Exception e) {
@@ -112,6 +120,23 @@ public class SttStreamingService {
     }
 
     /**
+     * 오디오 스트림 끝 알림 (최종 인식 결과를 위해)
+     */
+    public void endAudioStream(String sessionId) {
+        StreamingSession session = streamingSessions.get(sessionId);
+        if (session != null && session.clientStream != null) {
+            try {
+                session.clientStream.closeSend();
+                log.info("STT 오디오 스트림 종료 [{}]", sessionId);
+            } catch (Exception e) {
+                log.error("STT 오디오 스트림 종료 실패 [{}]: {}", sessionId, e.getMessage(), e);
+            }
+        } else {
+            log.warn("STT 세션을 찾을 수 없음 (endAudioStream): {}", sessionId);
+        }
+    }
+
+    /**
      * STT 스트리밍 세션 종료
      */
     public void stopStreaming(String sessionId) {
@@ -121,9 +146,7 @@ public class SttStreamingService {
                 if (session.clientStream != null) {
                     session.clientStream.closeSend();
                 }
-                if (session.speechClient != null) {
-                    session.speechClient.close();
-                }
+                // SpeechClient는 Spring에서 관리하므로 여기서 닫지 않음
                 log.info("STT 스트리밍 세션 종료 [{}]", sessionId);
             } catch (Exception e) {
                 log.error("STT 세션 종료 중 오류 [{}]: {}", sessionId, e.getMessage(), e);
@@ -135,11 +158,9 @@ public class SttStreamingService {
      * 스트리밍 세션 정보
      */
     private static class StreamingSession {
-        final SpeechClient speechClient;
         final ClientStream<StreamingRecognizeRequest> clientStream;
 
-        StreamingSession(SpeechClient speechClient, ClientStream<StreamingRecognizeRequest> clientStream) {
-            this.speechClient = speechClient;
+        StreamingSession(ClientStream<StreamingRecognizeRequest> clientStream) {
             this.clientStream = clientStream;
         }
     }
