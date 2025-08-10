@@ -2,6 +2,8 @@ package com.example.unithon.domain.chat.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.springframework.stereotype.Service;
@@ -12,6 +14,10 @@ import com.example.unithon.domain.menu.service.MenuService;
 import com.example.unithon.domain.chat.dto.MacroOrderData;
 import com.example.unithon.domain.chat.dto.MacroOrderItem;
 import com.example.unithon.domain.chat.dto.MacroTriggerEvent;
+import com.example.unithon.domain.chat.dto.DialogState;
+import com.example.unithon.domain.chat.dto.DialogStateEvent;
+import com.example.unithon.domain.chat.dto.ServerErrorEvent;
+import com.example.unithon.global.error.ErrorCode;
 
 import org.springframework.context.ApplicationEventPublisher;
 
@@ -41,34 +47,48 @@ public class ChatService {
         
         ChatSession session = getSession(sessionId);
 
+        String response;
+        
         if (isOrderComplete(message)) {
-            return completeOrder(sessionId);
-        }
-        if (isAddMore(message)) {
+            response = completeOrder(sessionId);
+        } else if (isAddMore(message)) {
             session.setState(ConversationState.MENU_SELECTION);
             session.setCurrentItem(null);
-            return "추가로 주문하실 메뉴를 말씀해주세요.";
+            response = "추가로 주문하실 메뉴를 말씀해주세요.";
+        } else {
+            switch (session.getState()) {
+                case GREETING:
+                    response = handleGreeting(sessionId, message);
+                    break;
+                
+                case MENU_SELECTION:
+                    response = handleMenuSelection(sessionId, message);
+                    break;
+                
+                case OPTION_SELECTION:
+                    response = handleOptionSelection(sessionId, message);
+                    break;
+                
+                case QUANTITY_SELECTION:
+                    response = handleQuantitySelection(sessionId, message);
+                    break;
+                
+                case ORDER_CONFIRMATION:
+                    response = handleOrderConfirmation(sessionId, message);
+                    break;
+                
+                default:
+                    response = "안녕하세요! 주문하실 메뉴를 말씀해주세요.";
+            }
         }
-
-        switch (session.getState()) {
-            case GREETING:
-                return handleGreeting(sessionId, message);
-            
-            case MENU_SELECTION:
-                return handleMenuSelection(sessionId, message);
-            
-            case OPTION_SELECTION:
-                return handleOptionSelection(sessionId, message);
-            
-            case QUANTITY_SELECTION:
-                return handleQuantitySelection(sessionId, message);
-            
-            case ORDER_CONFIRMATION:
-                return handleOrderConfirmation(sessionId, message);
-            
-            default:
-                return "안녕하세요! 주문하실 메뉴를 말씀해주세요.";
+        
+        // 응답 후 dialog.state 이벤트 발송 (주문 완료 시 제외)
+        if (!response.contains("결제 해주시길 바랍니다")) {
+            DialogState dialogState = buildDialogState(sessionId);
+            eventPublisher.publishEvent(new DialogStateEvent(sessionId, dialogState));
         }
+        
+        return response;
     }
 
     /**
@@ -224,7 +244,7 @@ public class ChatService {
 
             int quantity = extractQuantity(message);
             if (quantity <= 0) {
-                return "올바른 수량을 입력해주세요. (예: 1개, 2잔)";
+                return handleError(sessionId, ErrorCode.INVALID_QUANTITY);
             }
             
             currentItem.setQuantity(quantity);
@@ -240,7 +260,7 @@ public class ChatService {
                 quantity);
             
         } catch (Exception e) {
-            return "올바른 수량을 입력해주세요. (예: 1개, 2잔)";
+            return handleError(sessionId, ErrorCode.INVALID_QUANTITY, e);
         }
     }
 
@@ -398,6 +418,105 @@ public class ChatService {
             return 0; // 수량이 없으면 0 반환 (무조건 질문하게)
         }
         return Integer.parseInt(numberStr);
+    }
+
+    /**
+     * 현재 대화 상태를 DialogState로 변환
+     */
+    private DialogState buildDialogState(String sessionId) {
+        ChatSession session = getSession(sessionId);
+
+        List<DialogState.CartItem> cartItems = new ArrayList<>();
+        int totalPrice = 0;
+        
+        for (OrderItem item : session.getCart()) {
+            String optionText = buildSelectedOptionsText(item);
+            int itemPrice = item.getMenu().getBasePrice().intValue() * item.getQuantity();
+            
+            cartItems.add(DialogState.CartItem.builder()
+                .menu(item.getMenu().getDisplayName())
+                .options(optionText)
+                .quantity(item.getQuantity())
+                .price(itemPrice)
+                .build());
+                
+            totalPrice += itemPrice;
+        }
+
+        Map<String, String> selectedOptions = new HashMap<>();
+        OrderItem currentItem = session.getCurrentItem();
+        if (currentItem != null) {
+            if (currentItem.getTemperature() != null) {
+                selectedOptions.put("temperature", currentItem.getTemperature());
+            }
+            if (currentItem.getSize() != null) {
+                selectedOptions.put("size", currentItem.getSize());
+            }
+        }
+		
+        String nextAction = determineNextAction(session);
+        
+        return DialogState.builder()
+            .state(session.getState().name())
+            .currentMenu(currentItem != null ? currentItem.getMenu().getDisplayName() : null)
+            .selectedOptions(selectedOptions)
+            .cart(cartItems)
+            .nextAction(nextAction)
+            .cartItemCount(session.getCart().size())
+            .totalPrice(totalPrice)
+            .build();
+    }
+
+    /**
+     * 다음에 해야 할 행동 결정
+     */
+    private String determineNextAction(ChatSession session) {
+        switch (session.getState()) {
+            case GREETING:
+                return "주문하실 메뉴를 말씀해주세요";
+            case MENU_SELECTION:
+                return "메뉴 이름을 말씀해주세요";
+            case OPTION_SELECTION:
+                OrderItem currentItem = session.getCurrentItem();
+                if (currentItem != null && currentItem.getMenu().getHasTemperature() && currentItem.getTemperature() == null) {
+                    return "아이스 또는 핫 중에서 선택해주세요";
+                } else if (currentItem != null && currentItem.getMenu().getHasSize() && currentItem.getSize() == null) {
+                    return "레귤러 또는 라지 중에서 선택해주세요";
+                }
+                return "옵션을 선택해주세요";
+            case QUANTITY_SELECTION:
+                return "수량을 말씀해주세요";
+            case ORDER_CONFIRMATION:
+                return "메뉴를 더 담을지 주문을 마칠지 선택해주세요";
+            default:
+                return "말씀해주세요";
+        }
+    }
+
+    /**
+     * 서버 에러 발생 시 에러 이벤트 발송 및 사용자 친화적 메시지 반환
+     */
+    private String handleError(String sessionId, ErrorCode errorCode, Exception e) {
+        log.error("에러 발생 [{}]: {} - {}", sessionId, errorCode.getCode(), e.getMessage(), e);
+        
+        // 에러 이벤트 발송
+        ServerErrorEvent errorEvent = ServerErrorEvent.of(sessionId, errorCode);
+        eventPublisher.publishEvent(errorEvent);
+        
+        return errorCode.getMessage();
+    }
+
+    /**
+     * 서버 에러 발생 시 에러 이벤트 발송 및 사용자 친화적 메시지 반환 (Exception 없는 버전)
+     */
+    private String handleError(String sessionId, ErrorCode errorCode) {
+        log.error("에러 발생 [{}]: {}", sessionId, errorCode.getCode());
+        
+        // 에러 이벤트 발송
+        ServerErrorEvent errorEvent = ServerErrorEvent.of(sessionId, errorCode);
+        eventPublisher.publishEvent(errorEvent);
+        
+        return errorCode.getMessage();
     }
 
     /**

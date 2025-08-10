@@ -3,6 +3,9 @@ package com.example.unithon.domain.chat.handler;
 import com.example.unithon.domain.chat.service.ChatService;
 import com.example.unithon.domain.chat.dto.MacroOrderData;
 import com.example.unithon.domain.chat.dto.MacroTriggerEvent;
+import com.example.unithon.domain.chat.dto.DialogState;
+import com.example.unithon.domain.chat.dto.DialogStateEvent;
+import com.example.unithon.domain.chat.dto.ServerErrorEvent;
 
 import org.springframework.context.event.EventListener;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -165,6 +168,22 @@ public class ChatWebSocketHandler implements WebSocketHandler {
     }
 
     /**
+     * dialog.state 이벤트 리스너
+     */
+    @EventListener
+    public void handleDialogStateEvent(DialogStateEvent event) {
+        sendDialogState(event.getSessionId(), event.getDialogState());
+    }
+
+    /**
+     * server.error 이벤트 리스너
+     */
+    @EventListener
+    public void handleServerErrorEvent(ServerErrorEvent event) {
+        sendServerError(event.getSessionId(), event);
+    }
+
+    /**
      * 매크로팀에게 macro.trigger 이벤트 발송
      */
     public void sendMacroTrigger(String sessionId, MacroOrderData orderData) {
@@ -184,6 +203,51 @@ public class ChatWebSocketHandler implements WebSocketHandler {
             }
         } else {
             log.warn("WebSocket 세션을 찾을 수 없음: {}", sessionId);
+        }
+    }
+
+    /**
+     * 에이전트에게 dialog.state 메시지 발송
+     */
+    public void sendDialogState(String sessionId, DialogState dialogState) {
+        WebSocketSession session = sessions.get(sessionId);
+        if (session != null && session.isOpen()) {
+            try {
+                Map<String, Object> stateMessage = new HashMap<>();
+                stateMessage.put("type", "dialog.state");
+                stateMessage.put("state", dialogState);
+                
+                String jsonMessage = objectMapper.writeValueAsString(stateMessage);
+                session.sendMessage(new TextMessage(jsonMessage));
+                
+                log.debug("dialog.state 발송 완료 [{}]: {}", sessionId, dialogState.getState());
+            } catch (Exception e) {
+                log.error("dialog.state 발송 실패 [{}]: {}", sessionId, e.getMessage(), e);
+                         }
+         }
+     }
+
+    /**
+     * 에이전트에게 server.error 메시지 발송
+     */
+    public void sendServerError(String sessionId, ServerErrorEvent errorEvent) {
+        WebSocketSession session = sessions.get(sessionId);
+        if (session != null && session.isOpen()) {
+            try {
+                Map<String, Object> errorMessage = new HashMap<>();
+                errorMessage.put("type", "server.error");
+                errorMessage.put("errorCode", errorEvent.getErrorCode());
+                errorMessage.put("message", errorEvent.getMessage());
+                errorMessage.put("retryable", errorEvent.isRetryable());
+                errorMessage.put("timestamp", errorEvent.getTimestamp().toString());
+                
+                String jsonMessage = objectMapper.writeValueAsString(errorMessage);
+                session.sendMessage(new TextMessage(jsonMessage));
+                
+                log.warn("server.error 발송 완료 [{}]: {}", sessionId, errorEvent.getErrorCode());
+            } catch (Exception e) {
+                log.error("server.error 발송 실패 [{}]: {}", sessionId, e.getMessage(), e);
+            }
         }
     }
 } 
