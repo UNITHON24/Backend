@@ -2965,3 +2965,1305 @@ java.io.EOFException: null
 2025-08-10 09:25:24 [HikariPool-1:housekeeper] WARN  com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@116a527c (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
 2025-08-10 09:25:35 [HikariPool-1:housekeeper] WARN  com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@70ccf7b3 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
 2025-08-10 09:25:52 [HikariPool-1:housekeeper] WARN  com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@14fa8e66 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2025-08-10 09:52:26 [HikariPool-1:housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m59s684ms).
+2025-08-10 10:27:15 [main] INFO  c.example.unithon.UnithonApplication - Starting UnithonApplication using Java 21.0.4 with PID 34350 (/Users/yunjeong/Desktop/unithon/build/classes/java/main started by yunjeong in /Users/yunjeong/Desktop/unithon)
+2025-08-10 10:27:15 [main] DEBUG c.example.unithon.UnithonApplication - Running with Spring Boot v3.5.4, Spring v6.2.9
+2025-08-10 10:27:15 [main] INFO  c.example.unithon.UnithonApplication - No active profile set, falling back to 1 default profile: "default"
+2025-08-10 10:27:16 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-08-10 10:27:16 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 15 ms. Found 3 JPA repository interfaces.
+2025-08-10 10:27:16 [main] INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=efb109c1-7d98-3f96-97fc-a61a66401d77
+2025-08-10 10:27:16 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-08-10 10:27:16 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-08-10 10:27:16 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.43]
+2025-08-10 10:27:16 [main] INFO  o.a.c.c.C.[.[localhost].[/api] - Initializing Spring embedded WebApplicationContext
+2025-08-10 10:27:16 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 549 ms
+2025-08-10 10:27:16 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-08-10 10:27:16 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.22.Final
+2025-08-10 10:27:16 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-08-10 10:27:16 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-08-10 10:27:16 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-08-10 10:27:16 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@460b77d6
+2025-08-10 10:27:16 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-08-10 10:27:16 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-08-10 10:27:16 [main] WARN  org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-08-10 10:27:16 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-08-10 10:27:17 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-08-10 10:27:17 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-08-10 10:27:17 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-08-10 10:27:17 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-08-10 10:27:17 [main] DEBUG o.s.w.s.s.s.WebSocketHandlerMapping - Patterns [/chat] in 'webSocketHandlerMapping'
+2025-08-10 10:27:17 [main] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - 13 mappings in 'requestMappingHandlerMapping'
+2025-08-10 10:27:17 [main] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Patterns [/webjars/**, /**, /swagger-ui*/*swagger-initializer.js, /swagger-ui*/**] in 'resourceHandlerMapping'
+2025-08-10 10:27:17 [main] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerAdapter - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-08-10 10:27:17 [main] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-08-10 10:27:18 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
+2025-08-10 10:27:18 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-08-10 10:27:18 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-08-10 10:27:18 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-08-10 10:27:18 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLogger - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-08-10 10:27:18 [main] ERROR o.s.b.d.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8080 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
+
+2025-08-10 10:34:46 [main] INFO  c.example.unithon.UnithonApplication - Starting UnithonApplication using Java 21.0.4 with PID 38538 (/Users/yunjeong/Desktop/unithon/build/classes/java/main started by yunjeong in /Users/yunjeong/Desktop/unithon)
+2025-08-10 10:34:46 [main] DEBUG c.example.unithon.UnithonApplication - Running with Spring Boot v3.5.4, Spring v6.2.9
+2025-08-10 10:34:46 [main] INFO  c.example.unithon.UnithonApplication - No active profile set, falling back to 1 default profile: "default"
+2025-08-10 10:34:47 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-08-10 10:34:47 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 16 ms. Found 3 JPA repository interfaces.
+2025-08-10 10:34:47 [main] INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=efb109c1-7d98-3f96-97fc-a61a66401d77
+2025-08-10 10:34:47 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-08-10 10:34:47 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-08-10 10:34:47 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.43]
+2025-08-10 10:34:47 [main] INFO  o.a.c.c.C.[.[localhost].[/api] - Initializing Spring embedded WebApplicationContext
+2025-08-10 10:34:47 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 530 ms
+2025-08-10 10:34:47 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-08-10 10:34:47 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.22.Final
+2025-08-10 10:34:47 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-08-10 10:34:47 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-08-10 10:34:47 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-08-10 10:34:47 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@72b1df49
+2025-08-10 10:34:47 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-08-10 10:34:47 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-08-10 10:34:47 [main] WARN  org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-08-10 10:34:47 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-08-10 10:34:48 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-08-10 10:34:48 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-08-10 10:34:48 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-08-10 10:34:48 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-08-10 10:34:48 [main] DEBUG o.s.w.s.s.s.WebSocketHandlerMapping - Patterns [/chat] in 'webSocketHandlerMapping'
+2025-08-10 10:34:48 [main] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - 13 mappings in 'requestMappingHandlerMapping'
+2025-08-10 10:34:48 [main] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Patterns [/webjars/**, /**, /swagger-ui*/*swagger-initializer.js, /swagger-ui*/**] in 'resourceHandlerMapping'
+2025-08-10 10:34:49 [main] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerAdapter - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-08-10 10:34:49 [main] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-08-10 10:34:49 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/api'
+2025-08-10 10:34:49 [main] INFO  c.example.unithon.UnithonApplication - Started UnithonApplication in 2.961 seconds (process running for 3.502)
+2025-08-10 10:34:56 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[.[localhost].[/api] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-08-10 10:34:56 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-08-10 10:34:56 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected StandardServletMultipartResolver
+2025-08-10 10:34:56 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected AcceptHeaderLocaleResolver
+2025-08-10 10:34:56 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected FixedThemeResolver
+2025-08-10 10:34:56 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@2e3ec0e9
+2025-08-10 10:34:56 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected org.springframework.web.servlet.support.SessionFlashMapManager@61668c05
+2025-08-10 10:34:56 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2025-08-10 10:34:56 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 3 ms
+2025-08-10 10:34:56 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - GET "/api/websocket-test.html", parameters={}
+2025-08-10 10:34:56 [http-nio-8080-exec-1] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [static/]]
+2025-08-10 10:34:56 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Completed 304 NOT_MODIFIED
+2025-08-10 10:34:56 [http-nio-8080-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - GET "/api/chat", parameters={}
+2025-08-10 10:34:56 [http-nio-8080-exec-2] DEBUG o.s.w.s.s.s.WebSocketHandlerMapping - Mapped to org.springframework.web.socket.server.support.WebSocketHttpRequestHandler@66161fee
+2025-08-10 10:34:56 [http-nio-8080-exec-2] DEBUG o.s.w.s.s.s.WebSocketHttpRequestHandler - GET /api/chat
+2025-08-10 10:34:56 [http-nio-8080-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - Completed 101 SWITCHING_PROTOCOLS
+2025-08-10 10:34:56 [http-nio-8080-exec-2] DEBUG o.s.w.s.h.LoggingWebSocketHandlerDecorator - New StandardWebSocketSession[id=b0b76d64-c54e-07b0-9be7-e12d5996b95c, uri=ws://localhost:8080/api/chat]
+2025-08-10 10:34:56 [http-nio-8080-exec-2] INFO  c.e.u.d.c.h.ChatWebSocketHandler - WebSocket 연결 성공: b0b76d64-c54e-07b0-9be7-e12d5996b95c
+2025-08-10 10:34:56 [http-nio-8080-exec-2] DEBUG c.e.u.d.c.h.ChatWebSocketHandler - 메시지 전송 [b0b76d64-c54e-07b0-9be7-e12d5996b95c]: connection
+2025-08-10 10:35:04 [http-nio-8080-exec-5] INFO  c.e.u.d.c.h.ChatWebSocketHandler - 수신 메시지 [b0b76d64-c54e-07b0-9be7-e12d5996b95c]: {"type":"client.text","message":"제일싼 메뉴가 뭐에요?"}
+2025-08-10 10:35:04 [http-nio-8080-exec-5] INFO  c.e.u.d.c.h.ChatWebSocketHandler - 텍스트 메시지 처리 [b0b76d64-c54e-07b0-9be7-e12d5996b95c]: 제일싼 메뉴가 뭐에요?
+2025-08-10 10:35:04 [http-nio-8080-exec-5] INFO  c.e.u.d.chat.service.ChatService - 메시지 처리 [b0b76d64-c54e-07b0-9be7-e12d5996b95c]: 제일싼 메뉴가 뭐에요?
+2025-08-10 10:35:04 [http-nio-8080-exec-5] INFO  c.e.u.d.menu.service.MenuService - 메뉴 검색 시작: 제일싼 메뉴가 뭐에요?
+2025-08-10 10:35:04 [http-nio-8080-exec-5] INFO  c.e.u.g.client.gemini.GeminiService - Calling Gemini API with prompt: === 맥도날드 메뉴 데이터 ===
+
+[버거/세트]
+
+[커피]
+
+[음료]
+
+[사이드/디저트]
+
+
+=== 사용자 질문 ===
+제일싼 메뉴가 뭐에요?
+
+=== 응답 규칙 ===
+위의 메뉴 데이터를 정확히 참고해서 사용자의 질문에 답변해주세요.
+- 가격 정보는 정확한 금액을 명시해주세요
+- 메뉴명은 정확히 표기해주세요
+- 카테고리별로 분류해서 답변하면 더 좋습니다
+- 친근하고 자연스러운 톤으로 답변해주세요
+- 맥도날드 직원처럼 응답해주세요
+
+응답 형식: 일반 텍스트 (JSON 아님)
+2025-08-10 10:35:06 [http-nio-8080-exec-5] DEBUG o.s.w.c.HttpMessageConverterExtractor - Reading to [com.example.unithon.global.client.gemini.GeminiResponse]
+2025-08-10 10:35:06 [http-nio-8080-exec-5] INFO  c.e.u.g.client.gemini.GeminiService - Received response from Gemini API: 죄송합니다, 고객님.  메뉴 데이터에 가격 정보가 없어서 어떤 메뉴가 제일 싼지 말씀드릴 수가 없네요.  메뉴판을 참고해주시거나, 매장 직원에게 문의하시면 제일 저렴한 메뉴를 안내해 드릴 수 있을 거예요! 😊
+
+2025-08-10 10:35:06 [http-nio-8080-exec-5] INFO  c.e.u.d.menu.service.MenuService - Gemini 응답: 죄송합니다, 고객님.  메뉴 데이터에 가격 정보가 없어서 어떤 메뉴가 제일 싼지 말씀드릴 수가 없네요.  메뉴판을 참고해주시거나, 매장 직원에게 문의하시면 제일 저렴한 메뉴를 안내해 드릴 수 있을 거예요! 😊
+
+2025-08-10 10:35:06 [http-nio-8080-exec-5] DEBUG c.e.u.d.c.h.ChatWebSocketHandler - 메시지 전송 [b0b76d64-c54e-07b0-9be7-e12d5996b95c]: bot.reply
+2025-08-10 10:37:59 [http-nio-8080-exec-6] INFO  c.e.u.d.c.h.ChatWebSocketHandler - 수신 메시지 [b0b76d64-c54e-07b0-9be7-e12d5996b95c]: {"type":"client.text","message":"아아"}
+2025-08-10 10:37:59 [http-nio-8080-exec-6] INFO  c.e.u.d.c.h.ChatWebSocketHandler - 텍스트 메시지 처리 [b0b76d64-c54e-07b0-9be7-e12d5996b95c]: 아아
+2025-08-10 10:37:59 [http-nio-8080-exec-6] INFO  c.e.u.d.chat.service.ChatService - 메시지 처리 [b0b76d64-c54e-07b0-9be7-e12d5996b95c]: 아아
+2025-08-10 10:37:59 [http-nio-8080-exec-6] INFO  c.e.u.d.menu.service.MenuService - 메뉴 검색 시작: 아아
+2025-08-10 10:37:59 [http-nio-8080-exec-6] INFO  c.e.u.d.menu.service.MenuService - DB 동의어 매칭 성공: 아아 → 아메리카노
+2025-08-10 10:38:00 [http-nio-8080-exec-6] DEBUG c.e.u.d.c.h.ChatWebSocketHandler - 메시지 전송 [b0b76d64-c54e-07b0-9be7-e12d5996b95c]: bot.reply
+2025-08-10 10:38:05 [http-nio-8080-exec-7] INFO  c.e.u.d.c.h.ChatWebSocketHandler - 수신 메시지 [b0b76d64-c54e-07b0-9be7-e12d5996b95c]: {"type":"client.text","message":"아이스 1전"}
+2025-08-10 10:38:05 [http-nio-8080-exec-7] INFO  c.e.u.d.c.h.ChatWebSocketHandler - 텍스트 메시지 처리 [b0b76d64-c54e-07b0-9be7-e12d5996b95c]: 아이스 1전
+2025-08-10 10:38:05 [http-nio-8080-exec-7] INFO  c.e.u.d.chat.service.ChatService - 메시지 처리 [b0b76d64-c54e-07b0-9be7-e12d5996b95c]: 아이스 1전
+2025-08-10 10:38:05 [http-nio-8080-exec-7] DEBUG c.e.u.d.c.h.ChatWebSocketHandler - 메시지 전송 [b0b76d64-c54e-07b0-9be7-e12d5996b95c]: bot.reply
+2025-08-10 10:38:15 [http-nio-8080-exec-8] INFO  c.e.u.d.c.h.ChatWebSocketHandler - 수신 메시지 [b0b76d64-c54e-07b0-9be7-e12d5996b95c]: {"type":"client.text","message":"레귤러 사이즈로!"}
+2025-08-10 10:38:15 [http-nio-8080-exec-8] INFO  c.e.u.d.c.h.ChatWebSocketHandler - 텍스트 메시지 처리 [b0b76d64-c54e-07b0-9be7-e12d5996b95c]: 레귤러 사이즈로!
+2025-08-10 10:38:15 [http-nio-8080-exec-8] INFO  c.e.u.d.chat.service.ChatService - 메시지 처리 [b0b76d64-c54e-07b0-9be7-e12d5996b95c]: 레귤러 사이즈로!
+2025-08-10 10:38:15 [http-nio-8080-exec-8] DEBUG c.e.u.d.c.h.ChatWebSocketHandler - 메시지 전송 [b0b76d64-c54e-07b0-9be7-e12d5996b95c]: bot.reply
+2025-08-10 10:38:22 [http-nio-8080-exec-9] INFO  c.e.u.d.c.h.ChatWebSocketHandler - 수신 메시지 [b0b76d64-c54e-07b0-9be7-e12d5996b95c]: {"type":"client.text","message":"아이스1잔"}
+2025-08-10 10:38:22 [http-nio-8080-exec-9] INFO  c.e.u.d.c.h.ChatWebSocketHandler - 텍스트 메시지 처리 [b0b76d64-c54e-07b0-9be7-e12d5996b95c]: 아이스1잔
+2025-08-10 10:38:22 [http-nio-8080-exec-9] INFO  c.e.u.d.chat.service.ChatService - 메시지 처리 [b0b76d64-c54e-07b0-9be7-e12d5996b95c]: 아이스1잔
+2025-08-10 10:38:22 [http-nio-8080-exec-9] DEBUG c.e.u.d.c.h.ChatWebSocketHandler - 메시지 전송 [b0b76d64-c54e-07b0-9be7-e12d5996b95c]: bot.reply
+2025-08-10 10:38:29 [http-nio-8080-exec-10] INFO  c.e.u.d.c.h.ChatWebSocketHandler - 수신 메시지 [b0b76d64-c54e-07b0-9be7-e12d5996b95c]: {"type":"client.text","message":"메뉴 더 담을게"}
+2025-08-10 10:38:29 [http-nio-8080-exec-10] INFO  c.e.u.d.c.h.ChatWebSocketHandler - 텍스트 메시지 처리 [b0b76d64-c54e-07b0-9be7-e12d5996b95c]: 메뉴 더 담을게
+2025-08-10 10:38:29 [http-nio-8080-exec-10] INFO  c.e.u.d.chat.service.ChatService - 메시지 처리 [b0b76d64-c54e-07b0-9be7-e12d5996b95c]: 메뉴 더 담을게
+2025-08-10 10:38:29 [http-nio-8080-exec-10] DEBUG c.e.u.d.c.h.ChatWebSocketHandler - 메시지 전송 [b0b76d64-c54e-07b0-9be7-e12d5996b95c]: bot.reply
+2025-08-10 10:38:32 [http-nio-8080-exec-1] INFO  c.e.u.d.c.h.ChatWebSocketHandler - 수신 메시지 [b0b76d64-c54e-07b0-9be7-e12d5996b95c]: {"type":"client.text","message":"짜장면"}
+2025-08-10 10:38:32 [http-nio-8080-exec-1] INFO  c.e.u.d.c.h.ChatWebSocketHandler - 텍스트 메시지 처리 [b0b76d64-c54e-07b0-9be7-e12d5996b95c]: 짜장면
+2025-08-10 10:38:32 [http-nio-8080-exec-1] INFO  c.e.u.d.chat.service.ChatService - 메시지 처리 [b0b76d64-c54e-07b0-9be7-e12d5996b95c]: 짜장면
+2025-08-10 10:38:32 [http-nio-8080-exec-1] INFO  c.e.u.d.menu.service.MenuService - 메뉴 검색 시작: 짜장면
+2025-08-10 10:38:32 [http-nio-8080-exec-1] INFO  c.e.u.g.client.gemini.GeminiService - Calling Gemini API with prompt: 사용자가 '짜장면'를 주문했습니다.
+이것은 맥도날드 매장입니다. 다음은 현재 판매 중인 메뉴입니다:
+
+버거/세트: 빅맥, 쿼터파운더, 맥스파이시 상하이 버거, 불고기 버거
+커피: 아메리카노, 카페라떼, 카푸치노, 캐러멜 마키아토
+음료: 코카콜라, 코카콜라 제로, 스프라이트, 오렌지 주스
+사이드: 프렌치프라이, 치킨 너겟, 애플파이
+디저트: 맥플러리 오레오, 소프트 콘
+
+판단 기준:
+1. 요청한 음식이 맥도날드에서 파는 종류의 음식인가?
+2. 위 메뉴와 유사한 것이 있는가?
+
+응답 규칙:
+- 맥도날드와 전혀 관련 없는 음식(짜장면, 김치찌개, 초밥 등)이면 → NO_MATCH
+- 유사한 메뉴가 있으면 → 다음 기준으로 추천:
+  1. 카테고리가 같은 메뉴를 우선 추천 (커피→커피, 버거→버거)
+  2. 맛, 재료, 특성이 유사한 메뉴를 선택
+  3. 가격대가 비슷한 메뉴를 우선 고려
+  4. 반드시 위 메뉴 목록에 있는 정확한 메뉴명만 추천
+
+예시:
+바닐라 라떼' → '카페라떼', '캐러멜 마키아토' 추천
+'치즈버거' → '빅맥', '불고기 버거' 추천
+'짜장면' → NO_MATCH (맥도날드 음식이 아님)
+'김치찌개' → NO_MATCH (맥도날드 음식이 아님)
+
+응답 형식: JSON
+{
+  "recommended": ["메뉴명1", "메뉴명2"] 또는 "NO_MATCH",
+  "reason": "판단 이유"
+}
+2025-08-10 10:38:33 [http-nio-8080-exec-1] DEBUG o.s.w.c.HttpMessageConverterExtractor - Reading to [com.example.unithon.global.client.gemini.GeminiResponse]
+2025-08-10 10:38:33 [http-nio-8080-exec-1] INFO  c.e.u.g.client.gemini.GeminiService - Received response from Gemini API: ```json
+{
+  "recommended": "NO_MATCH",
+  "reason": "짜장면은 맥도날드에서 판매하지 않는 메뉴입니다."
+}
+```
+
+2025-08-10 10:38:33 [http-nio-8080-exec-1] INFO  c.e.u.d.menu.service.MenuService - Gemini 응답: ```json
+{
+  "recommended": "NO_MATCH",
+  "reason": "짜장면은 맥도날드에서 판매하지 않는 메뉴입니다."
+}
+```
+
+2025-08-10 10:38:33 [http-nio-8080-exec-1] INFO  c.e.u.d.menu.service.MenuService - Gemini 응답: 맥도날드 메뉴와 관련 없는 요청으로 판단됨
+2025-08-10 10:38:33 [http-nio-8080-exec-1] DEBUG c.e.u.d.c.h.ChatWebSocketHandler - 메시지 전송 [b0b76d64-c54e-07b0-9be7-e12d5996b95c]: bot.reply
+2025-08-10 10:38:43 [http-nio-8080-exec-2] INFO  c.e.u.d.c.h.ChatWebSocketHandler - 수신 메시지 [b0b76d64-c54e-07b0-9be7-e12d5996b95c]: {"type":"client.text","message":"감튀"}
+2025-08-10 10:38:43 [http-nio-8080-exec-2] INFO  c.e.u.d.c.h.ChatWebSocketHandler - 텍스트 메시지 처리 [b0b76d64-c54e-07b0-9be7-e12d5996b95c]: 감튀
+2025-08-10 10:38:43 [http-nio-8080-exec-2] INFO  c.e.u.d.chat.service.ChatService - 메시지 처리 [b0b76d64-c54e-07b0-9be7-e12d5996b95c]: 감튀
+2025-08-10 10:38:43 [http-nio-8080-exec-2] INFO  c.e.u.d.menu.service.MenuService - 메뉴 검색 시작: 감튀
+2025-08-10 10:38:43 [http-nio-8080-exec-2] INFO  c.e.u.d.menu.service.MenuService - DB 동의어 매칭 성공: 감튀 → 프렌치프라이
+2025-08-10 10:38:43 [http-nio-8080-exec-2] DEBUG c.e.u.d.c.h.ChatWebSocketHandler - 메시지 전송 [b0b76d64-c54e-07b0-9be7-e12d5996b95c]: bot.reply
+2025-08-10 10:38:49 [http-nio-8080-exec-4] INFO  c.e.u.d.c.h.ChatWebSocketHandler - 수신 메시지 [b0b76d64-c54e-07b0-9be7-e12d5996b95c]: {"type":"client.text","message":"라지 1개"}
+2025-08-10 10:38:49 [http-nio-8080-exec-4] INFO  c.e.u.d.c.h.ChatWebSocketHandler - 텍스트 메시지 처리 [b0b76d64-c54e-07b0-9be7-e12d5996b95c]: 라지 1개
+2025-08-10 10:38:49 [http-nio-8080-exec-4] INFO  c.e.u.d.chat.service.ChatService - 메시지 처리 [b0b76d64-c54e-07b0-9be7-e12d5996b95c]: 라지 1개
+2025-08-10 10:38:49 [http-nio-8080-exec-4] DEBUG c.e.u.d.c.h.ChatWebSocketHandler - 메시지 전송 [b0b76d64-c54e-07b0-9be7-e12d5996b95c]: bot.reply
+2025-08-10 10:39:06 [http-nio-8080-exec-3] INFO  c.e.u.d.c.h.ChatWebSocketHandler - 수신 메시지 [b0b76d64-c54e-07b0-9be7-e12d5996b95c]: {"type":"client.text","message":"1"}
+2025-08-10 10:39:06 [http-nio-8080-exec-3] INFO  c.e.u.d.c.h.ChatWebSocketHandler - 텍스트 메시지 처리 [b0b76d64-c54e-07b0-9be7-e12d5996b95c]: 1
+2025-08-10 10:39:06 [http-nio-8080-exec-3] INFO  c.e.u.d.chat.service.ChatService - 메시지 처리 [b0b76d64-c54e-07b0-9be7-e12d5996b95c]: 1
+2025-08-10 10:39:06 [http-nio-8080-exec-3] DEBUG c.e.u.d.c.h.ChatWebSocketHandler - 메시지 전송 [b0b76d64-c54e-07b0-9be7-e12d5996b95c]: bot.reply
+2025-08-10 10:39:11 [http-nio-8080-exec-5] INFO  c.e.u.d.c.h.ChatWebSocketHandler - 수신 메시지 [b0b76d64-c54e-07b0-9be7-e12d5996b95c]: {"type":"client.text","message":"주문 마칠래"}
+2025-08-10 10:39:11 [http-nio-8080-exec-5] INFO  c.e.u.d.c.h.ChatWebSocketHandler - 텍스트 메시지 처리 [b0b76d64-c54e-07b0-9be7-e12d5996b95c]: 주문 마칠래
+2025-08-10 10:39:11 [http-nio-8080-exec-5] INFO  c.e.u.d.chat.service.ChatService - 메시지 처리 [b0b76d64-c54e-07b0-9be7-e12d5996b95c]: 주문 마칠래
+2025-08-10 10:39:11 [http-nio-8080-exec-5] DEBUG c.e.u.d.c.h.ChatWebSocketHandler - 메시지 전송 [b0b76d64-c54e-07b0-9be7-e12d5996b95c]: bot.reply
+2025-08-10 11:10:13 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-08-10 11:10:13 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-08-10 11:10:13 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-08-10 11:10:13 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-08-10 11:10:13 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-08-10 11:10:13 [SpringApplicationShutdownHook] DEBUG o.s.w.s.h.LoggingWebSocketHandlerDecorator - Transport error in StandardWebSocketSession[id=b0b76d64-c54e-07b0-9be7-e12d5996b95c, uri=ws://localhost:8080/api/chat]
+java.io.IOException: java.nio.channels.ClosedChannelException
+	at org.apache.tomcat.websocket.WsRemoteEndpointImplBase.sendMessageBlockInternal(WsRemoteEndpointImplBase.java:326)
+	at org.apache.tomcat.websocket.WsRemoteEndpointImplBase.sendMessageBlock(WsRemoteEndpointImplBase.java:266)
+	at org.apache.tomcat.websocket.WsSession.sendCloseMessage(WsSession.java:778)
+	at org.apache.tomcat.websocket.WsSession.doClose(WsSession.java:575)
+	at org.apache.tomcat.websocket.WsSession.doClose(WsSession.java:542)
+	at org.apache.tomcat.websocket.WsSession.close(WsSession.java:530)
+	at org.apache.tomcat.websocket.WsWebSocketContainer.destroy(WsWebSocketContainer.java:1022)
+	at org.apache.tomcat.websocket.server.WsContextListener.contextDestroyed(WsContextListener.java:46)
+	at org.apache.catalina.core.StandardContext.listenerStop(StandardContext.java:4090)
+	at org.apache.catalina.core.StandardContext.stopInternal(StandardContext.java:4700)
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:235)
+	at org.apache.catalina.core.ContainerBase$StopChild.call(ContainerBase.java:1219)
+	at org.apache.catalina.core.ContainerBase$StopChild.call(ContainerBase.java:1208)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:145)
+	at org.apache.catalina.core.ContainerBase.stopInternal(ContainerBase.java:814)
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:235)
+	at org.apache.catalina.core.ContainerBase$StopChild.call(ContainerBase.java:1219)
+	at org.apache.catalina.core.ContainerBase$StopChild.call(ContainerBase.java:1208)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:145)
+	at org.apache.catalina.core.ContainerBase.stopInternal(ContainerBase.java:814)
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:235)
+	at org.apache.catalina.core.StandardService.stopInternal(StandardService.java:468)
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:235)
+	at org.apache.catalina.core.StandardServer.stopInternal(StandardServer.java:915)
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:235)
+	at org.apache.catalina.startup.Tomcat.stop(Tomcat.java:448)
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.stopTomcat(TomcatWebServer.java:301)
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.destroy(TomcatWebServer.java:374)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.doClose(ServletWebServerApplicationContext.java:182)
+	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:1126)
+	at org.springframework.boot.SpringApplicationShutdownHook.closeAndWait(SpringApplicationShutdownHook.java:147)
+	at java.base/java.lang.Iterable.forEach(Iterable.java:75)
+	at org.springframework.boot.SpringApplicationShutdownHook.run(SpringApplicationShutdownHook.java:116)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+Caused by: java.nio.channels.ClosedChannelException: null
+	at org.apache.tomcat.util.net.NioChannel$1.write(NioChannel.java:282)
+	at org.apache.tomcat.util.net.NioEndpoint$NioSocketWrapper$NioOperationState.run(NioEndpoint.java:1665)
+	at org.apache.tomcat.util.net.SocketWrapperBase$OperationState.start(SocketWrapperBase.java:987)
+	at org.apache.tomcat.util.net.SocketWrapperBase.vectoredOperation(SocketWrapperBase.java:1358)
+	at org.apache.tomcat.util.net.SocketWrapperBase.write(SocketWrapperBase.java:1287)
+	at org.apache.tomcat.util.net.SocketWrapperBase.write(SocketWrapperBase.java:1262)
+	at org.apache.tomcat.websocket.server.WsRemoteEndpointImplServer.doWrite(WsRemoteEndpointImplServer.java:171)
+	at org.apache.tomcat.websocket.WsRemoteEndpointImplBase.writeMessagePart(WsRemoteEndpointImplBase.java:521)
+	at org.apache.tomcat.websocket.WsRemoteEndpointImplBase.sendMessageBlockInternal(WsRemoteEndpointImplBase.java:313)
+	... 37 common frames omitted
+2025-08-10 11:10:13 [SpringApplicationShutdownHook] ERROR c.e.u.d.c.h.ChatWebSocketHandler - WebSocket 전송 오류 [b0b76d64-c54e-07b0-9be7-e12d5996b95c]: java.nio.channels.ClosedChannelException
+java.io.IOException: java.nio.channels.ClosedChannelException
+	at org.apache.tomcat.websocket.WsRemoteEndpointImplBase.sendMessageBlockInternal(WsRemoteEndpointImplBase.java:326)
+	at org.apache.tomcat.websocket.WsRemoteEndpointImplBase.sendMessageBlock(WsRemoteEndpointImplBase.java:266)
+	at org.apache.tomcat.websocket.WsSession.sendCloseMessage(WsSession.java:778)
+	at org.apache.tomcat.websocket.WsSession.doClose(WsSession.java:575)
+	at org.apache.tomcat.websocket.WsSession.doClose(WsSession.java:542)
+	at org.apache.tomcat.websocket.WsSession.close(WsSession.java:530)
+	at org.apache.tomcat.websocket.WsWebSocketContainer.destroy(WsWebSocketContainer.java:1022)
+	at org.apache.tomcat.websocket.server.WsContextListener.contextDestroyed(WsContextListener.java:46)
+	at org.apache.catalina.core.StandardContext.listenerStop(StandardContext.java:4090)
+	at org.apache.catalina.core.StandardContext.stopInternal(StandardContext.java:4700)
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:235)
+	at org.apache.catalina.core.ContainerBase$StopChild.call(ContainerBase.java:1219)
+	at org.apache.catalina.core.ContainerBase$StopChild.call(ContainerBase.java:1208)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:145)
+	at org.apache.catalina.core.ContainerBase.stopInternal(ContainerBase.java:814)
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:235)
+	at org.apache.catalina.core.ContainerBase$StopChild.call(ContainerBase.java:1219)
+	at org.apache.catalina.core.ContainerBase$StopChild.call(ContainerBase.java:1208)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:145)
+	at org.apache.catalina.core.ContainerBase.stopInternal(ContainerBase.java:814)
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:235)
+	at org.apache.catalina.core.StandardService.stopInternal(StandardService.java:468)
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:235)
+	at org.apache.catalina.core.StandardServer.stopInternal(StandardServer.java:915)
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:235)
+	at org.apache.catalina.startup.Tomcat.stop(Tomcat.java:448)
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.stopTomcat(TomcatWebServer.java:301)
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.destroy(TomcatWebServer.java:374)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.doClose(ServletWebServerApplicationContext.java:182)
+	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:1126)
+	at org.springframework.boot.SpringApplicationShutdownHook.closeAndWait(SpringApplicationShutdownHook.java:147)
+	at java.base/java.lang.Iterable.forEach(Iterable.java:75)
+	at org.springframework.boot.SpringApplicationShutdownHook.run(SpringApplicationShutdownHook.java:116)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+Caused by: java.nio.channels.ClosedChannelException: null
+	at org.apache.tomcat.util.net.NioChannel$1.write(NioChannel.java:282)
+	at org.apache.tomcat.util.net.NioEndpoint$NioSocketWrapper$NioOperationState.run(NioEndpoint.java:1665)
+	at org.apache.tomcat.util.net.SocketWrapperBase$OperationState.start(SocketWrapperBase.java:987)
+	at org.apache.tomcat.util.net.SocketWrapperBase.vectoredOperation(SocketWrapperBase.java:1358)
+	at org.apache.tomcat.util.net.SocketWrapperBase.write(SocketWrapperBase.java:1287)
+	at org.apache.tomcat.util.net.SocketWrapperBase.write(SocketWrapperBase.java:1262)
+	at org.apache.tomcat.websocket.server.WsRemoteEndpointImplServer.doWrite(WsRemoteEndpointImplServer.java:171)
+	at org.apache.tomcat.websocket.WsRemoteEndpointImplBase.writeMessagePart(WsRemoteEndpointImplBase.java:521)
+	at org.apache.tomcat.websocket.WsRemoteEndpointImplBase.sendMessageBlockInternal(WsRemoteEndpointImplBase.java:313)
+	... 37 common frames omitted
+2025-08-10 11:10:13 [SpringApplicationShutdownHook] DEBUG o.s.w.s.h.LoggingWebSocketHandlerDecorator - StandardWebSocketSession[id=b0b76d64-c54e-07b0-9be7-e12d5996b95c, uri=ws://localhost:8080/api/chat] closed with CloseStatus[code=1001, reason=The web application is stopping]
+2025-08-10 11:10:13 [SpringApplicationShutdownHook] INFO  c.e.u.d.chat.service.ChatService - 세션 정리 완료 [b0b76d64-c54e-07b0-9be7-e12d5996b95c]
+2025-08-10 11:10:13 [SpringApplicationShutdownHook] INFO  c.e.u.d.c.h.ChatWebSocketHandler - WebSocket 연결 종료 [b0b76d64-c54e-07b0-9be7-e12d5996b95c]: CloseStatus[code=1001, reason=The web application is stopping]
+2025-08-10 11:10:15 [main] INFO  c.example.unithon.UnithonApplication - Starting UnithonApplication using Java 21.0.4 with PID 56636 (/Users/yunjeong/Desktop/unithon/build/classes/java/main started by yunjeong in /Users/yunjeong/Desktop/unithon)
+2025-08-10 11:10:15 [main] DEBUG c.example.unithon.UnithonApplication - Running with Spring Boot v3.5.4, Spring v6.2.9
+2025-08-10 11:10:15 [main] INFO  c.example.unithon.UnithonApplication - No active profile set, falling back to 1 default profile: "default"
+2025-08-10 11:10:16 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-08-10 11:10:16 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 15 ms. Found 3 JPA repository interfaces.
+2025-08-10 11:10:16 [main] INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=efb109c1-7d98-3f96-97fc-a61a66401d77
+2025-08-10 11:10:16 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-08-10 11:10:16 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-08-10 11:10:16 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.43]
+2025-08-10 11:10:16 [main] INFO  o.a.c.c.C.[.[localhost].[/api] - Initializing Spring embedded WebApplicationContext
+2025-08-10 11:10:16 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 514 ms
+2025-08-10 11:10:16 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-08-10 11:10:16 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.22.Final
+2025-08-10 11:10:16 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-08-10 11:10:16 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-08-10 11:10:16 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-08-10 11:10:16 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5bdb9c69
+2025-08-10 11:10:16 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-08-10 11:10:16 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-08-10 11:10:16 [main] WARN  org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-08-10 11:10:16 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-08-10 11:10:17 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-08-10 11:10:17 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-08-10 11:10:17 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-08-10 11:10:17 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-08-10 11:10:17 [main] DEBUG o.s.w.s.s.s.WebSocketHandlerMapping - Patterns [/chat] in 'webSocketHandlerMapping'
+2025-08-10 11:10:17 [main] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - 13 mappings in 'requestMappingHandlerMapping'
+2025-08-10 11:10:17 [main] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Patterns [/webjars/**, /**, /swagger-ui*/*swagger-initializer.js, /swagger-ui*/**] in 'resourceHandlerMapping'
+2025-08-10 11:10:17 [main] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerAdapter - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-08-10 11:10:17 [main] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-08-10 11:10:18 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/api'
+2025-08-10 11:10:18 [main] INFO  c.example.unithon.UnithonApplication - Started UnithonApplication in 2.963 seconds (process running for 3.374)
+2025-08-10 11:10:23 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[.[localhost].[/api] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-08-10 11:10:23 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-08-10 11:10:23 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected StandardServletMultipartResolver
+2025-08-10 11:10:23 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected AcceptHeaderLocaleResolver
+2025-08-10 11:10:23 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected FixedThemeResolver
+2025-08-10 11:10:23 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@274783f8
+2025-08-10 11:10:23 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected org.springframework.web.servlet.support.SessionFlashMapManager@357f7e2d
+2025-08-10 11:10:23 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2025-08-10 11:10:23 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2025-08-10 11:10:23 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - GET "/api/websocket-test.html", parameters={}
+2025-08-10 11:10:23 [http-nio-8080-exec-1] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [static/]]
+2025-08-10 11:10:23 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Completed 304 NOT_MODIFIED
+2025-08-10 11:10:23 [http-nio-8080-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - GET "/api/chat", parameters={}
+2025-08-10 11:10:23 [http-nio-8080-exec-2] DEBUG o.s.w.s.s.s.WebSocketHandlerMapping - Mapped to org.springframework.web.socket.server.support.WebSocketHttpRequestHandler@79462469
+2025-08-10 11:10:23 [http-nio-8080-exec-2] DEBUG o.s.w.s.s.s.WebSocketHttpRequestHandler - GET /api/chat
+2025-08-10 11:10:23 [http-nio-8080-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - Completed 101 SWITCHING_PROTOCOLS
+2025-08-10 11:10:23 [http-nio-8080-exec-2] DEBUG o.s.w.s.h.LoggingWebSocketHandlerDecorator - New StandardWebSocketSession[id=d73fd82c-b06b-0a7b-5a35-a49cc422940e, uri=ws://localhost:8080/api/chat]
+2025-08-10 11:10:23 [http-nio-8080-exec-2] INFO  c.e.u.d.c.h.ChatWebSocketHandler - WebSocket 연결 성공: d73fd82c-b06b-0a7b-5a35-a49cc422940e
+2025-08-10 11:10:23 [http-nio-8080-exec-2] DEBUG c.e.u.d.c.h.ChatWebSocketHandler - 메시지 전송 [d73fd82c-b06b-0a7b-5a35-a49cc422940e]: connection
+2025-08-10 11:10:27 [http-nio-8080-exec-5] INFO  c.e.u.d.c.h.ChatWebSocketHandler - 수신 메시지 [d73fd82c-b06b-0a7b-5a35-a49cc422940e]: {"type":"client.text","message":"제일싼 메뉴"}
+2025-08-10 11:10:27 [http-nio-8080-exec-5] INFO  c.e.u.d.c.h.ChatWebSocketHandler - 텍스트 메시지 처리 [d73fd82c-b06b-0a7b-5a35-a49cc422940e]: 제일싼 메뉴
+2025-08-10 11:10:27 [http-nio-8080-exec-5] INFO  c.e.u.d.chat.service.ChatService - 메시지 처리 [d73fd82c-b06b-0a7b-5a35-a49cc422940e]: 제일싼 메뉴
+2025-08-10 11:10:27 [http-nio-8080-exec-5] INFO  c.e.u.g.client.gemini.GeminiService - Calling Gemini API with prompt: 사용자 메시지: "제일싼 메뉴"
+
+이 메시지가 주문을 마치고 결제하려는 의도인지 판단해주세요.
+
+주문 완료 의도 예시:
+- "주문 마칠게요", "이걸로 끝", "계산해주세요"
+- "주문 마친다", "이것만 주문할게요", "결제할게요"
+- "다 됐어요", "이게 다예요", "더 이상 안 시켜요"
+
+응답: YES 또는 NO만 답해주세요.
+
+2025-08-10 11:10:28 [http-nio-8080-exec-5] DEBUG o.s.w.c.HttpMessageConverterExtractor - Reading to [com.example.unithon.global.client.gemini.GeminiResponse]
+2025-08-10 11:10:28 [http-nio-8080-exec-5] INFO  c.e.u.g.client.gemini.GeminiService - Received response from Gemini API: NO
+
+2025-08-10 11:10:28 [http-nio-8080-exec-5] INFO  c.e.u.g.client.gemini.GeminiService - Calling Gemini API with prompt: 사용자 메시지: "제일싼 메뉴"
+
+이 메시지가 메뉴를 더 추가 주문하려는 의도인지 판단해주세요.
+
+메뉴 추가 의도 예시:
+- "하나 더요", "추가로 주문할게요", "더 시키겠습니다"
+- "다른 것도 주문", "또 주문", "추가 주문"
+
+응답: YES 또는 NO만 답해주세요.
+
+2025-08-10 11:10:29 [http-nio-8080-exec-5] DEBUG o.s.w.c.HttpMessageConverterExtractor - Reading to [com.example.unithon.global.client.gemini.GeminiResponse]
+2025-08-10 11:10:29 [http-nio-8080-exec-5] INFO  c.e.u.g.client.gemini.GeminiService - Received response from Gemini API: NO
+
+2025-08-10 11:10:29 [http-nio-8080-exec-5] INFO  c.e.u.d.menu.service.MenuService - 메뉴 검색 시작: 제일싼 메뉴
+2025-08-10 11:10:29 [http-nio-8080-exec-5] INFO  c.e.u.g.client.gemini.GeminiService - Calling Gemini API with prompt: === 맥도날드 메뉴 데이터 ===
+
+[버거/세트]
+- 맥스파이시 상하이 버거 세트: 6,200원
+- 불고기 버거: 3,500원
+- 맥스파이시 상하이 버거: 4,500원
+- 쿼터파운더: 4,800원
+- 빅맥: 4,200원
+- 불고기 버거 세트: 5,200원
+- 쿼터파운더 세트: 6,500원
+- 빅맥 세트: 5,900원
+
+[커피]
+- 아메리카노: 1,500원 (온도선택가능) (사이즈선택가능)
+- 캐러멜 마키아토: 2,500원 (온도선택가능) (사이즈선택가능)
+- 카푸치노: 2,200원 (온도선택가능) (사이즈선택가능)
+- 카페라떼: 2,000원 (온도선택가능) (사이즈선택가능)
+
+[음료]
+- 오렌지 주스: 1,500원 (사이즈선택가능)
+- 스프라이트: 1,200원 (사이즈선택가능)
+- 코카콜라 제로: 1,200원 (사이즈선택가능)
+- 코카콜라: 1,200원 (사이즈선택가능)
+
+[사이드/디저트]
+- 소프트 콘: 800원
+- 맥플러리 오레오: 2,500원
+- 애플파이: 1,500원
+- 치킨 너겟: 2,200원
+- 프렌치프라이: 1,800원 (사이즈선택가능)
+
+
+=== 사용자 질문 ===
+제일싼 메뉴
+
+=== 응답 규칙 ===
+위의 메뉴 데이터를 정확히 참고해서 사용자의 질문에 답변해주세요.
+- 가격 정보는 정확한 금액을 명시해주세요
+- 메뉴명은 정확히 표기해주세요
+- 카테고리별로 분류해서 답변하면 더 좋습니다
+- 친근하고 자연스러운 톤으로 답변해주세요
+- 맥도날드 직원처럼 응답해주세요
+
+응답 형식: 일반 텍스트 (JSON 아님)
+2025-08-10 11:10:31 [http-nio-8080-exec-5] DEBUG o.s.w.c.HttpMessageConverterExtractor - Reading to [com.example.unithon.global.client.gemini.GeminiResponse]
+2025-08-10 11:10:31 [http-nio-8080-exec-5] INFO  c.e.u.g.client.gemini.GeminiService - Received response from Gemini API: 안녕하세요! 맥도날드입니다.  가장 저렴한 메뉴를 찾으시는군요!
+
+음료 중에서는 스프라이트와 코카콜라, 코카콜라 제로가 1,200원으로 제일 저렴하네요. 사이즈는 선택 가능하시구요!  
+
+사이드/디저트 중에서는 소프트콘이 800원으로 가장 저렴합니다. 달콤한 간식으로 딱이죠!
+
+버거류는 불고기버거가 3,500원으로 가장 저렴합니다.  든든한 한끼로 좋답니다!
+
+2025-08-10 11:10:31 [http-nio-8080-exec-5] INFO  c.e.u.d.menu.service.MenuService - Gemini 응답: 안녕하세요! 맥도날드입니다.  가장 저렴한 메뉴를 찾으시는군요!
+
+음료 중에서는 스프라이트와 코카콜라, 코카콜라 제로가 1,200원으로 제일 저렴하네요. 사이즈는 선택 가능하시구요!  
+
+사이드/디저트 중에서는 소프트콘이 800원으로 가장 저렴합니다. 달콤한 간식으로 딱이죠!
+
+버거류는 불고기버거가 3,500원으로 가장 저렴합니다.  든든한 한끼로 좋답니다!
+
+2025-08-10 11:10:31 [http-nio-8080-exec-5] DEBUG c.e.u.d.c.h.ChatWebSocketHandler - 메시지 전송 [d73fd82c-b06b-0a7b-5a35-a49cc422940e]: bot.reply
+2025-08-10 11:11:24 [http-nio-8080-exec-6] INFO  c.e.u.d.c.h.ChatWebSocketHandler - 수신 메시지 [d73fd82c-b06b-0a7b-5a35-a49cc422940e]: {"type":"client.text","message":"아아"}
+2025-08-10 11:11:24 [http-nio-8080-exec-6] INFO  c.e.u.d.c.h.ChatWebSocketHandler - 텍스트 메시지 처리 [d73fd82c-b06b-0a7b-5a35-a49cc422940e]: 아아
+2025-08-10 11:11:24 [http-nio-8080-exec-6] INFO  c.e.u.d.chat.service.ChatService - 메시지 처리 [d73fd82c-b06b-0a7b-5a35-a49cc422940e]: 아아
+2025-08-10 11:11:24 [http-nio-8080-exec-6] INFO  c.e.u.g.client.gemini.GeminiService - Calling Gemini API with prompt: 사용자 메시지: "아아"
+
+이 메시지가 주문을 마치고 결제하려는 의도인지 판단해주세요.
+
+주문 완료 의도 예시:
+- "주문 마칠게요", "이걸로 끝", "계산해주세요"
+- "주문 마친다", "이것만 주문할게요", "결제할게요"
+- "다 됐어요", "이게 다예요", "더 이상 안 시켜요"
+
+응답: YES 또는 NO만 답해주세요.
+
+2025-08-10 11:11:25 [http-nio-8080-exec-6] DEBUG o.s.w.c.HttpMessageConverterExtractor - Reading to [com.example.unithon.global.client.gemini.GeminiResponse]
+2025-08-10 11:11:25 [http-nio-8080-exec-6] INFO  c.e.u.g.client.gemini.GeminiService - Received response from Gemini API: NO
+
+2025-08-10 11:11:25 [http-nio-8080-exec-6] INFO  c.e.u.g.client.gemini.GeminiService - Calling Gemini API with prompt: 사용자 메시지: "아아"
+
+이 메시지가 메뉴를 더 추가 주문하려는 의도인지 판단해주세요.
+
+메뉴 추가 의도 예시:
+- "하나 더요", "추가로 주문할게요", "더 시키겠습니다"
+- "다른 것도 주문", "또 주문", "추가 주문"
+
+응답: YES 또는 NO만 답해주세요.
+
+2025-08-10 11:11:26 [http-nio-8080-exec-6] DEBUG o.s.w.c.HttpMessageConverterExtractor - Reading to [com.example.unithon.global.client.gemini.GeminiResponse]
+2025-08-10 11:11:26 [http-nio-8080-exec-6] INFO  c.e.u.g.client.gemini.GeminiService - Received response from Gemini API: NO
+
+2025-08-10 11:11:26 [http-nio-8080-exec-6] INFO  c.e.u.d.menu.service.MenuService - 메뉴 검색 시작: 아아
+2025-08-10 11:11:26 [http-nio-8080-exec-6] INFO  c.e.u.d.menu.service.MenuService - DB 동의어 매칭 성공: 아아 → 아메리카노
+2025-08-10 11:11:26 [http-nio-8080-exec-6] DEBUG c.e.u.d.c.h.ChatWebSocketHandler - 메시지 전송 [d73fd82c-b06b-0a7b-5a35-a49cc422940e]: bot.reply
+2025-08-10 11:11:42 [http-nio-8080-exec-7] INFO  c.e.u.d.c.h.ChatWebSocketHandler - 수신 메시지 [d73fd82c-b06b-0a7b-5a35-a49cc422940e]: {"type":"client.text","message":"아이스로 레귤러"}
+2025-08-10 11:11:42 [http-nio-8080-exec-7] INFO  c.e.u.d.c.h.ChatWebSocketHandler - 텍스트 메시지 처리 [d73fd82c-b06b-0a7b-5a35-a49cc422940e]: 아이스로 레귤러
+2025-08-10 11:11:42 [http-nio-8080-exec-7] INFO  c.e.u.d.chat.service.ChatService - 메시지 처리 [d73fd82c-b06b-0a7b-5a35-a49cc422940e]: 아이스로 레귤러
+2025-08-10 11:11:42 [http-nio-8080-exec-7] INFO  c.e.u.g.client.gemini.GeminiService - Calling Gemini API with prompt: 사용자 메시지: "아이스로 레귤러"
+
+이 메시지가 주문을 마치고 결제하려는 의도인지 판단해주세요.
+
+주문 완료 의도 예시:
+- "주문 마칠게요", "이걸로 끝", "계산해주세요"
+- "주문 마친다", "이것만 주문할게요", "결제할게요"
+- "다 됐어요", "이게 다예요", "더 이상 안 시켜요"
+
+응답: YES 또는 NO만 답해주세요.
+
+2025-08-10 11:11:42 [http-nio-8080-exec-7] DEBUG o.s.w.c.HttpMessageConverterExtractor - Reading to [com.example.unithon.global.client.gemini.GeminiResponse]
+2025-08-10 11:11:42 [http-nio-8080-exec-7] INFO  c.e.u.g.client.gemini.GeminiService - Received response from Gemini API: NO
+
+2025-08-10 11:11:42 [http-nio-8080-exec-7] INFO  c.e.u.g.client.gemini.GeminiService - Calling Gemini API with prompt: 사용자 메시지: "아이스로 레귤러"
+
+이 메시지가 메뉴를 더 추가 주문하려는 의도인지 판단해주세요.
+
+메뉴 추가 의도 예시:
+- "하나 더요", "추가로 주문할게요", "더 시키겠습니다"
+- "다른 것도 주문", "또 주문", "추가 주문"
+
+응답: YES 또는 NO만 답해주세요.
+
+2025-08-10 11:11:43 [http-nio-8080-exec-7] DEBUG o.s.w.c.HttpMessageConverterExtractor - Reading to [com.example.unithon.global.client.gemini.GeminiResponse]
+2025-08-10 11:11:43 [http-nio-8080-exec-7] INFO  c.e.u.g.client.gemini.GeminiService - Received response from Gemini API: NO
+
+2025-08-10 11:11:43 [http-nio-8080-exec-7] DEBUG c.e.u.d.c.h.ChatWebSocketHandler - 메시지 전송 [d73fd82c-b06b-0a7b-5a35-a49cc422940e]: bot.reply
+2025-08-10 11:11:54 [http-nio-8080-exec-8] INFO  c.e.u.d.c.h.ChatWebSocketHandler - 수신 메시지 [d73fd82c-b06b-0a7b-5a35-a49cc422940e]: {"type":"client.text","message":"주문 마칠래"}
+2025-08-10 11:11:54 [http-nio-8080-exec-8] INFO  c.e.u.d.c.h.ChatWebSocketHandler - 텍스트 메시지 처리 [d73fd82c-b06b-0a7b-5a35-a49cc422940e]: 주문 마칠래
+2025-08-10 11:11:54 [http-nio-8080-exec-8] INFO  c.e.u.d.chat.service.ChatService - 메시지 처리 [d73fd82c-b06b-0a7b-5a35-a49cc422940e]: 주문 마칠래
+2025-08-10 11:11:54 [http-nio-8080-exec-8] INFO  c.e.u.g.client.gemini.GeminiService - Calling Gemini API with prompt: 사용자 메시지: "주문 마칠래"
+
+이 메시지가 주문을 마치고 결제하려는 의도인지 판단해주세요.
+
+주문 완료 의도 예시:
+- "주문 마칠게요", "이걸로 끝", "계산해주세요"
+- "주문 마친다", "이것만 주문할게요", "결제할게요"
+- "다 됐어요", "이게 다예요", "더 이상 안 시켜요"
+
+응답: YES 또는 NO만 답해주세요.
+
+2025-08-10 11:11:55 [http-nio-8080-exec-8] DEBUG o.s.w.c.HttpMessageConverterExtractor - Reading to [com.example.unithon.global.client.gemini.GeminiResponse]
+2025-08-10 11:11:55 [http-nio-8080-exec-8] INFO  c.e.u.g.client.gemini.GeminiService - Received response from Gemini API: YES
+
+2025-08-10 11:11:55 [http-nio-8080-exec-8] INFO  c.e.u.d.chat.service.ChatService - 세션 정리 완료 [d73fd82c-b06b-0a7b-5a35-a49cc422940e]
+2025-08-10 11:11:55 [http-nio-8080-exec-8] DEBUG c.e.u.d.c.h.ChatWebSocketHandler - 메시지 전송 [d73fd82c-b06b-0a7b-5a35-a49cc422940e]: bot.reply
+2025-08-10 11:11:55 [http-nio-8080-exec-8] INFO  c.e.u.d.c.h.ChatWebSocketHandler - 주문 완료로 인한 WebSocket 연결 종료 [d73fd82c-b06b-0a7b-5a35-a49cc422940e]
+2025-08-10 11:11:55 [http-nio-8080-exec-8] DEBUG o.s.w.s.a.NativeWebSocketSession - Closing StandardWebSocketSession[id=d73fd82c-b06b-0a7b-5a35-a49cc422940e, uri=ws://localhost:8080/api/chat]
+2025-08-10 11:11:55 [http-nio-8080-exec-8] DEBUG o.s.w.s.h.LoggingWebSocketHandlerDecorator - StandardWebSocketSession[id=d73fd82c-b06b-0a7b-5a35-a49cc422940e, uri=ws://localhost:8080/api/chat] closed with CloseStatus[code=1000, reason=null]
+2025-08-10 11:11:55 [http-nio-8080-exec-8] INFO  c.e.u.d.chat.service.ChatService - 세션 정리 완료 [d73fd82c-b06b-0a7b-5a35-a49cc422940e]
+2025-08-10 11:11:55 [http-nio-8080-exec-8] INFO  c.e.u.d.c.h.ChatWebSocketHandler - WebSocket 연결 종료 [d73fd82c-b06b-0a7b-5a35-a49cc422940e]: CloseStatus[code=1000, reason=null]
+2025-08-10 12:30:54 [HikariPool-1:housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1h14m37s798ms).
+2025-08-10 12:30:57 [HikariPool-1:housekeeper] WARN  com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@382154d7 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2025-08-10 12:30:59 [HikariPool-1:housekeeper] WARN  com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@9db7d0 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2025-08-10 13:17:15 [HikariPool-1:housekeeper] WARN  com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@3228ccf8 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2025-08-10 13:17:17 [HikariPool-1:housekeeper] WARN  com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@6e51fe05 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2025-08-10 13:30:53 [HikariPool-1:housekeeper] WARN  com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@5bdb9c69 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2025-08-10 13:30:53 [HikariPool-1:housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=59m58s750ms).
+2025-08-10 14:06:54 [HikariPool-1:housekeeper] WARN  com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@77a4a4bf (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2025-08-10 14:07:04 [HikariPool-1:housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=36m11s421ms).
+2025-08-10 14:07:08 [HikariPool-1:housekeeper] WARN  com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@7aeb69c6 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2025-08-10 14:07:09 [HikariPool-1:housekeeper] WARN  com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@54e2aa21 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2025-08-10 14:07:11 [HikariPool-1:housekeeper] WARN  com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@17617d40 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2025-08-10 14:07:20 [HikariPool-1:housekeeper] WARN  com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@36658333 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2025-08-10 14:07:57 [HikariPool-1:housekeeper] WARN  com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@7a13dd53 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2025-08-10 14:08:00 [HikariPool-1:housekeeper] WARN  com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@7c624fd4 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2025-08-10 14:08:02 [HikariPool-1:housekeeper] WARN  com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@496bd7df (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2025-08-10 14:08:10 [HikariPool-1:housekeeper] WARN  com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@2d7662e4 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2025-08-10 14:08:25 [HikariPool-1:housekeeper] WARN  com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@466784b (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2025-08-10 14:11:42 [http-nio-8080-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - GET "/api/chat", parameters={}
+2025-08-10 14:11:42 [http-nio-8080-exec-9] DEBUG o.s.w.s.s.s.WebSocketHandlerMapping - Mapped to org.springframework.web.socket.server.support.WebSocketHttpRequestHandler@79462469
+2025-08-10 14:11:42 [http-nio-8080-exec-9] DEBUG o.s.w.s.s.s.WebSocketHttpRequestHandler - GET /api/chat
+2025-08-10 14:11:42 [http-nio-8080-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - Completed 101 SWITCHING_PROTOCOLS
+2025-08-10 14:11:42 [http-nio-8080-exec-9] DEBUG o.s.w.s.h.LoggingWebSocketHandlerDecorator - New StandardWebSocketSession[id=06f9820e-c792-b620-0fc1-7c16fb2a5a56, uri=ws://localhost:8080/api/chat]
+2025-08-10 14:11:42 [http-nio-8080-exec-9] INFO  c.e.u.d.c.h.ChatWebSocketHandler - WebSocket 연결 성공: 06f9820e-c792-b620-0fc1-7c16fb2a5a56
+2025-08-10 14:11:42 [http-nio-8080-exec-9] DEBUG c.e.u.d.c.h.ChatWebSocketHandler - 메시지 전송 [06f9820e-c792-b620-0fc1-7c16fb2a5a56]: connection
+2025-08-10 14:18:50 [HikariPool-1:housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2m15s525ms).
+2025-08-10 14:20:38 [HikariPool-1:housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m6s624ms).
+2025-08-10 14:20:43 [HikariPool-1:housekeeper] WARN  com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@74238de7 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2025-08-10 14:20:48 [HikariPool-1:housekeeper] WARN  com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@50c93729 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2025-08-10 14:22:41 [HikariPool-1:housekeeper] WARN  com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@73647d6d (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2025-08-10 14:23:27 [HikariPool-1:housekeeper] WARN  com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@53da709e (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2025-08-10 14:23:32 [HikariPool-1:housekeeper] WARN  com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@559dfa83 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2025-08-10 14:28:31 [HikariPool-1:housekeeper] WARN  com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@495bfbf (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2025-08-10 14:28:31 [HikariPool-1:housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=7m53s835ms).
+2025-08-10 14:28:36 [HikariPool-1:housekeeper] WARN  com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@2830aebf (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2025-08-10 14:28:41 [HikariPool-1:housekeeper] WARN  com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@5eec69bd (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2025-08-10 14:29:07 [HikariPool-1:housekeeper] WARN  com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@7971b3bb (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2025-08-10 14:29:26 [HikariPool-1:housekeeper] WARN  com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@5918b0c1 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2025-08-10 14:46:11 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-08-10 14:46:11 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-08-10 14:46:11 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-08-10 14:46:11 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-08-10 14:46:11 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-08-10 14:46:11 [SpringApplicationShutdownHook] DEBUG o.s.w.s.h.LoggingWebSocketHandlerDecorator - Transport error in StandardWebSocketSession[id=06f9820e-c792-b620-0fc1-7c16fb2a5a56, uri=ws://localhost:8080/api/chat]
+java.io.IOException: java.nio.channels.ClosedChannelException
+	at org.apache.tomcat.websocket.WsRemoteEndpointImplBase.sendMessageBlockInternal(WsRemoteEndpointImplBase.java:326)
+	at org.apache.tomcat.websocket.WsRemoteEndpointImplBase.sendMessageBlock(WsRemoteEndpointImplBase.java:266)
+	at org.apache.tomcat.websocket.WsSession.sendCloseMessage(WsSession.java:778)
+	at org.apache.tomcat.websocket.WsSession.doClose(WsSession.java:575)
+	at org.apache.tomcat.websocket.WsSession.doClose(WsSession.java:542)
+	at org.apache.tomcat.websocket.WsSession.close(WsSession.java:530)
+	at org.apache.tomcat.websocket.WsWebSocketContainer.destroy(WsWebSocketContainer.java:1022)
+	at org.apache.tomcat.websocket.server.WsContextListener.contextDestroyed(WsContextListener.java:46)
+	at org.apache.catalina.core.StandardContext.listenerStop(StandardContext.java:4090)
+	at org.apache.catalina.core.StandardContext.stopInternal(StandardContext.java:4700)
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:235)
+	at org.apache.catalina.core.ContainerBase$StopChild.call(ContainerBase.java:1219)
+	at org.apache.catalina.core.ContainerBase$StopChild.call(ContainerBase.java:1208)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:145)
+	at org.apache.catalina.core.ContainerBase.stopInternal(ContainerBase.java:814)
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:235)
+	at org.apache.catalina.core.ContainerBase$StopChild.call(ContainerBase.java:1219)
+	at org.apache.catalina.core.ContainerBase$StopChild.call(ContainerBase.java:1208)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:145)
+	at org.apache.catalina.core.ContainerBase.stopInternal(ContainerBase.java:814)
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:235)
+	at org.apache.catalina.core.StandardService.stopInternal(StandardService.java:468)
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:235)
+	at org.apache.catalina.core.StandardServer.stopInternal(StandardServer.java:915)
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:235)
+	at org.apache.catalina.startup.Tomcat.stop(Tomcat.java:448)
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.stopTomcat(TomcatWebServer.java:301)
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.destroy(TomcatWebServer.java:374)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.doClose(ServletWebServerApplicationContext.java:182)
+	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:1126)
+	at org.springframework.boot.SpringApplicationShutdownHook.closeAndWait(SpringApplicationShutdownHook.java:147)
+	at java.base/java.lang.Iterable.forEach(Iterable.java:75)
+	at org.springframework.boot.SpringApplicationShutdownHook.run(SpringApplicationShutdownHook.java:116)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+Caused by: java.nio.channels.ClosedChannelException: null
+	at org.apache.tomcat.util.net.NioChannel$1.write(NioChannel.java:282)
+	at org.apache.tomcat.util.net.NioEndpoint$NioSocketWrapper$NioOperationState.run(NioEndpoint.java:1665)
+	at org.apache.tomcat.util.net.SocketWrapperBase$OperationState.start(SocketWrapperBase.java:987)
+	at org.apache.tomcat.util.net.SocketWrapperBase.vectoredOperation(SocketWrapperBase.java:1358)
+	at org.apache.tomcat.util.net.SocketWrapperBase.write(SocketWrapperBase.java:1287)
+	at org.apache.tomcat.util.net.SocketWrapperBase.write(SocketWrapperBase.java:1262)
+	at org.apache.tomcat.websocket.server.WsRemoteEndpointImplServer.doWrite(WsRemoteEndpointImplServer.java:171)
+	at org.apache.tomcat.websocket.WsRemoteEndpointImplBase.writeMessagePart(WsRemoteEndpointImplBase.java:521)
+	at org.apache.tomcat.websocket.WsRemoteEndpointImplBase.sendMessageBlockInternal(WsRemoteEndpointImplBase.java:313)
+	... 37 common frames omitted
+2025-08-10 14:46:11 [SpringApplicationShutdownHook] ERROR c.e.u.d.c.h.ChatWebSocketHandler - WebSocket 전송 오류 [06f9820e-c792-b620-0fc1-7c16fb2a5a56]: java.nio.channels.ClosedChannelException
+java.io.IOException: java.nio.channels.ClosedChannelException
+	at org.apache.tomcat.websocket.WsRemoteEndpointImplBase.sendMessageBlockInternal(WsRemoteEndpointImplBase.java:326)
+	at org.apache.tomcat.websocket.WsRemoteEndpointImplBase.sendMessageBlock(WsRemoteEndpointImplBase.java:266)
+	at org.apache.tomcat.websocket.WsSession.sendCloseMessage(WsSession.java:778)
+	at org.apache.tomcat.websocket.WsSession.doClose(WsSession.java:575)
+	at org.apache.tomcat.websocket.WsSession.doClose(WsSession.java:542)
+	at org.apache.tomcat.websocket.WsSession.close(WsSession.java:530)
+	at org.apache.tomcat.websocket.WsWebSocketContainer.destroy(WsWebSocketContainer.java:1022)
+	at org.apache.tomcat.websocket.server.WsContextListener.contextDestroyed(WsContextListener.java:46)
+	at org.apache.catalina.core.StandardContext.listenerStop(StandardContext.java:4090)
+	at org.apache.catalina.core.StandardContext.stopInternal(StandardContext.java:4700)
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:235)
+	at org.apache.catalina.core.ContainerBase$StopChild.call(ContainerBase.java:1219)
+	at org.apache.catalina.core.ContainerBase$StopChild.call(ContainerBase.java:1208)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:145)
+	at org.apache.catalina.core.ContainerBase.stopInternal(ContainerBase.java:814)
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:235)
+	at org.apache.catalina.core.ContainerBase$StopChild.call(ContainerBase.java:1219)
+	at org.apache.catalina.core.ContainerBase$StopChild.call(ContainerBase.java:1208)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:145)
+	at org.apache.catalina.core.ContainerBase.stopInternal(ContainerBase.java:814)
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:235)
+	at org.apache.catalina.core.StandardService.stopInternal(StandardService.java:468)
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:235)
+	at org.apache.catalina.core.StandardServer.stopInternal(StandardServer.java:915)
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:235)
+	at org.apache.catalina.startup.Tomcat.stop(Tomcat.java:448)
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.stopTomcat(TomcatWebServer.java:301)
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.destroy(TomcatWebServer.java:374)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.doClose(ServletWebServerApplicationContext.java:182)
+	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:1126)
+	at org.springframework.boot.SpringApplicationShutdownHook.closeAndWait(SpringApplicationShutdownHook.java:147)
+	at java.base/java.lang.Iterable.forEach(Iterable.java:75)
+	at org.springframework.boot.SpringApplicationShutdownHook.run(SpringApplicationShutdownHook.java:116)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+Caused by: java.nio.channels.ClosedChannelException: null
+	at org.apache.tomcat.util.net.NioChannel$1.write(NioChannel.java:282)
+	at org.apache.tomcat.util.net.NioEndpoint$NioSocketWrapper$NioOperationState.run(NioEndpoint.java:1665)
+	at org.apache.tomcat.util.net.SocketWrapperBase$OperationState.start(SocketWrapperBase.java:987)
+	at org.apache.tomcat.util.net.SocketWrapperBase.vectoredOperation(SocketWrapperBase.java:1358)
+	at org.apache.tomcat.util.net.SocketWrapperBase.write(SocketWrapperBase.java:1287)
+	at org.apache.tomcat.util.net.SocketWrapperBase.write(SocketWrapperBase.java:1262)
+	at org.apache.tomcat.websocket.server.WsRemoteEndpointImplServer.doWrite(WsRemoteEndpointImplServer.java:171)
+	at org.apache.tomcat.websocket.WsRemoteEndpointImplBase.writeMessagePart(WsRemoteEndpointImplBase.java:521)
+	at org.apache.tomcat.websocket.WsRemoteEndpointImplBase.sendMessageBlockInternal(WsRemoteEndpointImplBase.java:313)
+	... 37 common frames omitted
+2025-08-10 14:46:11 [SpringApplicationShutdownHook] DEBUG o.s.w.s.h.LoggingWebSocketHandlerDecorator - StandardWebSocketSession[id=06f9820e-c792-b620-0fc1-7c16fb2a5a56, uri=ws://localhost:8080/api/chat] closed with CloseStatus[code=1001, reason=The web application is stopping]
+2025-08-10 14:46:11 [SpringApplicationShutdownHook] INFO  c.e.u.d.chat.service.ChatService - 세션 정리 완료 [06f9820e-c792-b620-0fc1-7c16fb2a5a56]
+2025-08-10 14:46:11 [SpringApplicationShutdownHook] INFO  c.e.u.d.c.h.ChatWebSocketHandler - WebSocket 연결 종료 [06f9820e-c792-b620-0fc1-7c16fb2a5a56]: CloseStatus[code=1001, reason=The web application is stopping]
+2025-08-10 14:46:15 [main] INFO  c.example.unithon.UnithonApplication - Starting UnithonApplication using Java 21.0.4 with PID 76454 (/Users/yunjeong/Desktop/unithon/build/classes/java/main started by yunjeong in /Users/yunjeong/Desktop/unithon)
+2025-08-10 14:46:15 [main] DEBUG c.example.unithon.UnithonApplication - Running with Spring Boot v3.5.4, Spring v6.2.9
+2025-08-10 14:46:15 [main] INFO  c.example.unithon.UnithonApplication - No active profile set, falling back to 1 default profile: "default"
+2025-08-10 14:46:15 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-08-10 14:46:15 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 15 ms. Found 3 JPA repository interfaces.
+2025-08-10 14:46:15 [main] INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=efb109c1-7d98-3f96-97fc-a61a66401d77
+2025-08-10 14:46:15 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-08-10 14:46:15 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-08-10 14:46:15 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.43]
+2025-08-10 14:46:15 [main] INFO  o.a.c.c.C.[.[localhost].[/api] - Initializing Spring embedded WebApplicationContext
+2025-08-10 14:46:15 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 535 ms
+2025-08-10 14:46:15 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-08-10 14:46:15 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.22.Final
+2025-08-10 14:46:15 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-08-10 14:46:15 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-08-10 14:46:15 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-08-10 14:46:16 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7f41d979
+2025-08-10 14:46:16 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-08-10 14:46:16 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-08-10 14:46:16 [main] WARN  org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-08-10 14:46:16 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-08-10 14:46:16 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-08-10 14:46:16 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-08-10 14:46:16 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-08-10 14:46:17 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-08-10 14:46:17 [main] DEBUG o.s.w.s.s.s.WebSocketHandlerMapping - Patterns [/chat] in 'webSocketHandlerMapping'
+2025-08-10 14:46:17 [main] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - 13 mappings in 'requestMappingHandlerMapping'
+2025-08-10 14:46:17 [main] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Patterns [/webjars/**, /**, /swagger-ui*/*swagger-initializer.js, /swagger-ui*/**] in 'resourceHandlerMapping'
+2025-08-10 14:46:17 [main] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerAdapter - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-08-10 14:46:17 [main] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-08-10 14:46:17 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/api'
+2025-08-10 14:46:17 [main] INFO  c.example.unithon.UnithonApplication - Started UnithonApplication in 2.797 seconds (process running for 3.256)
+2025-08-10 14:46:29 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[.[localhost].[/api] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-08-10 14:46:29 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-08-10 14:46:29 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected StandardServletMultipartResolver
+2025-08-10 14:46:29 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected AcceptHeaderLocaleResolver
+2025-08-10 14:46:29 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected FixedThemeResolver
+2025-08-10 14:46:29 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@30c98124
+2025-08-10 14:46:29 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected org.springframework.web.servlet.support.SessionFlashMapManager@23243385
+2025-08-10 14:46:29 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2025-08-10 14:46:29 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 3 ms
+2025-08-10 14:46:29 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - GET "/api/websocket-test.html", parameters={}
+2025-08-10 14:46:29 [http-nio-8080-exec-1] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [static/]]
+2025-08-10 14:46:29 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Completed 304 NOT_MODIFIED
+2025-08-10 14:46:29 [http-nio-8080-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - GET "/api/chat", parameters={}
+2025-08-10 14:46:29 [http-nio-8080-exec-2] DEBUG o.s.w.s.s.s.WebSocketHandlerMapping - Mapped to org.springframework.web.socket.server.support.WebSocketHttpRequestHandler@729f8c5d
+2025-08-10 14:46:29 [http-nio-8080-exec-2] DEBUG o.s.w.s.s.s.WebSocketHttpRequestHandler - GET /api/chat
+2025-08-10 14:46:29 [http-nio-8080-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - Completed 101 SWITCHING_PROTOCOLS
+2025-08-10 14:46:29 [http-nio-8080-exec-2] DEBUG o.s.w.s.h.LoggingWebSocketHandlerDecorator - New StandardWebSocketSession[id=fefa9fdb-964b-334f-f62a-516fe9b8fe28, uri=ws://localhost:8080/api/chat]
+2025-08-10 14:46:29 [http-nio-8080-exec-2] INFO  c.e.u.d.c.h.ChatWebSocketHandler - WebSocket 연결 성공: fefa9fdb-964b-334f-f62a-516fe9b8fe28
+2025-08-10 14:46:29 [http-nio-8080-exec-2] DEBUG c.e.u.d.c.h.ChatWebSocketHandler - 메시지 전송 [fefa9fdb-964b-334f-f62a-516fe9b8fe28]: connection
+2025-08-10 14:46:34 [http-nio-8080-exec-5] INFO  c.e.u.d.c.h.ChatWebSocketHandler - 수신 메시지 [fefa9fdb-964b-334f-f62a-516fe9b8fe28]: {"type":"client.text","message":"아아줘"}
+2025-08-10 14:46:34 [http-nio-8080-exec-5] INFO  c.e.u.d.c.h.ChatWebSocketHandler - 텍스트 메시지 처리 [fefa9fdb-964b-334f-f62a-516fe9b8fe28]: 아아줘
+2025-08-10 14:46:34 [http-nio-8080-exec-5] INFO  c.e.u.d.chat.service.ChatService - 메시지 처리 [fefa9fdb-964b-334f-f62a-516fe9b8fe28]: 아아줘
+2025-08-10 14:46:34 [http-nio-8080-exec-5] INFO  c.e.u.g.client.gemini.GeminiService - Calling Gemini API with prompt: 사용자 메시지: "아아줘"
+
+이 메시지가 주문을 마치고 결제하려는 의도인지 판단해주세요.
+
+주문 완료 의도 예시:
+- "주문 마칠게요", "이걸로 끝", "계산해주세요"
+- "주문 마친다", "이것만 주문할게요", "결제할게요"
+- "다 됐어요", "이게 다예요", "더 이상 안 시켜요"
+
+응답: YES 또는 NO만 답해주세요.
+
+2025-08-10 14:46:35 [http-nio-8080-exec-5] DEBUG o.s.w.c.HttpMessageConverterExtractor - Reading to [com.example.unithon.global.client.gemini.GeminiResponse]
+2025-08-10 14:46:35 [http-nio-8080-exec-5] INFO  c.e.u.g.client.gemini.GeminiService - Received response from Gemini API: NO
+
+2025-08-10 14:46:35 [http-nio-8080-exec-5] INFO  c.e.u.g.client.gemini.GeminiService - Calling Gemini API with prompt: 사용자 메시지: "아아줘"
+
+이 메시지가 메뉴를 더 추가 주문하려는 의도인지 판단해주세요.
+
+메뉴 추가 의도 예시:
+- "하나 더요", "추가로 주문할게요", "더 시키겠습니다"
+- "다른 것도 주문", "또 주문", "추가 주문"
+
+응답: YES 또는 NO만 답해주세요.
+
+2025-08-10 14:46:35 [http-nio-8080-exec-5] DEBUG o.s.w.c.HttpMessageConverterExtractor - Reading to [com.example.unithon.global.client.gemini.GeminiResponse]
+2025-08-10 14:46:35 [http-nio-8080-exec-5] INFO  c.e.u.g.client.gemini.GeminiService - Received response from Gemini API: NO
+
+2025-08-10 14:46:35 [http-nio-8080-exec-5] INFO  c.e.u.d.menu.service.MenuService - 메뉴 검색 시작: 아아줘
+2025-08-10 14:46:36 [http-nio-8080-exec-5] INFO  c.e.u.g.client.gemini.GeminiService - Calling Gemini API with prompt: 사용자가 '아아줘'를 주문했습니다.
+이것은 맥도날드 매장입니다. 다음은 현재 판매 중인 메뉴입니다:
+
+버거/세트: 빅맥, 쿼터파운더, 맥스파이시 상하이 버거, 불고기 버거
+커피: 아메리카노, 카페라떼, 카푸치노, 캐러멜 마키아토
+음료: 코카콜라, 코카콜라 제로, 스프라이트, 오렌지 주스
+사이드: 프렌치프라이, 치킨 너겟, 애플파이
+디저트: 맥플러리 오레오, 소프트 콘
+
+판단 기준:
+1. 요청한 음식이 맥도날드에서 파는 종류의 음식인가?
+2. 위 메뉴와 유사한 것이 있는가?
+
+응답 규칙:
+- 맥도날드와 전혀 관련 없는 음식(짜장면, 김치찌개, 초밥 등)이면 → NO_MATCH
+- 유사한 메뉴가 있으면 → 다음 기준으로 추천:
+  1. 카테고리가 같은 메뉴를 우선 추천 (커피→커피, 버거→버거)
+  2. 맛, 재료, 특성이 유사한 메뉴를 선택
+  3. 가격대가 비슷한 메뉴를 우선 고려
+  4. 반드시 위 메뉴 목록에 있는 정확한 메뉴명만 추천
+
+예시:
+바닐라 라떼' → '카페라떼', '캐러멜 마키아토' 추천
+'치즈버거' → '빅맥', '불고기 버거' 추천
+'짜장면' → NO_MATCH (맥도날드 음식이 아님)
+'김치찌개' → NO_MATCH (맥도날드 음식이 아님)
+
+응답 형식: JSON
+{
+  "recommended": ["메뉴명1", "메뉴명2"] 또는 "NO_MATCH",
+  "reason": "판단 이유"
+}
+2025-08-10 14:46:37 [http-nio-8080-exec-5] DEBUG o.s.w.c.HttpMessageConverterExtractor - Reading to [com.example.unithon.global.client.gemini.GeminiResponse]
+2025-08-10 14:46:37 [http-nio-8080-exec-5] INFO  c.e.u.g.client.gemini.GeminiService - Received response from Gemini API: ```json
+{
+  "recommended": ["아메리카노"],
+  "reason": "사용자가 주문한 '아아줘'는 '아이스 아메리카노'를 의미하는 것으로 판단되며, 메뉴에 '아메리카노'가 있으므로 아메리카노를 추천합니다."
+}
+```
+
+2025-08-10 14:46:37 [http-nio-8080-exec-5] INFO  c.e.u.d.menu.service.MenuService - Gemini 응답: ```json
+{
+  "recommended": ["아메리카노"],
+  "reason": "사용자가 주문한 '아아줘'는 '아이스 아메리카노'를 의미하는 것으로 판단되며, 메뉴에 '아메리카노'가 있으므로 아메리카노를 추천합니다."
+}
+```
+
+2025-08-10 14:46:37 [http-nio-8080-exec-5] INFO  c.e.u.d.menu.service.MenuService - Gemini 응답에서 파싱된 추천 메뉴: [아메리카노]
+2025-08-10 14:46:37 [http-nio-8080-exec-5] DEBUG c.e.u.d.c.h.ChatWebSocketHandler - 메시지 전송 [fefa9fdb-964b-334f-f62a-516fe9b8fe28]: bot.reply
+2025-08-10 14:46:45 [http-nio-8080-exec-6] INFO  c.e.u.d.c.h.ChatWebSocketHandler - 수신 메시지 [fefa9fdb-964b-334f-f62a-516fe9b8fe28]: {"type":"client.text","message":"아아 줘"}
+2025-08-10 14:46:45 [http-nio-8080-exec-6] INFO  c.e.u.d.c.h.ChatWebSocketHandler - 텍스트 메시지 처리 [fefa9fdb-964b-334f-f62a-516fe9b8fe28]: 아아 줘
+2025-08-10 14:46:45 [http-nio-8080-exec-6] INFO  c.e.u.d.chat.service.ChatService - 메시지 처리 [fefa9fdb-964b-334f-f62a-516fe9b8fe28]: 아아 줘
+2025-08-10 14:46:45 [http-nio-8080-exec-6] INFO  c.e.u.g.client.gemini.GeminiService - Calling Gemini API with prompt: 사용자 메시지: "아아 줘"
+
+이 메시지가 주문을 마치고 결제하려는 의도인지 판단해주세요.
+
+주문 완료 의도 예시:
+- "주문 마칠게요", "이걸로 끝", "계산해주세요"
+- "주문 마친다", "이것만 주문할게요", "결제할게요"
+- "다 됐어요", "이게 다예요", "더 이상 안 시켜요"
+
+응답: YES 또는 NO만 답해주세요.
+
+2025-08-10 14:46:45 [http-nio-8080-exec-6] DEBUG o.s.w.c.HttpMessageConverterExtractor - Reading to [com.example.unithon.global.client.gemini.GeminiResponse]
+2025-08-10 14:46:45 [http-nio-8080-exec-6] INFO  c.e.u.g.client.gemini.GeminiService - Received response from Gemini API: NO
+
+2025-08-10 14:46:45 [http-nio-8080-exec-6] INFO  c.e.u.g.client.gemini.GeminiService - Calling Gemini API with prompt: 사용자 메시지: "아아 줘"
+
+이 메시지가 메뉴를 더 추가 주문하려는 의도인지 판단해주세요.
+
+메뉴 추가 의도 예시:
+- "하나 더요", "추가로 주문할게요", "더 시키겠습니다"
+- "다른 것도 주문", "또 주문", "추가 주문"
+
+응답: YES 또는 NO만 답해주세요.
+
+2025-08-10 14:46:46 [http-nio-8080-exec-6] DEBUG o.s.w.c.HttpMessageConverterExtractor - Reading to [com.example.unithon.global.client.gemini.GeminiResponse]
+2025-08-10 14:46:46 [http-nio-8080-exec-6] INFO  c.e.u.g.client.gemini.GeminiService - Received response from Gemini API: NO
+
+2025-08-10 14:46:46 [http-nio-8080-exec-6] INFO  c.e.u.d.menu.service.MenuService - 메뉴 검색 시작: 아아 줘
+2025-08-10 14:46:46 [http-nio-8080-exec-6] INFO  c.e.u.d.menu.service.MenuService - DB 동의어 매칭 성공: 아아 줘 → 아메리카노
+2025-08-10 14:46:46 [http-nio-8080-exec-6] DEBUG c.e.u.d.c.h.ChatWebSocketHandler - 메시지 전송 [fefa9fdb-964b-334f-f62a-516fe9b8fe28]: bot.reply
+2025-08-10 14:46:56 [http-nio-8080-exec-7] INFO  c.e.u.d.c.h.ChatWebSocketHandler - 수신 메시지 [fefa9fdb-964b-334f-f62a-516fe9b8fe28]: {"type":"client.text","message":"라지로 한잔줘."}
+2025-08-10 14:46:56 [http-nio-8080-exec-7] INFO  c.e.u.d.c.h.ChatWebSocketHandler - 텍스트 메시지 처리 [fefa9fdb-964b-334f-f62a-516fe9b8fe28]: 라지로 한잔줘.
+2025-08-10 14:46:56 [http-nio-8080-exec-7] INFO  c.e.u.d.chat.service.ChatService - 메시지 처리 [fefa9fdb-964b-334f-f62a-516fe9b8fe28]: 라지로 한잔줘.
+2025-08-10 14:46:56 [http-nio-8080-exec-7] INFO  c.e.u.g.client.gemini.GeminiService - Calling Gemini API with prompt: 사용자 메시지: "라지로 한잔줘."
+
+이 메시지가 주문을 마치고 결제하려는 의도인지 판단해주세요.
+
+주문 완료 의도 예시:
+- "주문 마칠게요", "이걸로 끝", "계산해주세요"
+- "주문 마친다", "이것만 주문할게요", "결제할게요"
+- "다 됐어요", "이게 다예요", "더 이상 안 시켜요"
+
+응답: YES 또는 NO만 답해주세요.
+
+2025-08-10 14:46:57 [http-nio-8080-exec-7] DEBUG o.s.w.c.HttpMessageConverterExtractor - Reading to [com.example.unithon.global.client.gemini.GeminiResponse]
+2025-08-10 14:46:57 [http-nio-8080-exec-7] INFO  c.e.u.g.client.gemini.GeminiService - Received response from Gemini API: NO
+
+2025-08-10 14:46:57 [http-nio-8080-exec-7] INFO  c.e.u.g.client.gemini.GeminiService - Calling Gemini API with prompt: 사용자 메시지: "라지로 한잔줘."
+
+이 메시지가 메뉴를 더 추가 주문하려는 의도인지 판단해주세요.
+
+메뉴 추가 의도 예시:
+- "하나 더요", "추가로 주문할게요", "더 시키겠습니다"
+- "다른 것도 주문", "또 주문", "추가 주문"
+
+응답: YES 또는 NO만 답해주세요.
+
+2025-08-10 14:46:58 [http-nio-8080-exec-7] DEBUG o.s.w.c.HttpMessageConverterExtractor - Reading to [com.example.unithon.global.client.gemini.GeminiResponse]
+2025-08-10 14:46:58 [http-nio-8080-exec-7] INFO  c.e.u.g.client.gemini.GeminiService - Received response from Gemini API: YES
+
+2025-08-10 14:46:58 [http-nio-8080-exec-7] DEBUG c.e.u.d.c.h.ChatWebSocketHandler - 메시지 전송 [fefa9fdb-964b-334f-f62a-516fe9b8fe28]: bot.reply
+2025-08-10 14:47:04 [http-nio-8080-exec-8] INFO  c.e.u.d.c.h.ChatWebSocketHandler - 수신 메시지 [fefa9fdb-964b-334f-f62a-516fe9b8fe28]: {"type":"client.command","action":"cancel"}
+2025-08-10 14:47:04 [http-nio-8080-exec-8] INFO  c.e.u.d.c.h.ChatWebSocketHandler - 명령 메시지 처리 [fefa9fdb-964b-334f-f62a-516fe9b8fe28]: cancel
+2025-08-10 14:47:04 [http-nio-8080-exec-8] INFO  c.e.u.d.chat.service.ChatService - 세션 정리 완료 [fefa9fdb-964b-334f-f62a-516fe9b8fe28]
+2025-08-10 14:47:04 [http-nio-8080-exec-8] DEBUG c.e.u.d.c.h.ChatWebSocketHandler - 메시지 전송 [fefa9fdb-964b-334f-f62a-516fe9b8fe28]: bot.reply
+2025-08-10 14:47:12 [http-nio-8080-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - GET "/api/websocket-test.html", parameters={}
+2025-08-10 14:47:12 [http-nio-8080-exec-9] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [static/]]
+2025-08-10 14:47:12 [http-nio-8080-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - Completed 304 NOT_MODIFIED
+2025-08-10 14:47:12 [http-nio-8080-exec-10] DEBUG o.s.w.s.h.LoggingWebSocketHandlerDecorator - StandardWebSocketSession[id=fefa9fdb-964b-334f-f62a-516fe9b8fe28, uri=ws://localhost:8080/api/chat] closed with CloseStatus[code=1001, reason=null]
+2025-08-10 14:47:12 [http-nio-8080-exec-10] INFO  c.e.u.d.chat.service.ChatService - 세션 정리 완료 [fefa9fdb-964b-334f-f62a-516fe9b8fe28]
+2025-08-10 14:47:12 [http-nio-8080-exec-10] INFO  c.e.u.d.c.h.ChatWebSocketHandler - WebSocket 연결 종료 [fefa9fdb-964b-334f-f62a-516fe9b8fe28]: CloseStatus[code=1001, reason=null]
+2025-08-10 14:47:12 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - GET "/api/chat", parameters={}
+2025-08-10 14:47:12 [http-nio-8080-exec-1] DEBUG o.s.w.s.s.s.WebSocketHandlerMapping - Mapped to org.springframework.web.socket.server.support.WebSocketHttpRequestHandler@729f8c5d
+2025-08-10 14:47:12 [http-nio-8080-exec-1] DEBUG o.s.w.s.s.s.WebSocketHttpRequestHandler - GET /api/chat
+2025-08-10 14:47:12 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Completed 101 SWITCHING_PROTOCOLS
+2025-08-10 14:47:12 [http-nio-8080-exec-1] DEBUG o.s.w.s.h.LoggingWebSocketHandlerDecorator - New StandardWebSocketSession[id=35e74b5d-71a5-1ff1-d1ce-be87cae152a3, uri=ws://localhost:8080/api/chat]
+2025-08-10 14:47:12 [http-nio-8080-exec-1] INFO  c.e.u.d.c.h.ChatWebSocketHandler - WebSocket 연결 성공: 35e74b5d-71a5-1ff1-d1ce-be87cae152a3
+2025-08-10 14:47:12 [http-nio-8080-exec-1] DEBUG c.e.u.d.c.h.ChatWebSocketHandler - 메시지 전송 [35e74b5d-71a5-1ff1-d1ce-be87cae152a3]: connection
+2025-08-10 14:47:19 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-08-10 14:47:19 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-08-10 14:47:19 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-08-10 14:47:19 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-08-10 14:47:19 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-08-10 14:47:19 [SpringApplicationShutdownHook] DEBUG o.s.w.s.h.LoggingWebSocketHandlerDecorator - Transport error in StandardWebSocketSession[id=35e74b5d-71a5-1ff1-d1ce-be87cae152a3, uri=ws://localhost:8080/api/chat]
+java.io.IOException: java.nio.channels.ClosedChannelException
+	at org.apache.tomcat.websocket.WsRemoteEndpointImplBase.sendMessageBlockInternal(WsRemoteEndpointImplBase.java:326)
+	at org.apache.tomcat.websocket.WsRemoteEndpointImplBase.sendMessageBlock(WsRemoteEndpointImplBase.java:266)
+	at org.apache.tomcat.websocket.WsSession.sendCloseMessage(WsSession.java:778)
+	at org.apache.tomcat.websocket.WsSession.doClose(WsSession.java:575)
+	at org.apache.tomcat.websocket.WsSession.doClose(WsSession.java:542)
+	at org.apache.tomcat.websocket.WsSession.close(WsSession.java:530)
+	at org.apache.tomcat.websocket.WsWebSocketContainer.destroy(WsWebSocketContainer.java:1022)
+	at org.apache.tomcat.websocket.server.WsContextListener.contextDestroyed(WsContextListener.java:46)
+	at org.apache.catalina.core.StandardContext.listenerStop(StandardContext.java:4090)
+	at org.apache.catalina.core.StandardContext.stopInternal(StandardContext.java:4700)
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:235)
+	at org.apache.catalina.core.ContainerBase$StopChild.call(ContainerBase.java:1219)
+	at org.apache.catalina.core.ContainerBase$StopChild.call(ContainerBase.java:1208)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:145)
+	at org.apache.catalina.core.ContainerBase.stopInternal(ContainerBase.java:814)
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:235)
+	at org.apache.catalina.core.ContainerBase$StopChild.call(ContainerBase.java:1219)
+	at org.apache.catalina.core.ContainerBase$StopChild.call(ContainerBase.java:1208)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:145)
+	at org.apache.catalina.core.ContainerBase.stopInternal(ContainerBase.java:814)
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:235)
+	at org.apache.catalina.core.StandardService.stopInternal(StandardService.java:468)
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:235)
+	at org.apache.catalina.core.StandardServer.stopInternal(StandardServer.java:915)
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:235)
+	at org.apache.catalina.startup.Tomcat.stop(Tomcat.java:448)
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.stopTomcat(TomcatWebServer.java:301)
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.destroy(TomcatWebServer.java:374)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.doClose(ServletWebServerApplicationContext.java:182)
+	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:1126)
+	at org.springframework.boot.SpringApplicationShutdownHook.closeAndWait(SpringApplicationShutdownHook.java:147)
+	at java.base/java.lang.Iterable.forEach(Iterable.java:75)
+	at org.springframework.boot.SpringApplicationShutdownHook.run(SpringApplicationShutdownHook.java:116)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+Caused by: java.nio.channels.ClosedChannelException: null
+	at org.apache.tomcat.util.net.NioChannel$1.write(NioChannel.java:282)
+	at org.apache.tomcat.util.net.NioEndpoint$NioSocketWrapper$NioOperationState.run(NioEndpoint.java:1665)
+	at org.apache.tomcat.util.net.SocketWrapperBase$OperationState.start(SocketWrapperBase.java:987)
+	at org.apache.tomcat.util.net.SocketWrapperBase.vectoredOperation(SocketWrapperBase.java:1358)
+	at org.apache.tomcat.util.net.SocketWrapperBase.write(SocketWrapperBase.java:1287)
+	at org.apache.tomcat.util.net.SocketWrapperBase.write(SocketWrapperBase.java:1262)
+	at org.apache.tomcat.websocket.server.WsRemoteEndpointImplServer.doWrite(WsRemoteEndpointImplServer.java:171)
+	at org.apache.tomcat.websocket.WsRemoteEndpointImplBase.writeMessagePart(WsRemoteEndpointImplBase.java:521)
+	at org.apache.tomcat.websocket.WsRemoteEndpointImplBase.sendMessageBlockInternal(WsRemoteEndpointImplBase.java:313)
+	... 37 common frames omitted
+2025-08-10 14:47:19 [SpringApplicationShutdownHook] ERROR c.e.u.d.c.h.ChatWebSocketHandler - WebSocket 전송 오류 [35e74b5d-71a5-1ff1-d1ce-be87cae152a3]: java.nio.channels.ClosedChannelException
+java.io.IOException: java.nio.channels.ClosedChannelException
+	at org.apache.tomcat.websocket.WsRemoteEndpointImplBase.sendMessageBlockInternal(WsRemoteEndpointImplBase.java:326)
+	at org.apache.tomcat.websocket.WsRemoteEndpointImplBase.sendMessageBlock(WsRemoteEndpointImplBase.java:266)
+	at org.apache.tomcat.websocket.WsSession.sendCloseMessage(WsSession.java:778)
+	at org.apache.tomcat.websocket.WsSession.doClose(WsSession.java:575)
+	at org.apache.tomcat.websocket.WsSession.doClose(WsSession.java:542)
+	at org.apache.tomcat.websocket.WsSession.close(WsSession.java:530)
+	at org.apache.tomcat.websocket.WsWebSocketContainer.destroy(WsWebSocketContainer.java:1022)
+	at org.apache.tomcat.websocket.server.WsContextListener.contextDestroyed(WsContextListener.java:46)
+	at org.apache.catalina.core.StandardContext.listenerStop(StandardContext.java:4090)
+	at org.apache.catalina.core.StandardContext.stopInternal(StandardContext.java:4700)
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:235)
+	at org.apache.catalina.core.ContainerBase$StopChild.call(ContainerBase.java:1219)
+	at org.apache.catalina.core.ContainerBase$StopChild.call(ContainerBase.java:1208)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:145)
+	at org.apache.catalina.core.ContainerBase.stopInternal(ContainerBase.java:814)
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:235)
+	at org.apache.catalina.core.ContainerBase$StopChild.call(ContainerBase.java:1219)
+	at org.apache.catalina.core.ContainerBase$StopChild.call(ContainerBase.java:1208)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:145)
+	at org.apache.catalina.core.ContainerBase.stopInternal(ContainerBase.java:814)
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:235)
+	at org.apache.catalina.core.StandardService.stopInternal(StandardService.java:468)
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:235)
+	at org.apache.catalina.core.StandardServer.stopInternal(StandardServer.java:915)
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:235)
+	at org.apache.catalina.startup.Tomcat.stop(Tomcat.java:448)
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.stopTomcat(TomcatWebServer.java:301)
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.destroy(TomcatWebServer.java:374)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.doClose(ServletWebServerApplicationContext.java:182)
+	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:1126)
+	at org.springframework.boot.SpringApplicationShutdownHook.closeAndWait(SpringApplicationShutdownHook.java:147)
+	at java.base/java.lang.Iterable.forEach(Iterable.java:75)
+	at org.springframework.boot.SpringApplicationShutdownHook.run(SpringApplicationShutdownHook.java:116)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+Caused by: java.nio.channels.ClosedChannelException: null
+	at org.apache.tomcat.util.net.NioChannel$1.write(NioChannel.java:282)
+	at org.apache.tomcat.util.net.NioEndpoint$NioSocketWrapper$NioOperationState.run(NioEndpoint.java:1665)
+	at org.apache.tomcat.util.net.SocketWrapperBase$OperationState.start(SocketWrapperBase.java:987)
+	at org.apache.tomcat.util.net.SocketWrapperBase.vectoredOperation(SocketWrapperBase.java:1358)
+	at org.apache.tomcat.util.net.SocketWrapperBase.write(SocketWrapperBase.java:1287)
+	at org.apache.tomcat.util.net.SocketWrapperBase.write(SocketWrapperBase.java:1262)
+	at org.apache.tomcat.websocket.server.WsRemoteEndpointImplServer.doWrite(WsRemoteEndpointImplServer.java:171)
+	at org.apache.tomcat.websocket.WsRemoteEndpointImplBase.writeMessagePart(WsRemoteEndpointImplBase.java:521)
+	at org.apache.tomcat.websocket.WsRemoteEndpointImplBase.sendMessageBlockInternal(WsRemoteEndpointImplBase.java:313)
+	... 37 common frames omitted
+2025-08-10 14:47:19 [SpringApplicationShutdownHook] DEBUG o.s.w.s.h.LoggingWebSocketHandlerDecorator - StandardWebSocketSession[id=35e74b5d-71a5-1ff1-d1ce-be87cae152a3, uri=ws://localhost:8080/api/chat] closed with CloseStatus[code=1001, reason=The web application is stopping]
+2025-08-10 14:47:19 [SpringApplicationShutdownHook] INFO  c.e.u.d.chat.service.ChatService - 세션 정리 완료 [35e74b5d-71a5-1ff1-d1ce-be87cae152a3]
+2025-08-10 14:47:19 [SpringApplicationShutdownHook] INFO  c.e.u.d.c.h.ChatWebSocketHandler - WebSocket 연결 종료 [35e74b5d-71a5-1ff1-d1ce-be87cae152a3]: CloseStatus[code=1001, reason=The web application is stopping]
+2025-08-10 14:47:21 [main] INFO  c.example.unithon.UnithonApplication - Starting UnithonApplication using Java 21.0.4 with PID 77061 (/Users/yunjeong/Desktop/unithon/build/classes/java/main started by yunjeong in /Users/yunjeong/Desktop/unithon)
+2025-08-10 14:47:21 [main] DEBUG c.example.unithon.UnithonApplication - Running with Spring Boot v3.5.4, Spring v6.2.9
+2025-08-10 14:47:21 [main] INFO  c.example.unithon.UnithonApplication - No active profile set, falling back to 1 default profile: "default"
+2025-08-10 14:47:21 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-08-10 14:47:21 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 18 ms. Found 3 JPA repository interfaces.
+2025-08-10 14:47:21 [main] INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=efb109c1-7d98-3f96-97fc-a61a66401d77
+2025-08-10 14:47:21 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-08-10 14:47:21 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-08-10 14:47:21 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.43]
+2025-08-10 14:47:21 [main] INFO  o.a.c.c.C.[.[localhost].[/api] - Initializing Spring embedded WebApplicationContext
+2025-08-10 14:47:21 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 647 ms
+2025-08-10 14:47:21 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-08-10 14:47:21 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.22.Final
+2025-08-10 14:47:21 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-08-10 14:47:21 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-08-10 14:47:21 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-08-10 14:47:22 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1feb76b9
+2025-08-10 14:47:22 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-08-10 14:47:22 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-08-10 14:47:22 [main] WARN  org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-08-10 14:47:22 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-08-10 14:47:22 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-08-10 14:47:22 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-08-10 14:47:22 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-08-10 14:47:22 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-08-10 14:47:23 [main] DEBUG o.s.w.s.s.s.WebSocketHandlerMapping - Patterns [/chat] in 'webSocketHandlerMapping'
+2025-08-10 14:47:23 [main] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - 13 mappings in 'requestMappingHandlerMapping'
+2025-08-10 14:47:23 [main] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Patterns [/webjars/**, /**, /swagger-ui*/*swagger-initializer.js, /swagger-ui*/**] in 'resourceHandlerMapping'
+2025-08-10 14:47:23 [main] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerAdapter - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-08-10 14:47:23 [main] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-08-10 14:47:23 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/api'
+2025-08-10 14:47:23 [main] INFO  c.example.unithon.UnithonApplication - Started UnithonApplication in 2.719 seconds (process running for 3.044)
+2025-08-10 14:47:25 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[.[localhost].[/api] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-08-10 14:47:25 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-08-10 14:47:25 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected StandardServletMultipartResolver
+2025-08-10 14:47:25 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected AcceptHeaderLocaleResolver
+2025-08-10 14:47:25 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected FixedThemeResolver
+2025-08-10 14:47:25 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@7065ae93
+2025-08-10 14:47:25 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected org.springframework.web.servlet.support.SessionFlashMapManager@2095e085
+2025-08-10 14:47:25 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2025-08-10 14:47:25 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2025-08-10 14:47:25 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - GET "/api/websocket-test.html", parameters={}
+2025-08-10 14:47:25 [http-nio-8080-exec-1] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [static/]]
+2025-08-10 14:47:25 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Completed 304 NOT_MODIFIED
+2025-08-10 14:47:25 [http-nio-8080-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - GET "/api/chat", parameters={}
+2025-08-10 14:47:25 [http-nio-8080-exec-2] DEBUG o.s.w.s.s.s.WebSocketHandlerMapping - Mapped to org.springframework.web.socket.server.support.WebSocketHttpRequestHandler@680f7a5e
+2025-08-10 14:47:25 [http-nio-8080-exec-2] DEBUG o.s.w.s.s.s.WebSocketHttpRequestHandler - GET /api/chat
+2025-08-10 14:47:25 [http-nio-8080-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - Completed 101 SWITCHING_PROTOCOLS
+2025-08-10 14:47:25 [http-nio-8080-exec-2] DEBUG o.s.w.s.h.LoggingWebSocketHandlerDecorator - New StandardWebSocketSession[id=5ace0ffe-68e2-adf2-9d0f-9ec1940cd875, uri=ws://localhost:8080/api/chat]
+2025-08-10 14:47:25 [http-nio-8080-exec-2] INFO  c.e.u.d.c.h.ChatWebSocketHandler - WebSocket 연결 성공: 5ace0ffe-68e2-adf2-9d0f-9ec1940cd875
+2025-08-10 14:47:25 [http-nio-8080-exec-2] DEBUG c.e.u.d.c.h.ChatWebSocketHandler - 메시지 전송 [5ace0ffe-68e2-adf2-9d0f-9ec1940cd875]: connection
+2025-08-10 14:47:28 [http-nio-8080-exec-3] INFO  c.e.u.d.c.h.ChatWebSocketHandler - 수신 메시지 [5ace0ffe-68e2-adf2-9d0f-9ec1940cd875]: {"type":"client.text","message":"아아줘"}
+2025-08-10 14:47:28 [http-nio-8080-exec-3] INFO  c.e.u.d.c.h.ChatWebSocketHandler - 텍스트 메시지 처리 [5ace0ffe-68e2-adf2-9d0f-9ec1940cd875]: 아아줘
+2025-08-10 14:47:28 [http-nio-8080-exec-3] INFO  c.e.u.d.chat.service.ChatService - 메시지 처리 [5ace0ffe-68e2-adf2-9d0f-9ec1940cd875]: 아아줘
+2025-08-10 14:47:28 [http-nio-8080-exec-3] INFO  c.e.u.g.client.gemini.GeminiService - Calling Gemini API with prompt: 사용자 메시지: "아아줘"
+
+이 메시지가 주문을 마치고 결제하려는 의도인지 판단해주세요.
+
+주문 완료 의도 예시:
+- "주문 마칠게요", "이걸로 끝", "계산해주세요"
+- "주문 마친다", "이것만 주문할게요", "결제할게요"
+- "다 됐어요", "이게 다예요", "더 이상 안 시켜요"
+
+응답: YES 또는 NO만 답해주세요.
+
+2025-08-10 14:47:29 [http-nio-8080-exec-3] DEBUG o.s.w.c.HttpMessageConverterExtractor - Reading to [com.example.unithon.global.client.gemini.GeminiResponse]
+2025-08-10 14:47:29 [http-nio-8080-exec-3] INFO  c.e.u.g.client.gemini.GeminiService - Received response from Gemini API: NO
+
+2025-08-10 14:47:29 [http-nio-8080-exec-3] INFO  c.e.u.g.client.gemini.GeminiService - Calling Gemini API with prompt: 사용자 메시지: "아아줘"
+
+이 메시지가 메뉴를 더 추가 주문하려는 의도인지 판단해주세요.
+
+메뉴 추가 의도 예시:
+- "하나 더요", "추가로 주문할게요", "더 시키겠습니다"
+- "다른 것도 주문", "또 주문", "추가 주문"
+
+응답: YES 또는 NO만 답해주세요.
+
+2025-08-10 14:47:29 [http-nio-8080-exec-3] DEBUG o.s.w.c.HttpMessageConverterExtractor - Reading to [com.example.unithon.global.client.gemini.GeminiResponse]
+2025-08-10 14:47:29 [http-nio-8080-exec-3] INFO  c.e.u.g.client.gemini.GeminiService - Received response from Gemini API: NO
+
+2025-08-10 14:47:29 [http-nio-8080-exec-3] INFO  c.e.u.d.menu.service.MenuService - 메뉴 검색 시작: 아아줘
+2025-08-10 14:47:29 [http-nio-8080-exec-3] INFO  c.e.u.g.client.gemini.GeminiService - Calling Gemini API with prompt: 사용자가 '아아줘'를 주문했습니다.
+이것은 맥도날드 매장입니다. 다음은 현재 판매 중인 메뉴입니다:
+
+버거/세트: 빅맥, 쿼터파운더, 맥스파이시 상하이 버거, 불고기 버거
+커피: 아메리카노, 카페라떼, 카푸치노, 캐러멜 마키아토
+음료: 코카콜라, 코카콜라 제로, 스프라이트, 오렌지 주스
+사이드: 프렌치프라이, 치킨 너겟, 애플파이
+디저트: 맥플러리 오레오, 소프트 콘
+
+판단 기준:
+1. 요청한 음식이 맥도날드에서 파는 종류의 음식인가?
+2. 위 메뉴와 유사한 것이 있는가?
+
+응답 규칙:
+- 맥도날드와 전혀 관련 없는 음식(짜장면, 김치찌개, 초밥 등)이면 → NO_MATCH
+- 유사한 메뉴가 있으면 → 다음 기준으로 추천:
+  1. 카테고리가 같은 메뉴를 우선 추천 (커피→커피, 버거→버거)
+  2. 맛, 재료, 특성이 유사한 메뉴를 선택
+  3. 가격대가 비슷한 메뉴를 우선 고려
+  4. 반드시 위 메뉴 목록에 있는 정확한 메뉴명만 추천
+
+예시:
+바닐라 라떼' → '카페라떼', '캐러멜 마키아토' 추천
+'치즈버거' → '빅맥', '불고기 버거' 추천
+'짜장면' → NO_MATCH (맥도날드 음식이 아님)
+'김치찌개' → NO_MATCH (맥도날드 음식이 아님)
+
+응답 형식: JSON
+{
+  "recommended": ["메뉴명1", "메뉴명2"] 또는 "NO_MATCH",
+  "reason": "판단 이유"
+}
+2025-08-10 14:47:30 [http-nio-8080-exec-3] DEBUG o.s.w.c.HttpMessageConverterExtractor - Reading to [com.example.unithon.global.client.gemini.GeminiResponse]
+2025-08-10 14:47:30 [http-nio-8080-exec-3] INFO  c.e.u.g.client.gemini.GeminiService - Received response from Gemini API: ```json
+{
+  "recommended": ["아메리카노"],
+  "reason": "사용자가 주문한 '아아줘'는 '아이스 아메리카노'를 의미하는 것으로 추정되며, 메뉴에 '아메리카노'가 있으므로 아메리카노를 추천합니다."
+}
+```
+
+2025-08-10 14:47:30 [http-nio-8080-exec-3] INFO  c.e.u.d.menu.service.MenuService - Gemini 응답: ```json
+{
+  "recommended": ["아메리카노"],
+  "reason": "사용자가 주문한 '아아줘'는 '아이스 아메리카노'를 의미하는 것으로 추정되며, 메뉴에 '아메리카노'가 있으므로 아메리카노를 추천합니다."
+}
+```
+
+2025-08-10 14:47:30 [http-nio-8080-exec-3] INFO  c.e.u.d.menu.service.MenuService - Gemini 응답에서 파싱된 추천 메뉴: [아메리카노]
+2025-08-10 14:47:30 [http-nio-8080-exec-3] DEBUG c.e.u.d.c.h.ChatWebSocketHandler - 메시지 전송 [5ace0ffe-68e2-adf2-9d0f-9ec1940cd875]: bot.reply
+2025-08-10 14:47:41 [http-nio-8080-exec-6] INFO  c.e.u.d.c.h.ChatWebSocketHandler - 수신 메시지 [5ace0ffe-68e2-adf2-9d0f-9ec1940cd875]: {"type":"client.text","message":"아아 줘"}
+2025-08-10 14:47:41 [http-nio-8080-exec-6] INFO  c.e.u.d.c.h.ChatWebSocketHandler - 텍스트 메시지 처리 [5ace0ffe-68e2-adf2-9d0f-9ec1940cd875]: 아아 줘
+2025-08-10 14:47:41 [http-nio-8080-exec-6] INFO  c.e.u.d.chat.service.ChatService - 메시지 처리 [5ace0ffe-68e2-adf2-9d0f-9ec1940cd875]: 아아 줘
+2025-08-10 14:47:41 [http-nio-8080-exec-6] INFO  c.e.u.g.client.gemini.GeminiService - Calling Gemini API with prompt: 사용자 메시지: "아아 줘"
+
+이 메시지가 주문을 마치고 결제하려는 의도인지 판단해주세요.
+
+주문 완료 의도 예시:
+- "주문 마칠게요", "이걸로 끝", "계산해주세요"
+- "주문 마친다", "이것만 주문할게요", "결제할게요"
+- "다 됐어요", "이게 다예요", "더 이상 안 시켜요"
+
+응답: YES 또는 NO만 답해주세요.
+
+2025-08-10 14:47:42 [http-nio-8080-exec-6] DEBUG o.s.w.c.HttpMessageConverterExtractor - Reading to [com.example.unithon.global.client.gemini.GeminiResponse]
+2025-08-10 14:47:42 [http-nio-8080-exec-6] INFO  c.e.u.g.client.gemini.GeminiService - Received response from Gemini API: NO
+
+2025-08-10 14:47:42 [http-nio-8080-exec-6] INFO  c.e.u.g.client.gemini.GeminiService - Calling Gemini API with prompt: 사용자 메시지: "아아 줘"
+
+이 메시지가 메뉴를 더 추가 주문하려는 의도인지 판단해주세요.
+
+메뉴 추가 의도 예시:
+- "하나 더요", "추가로 주문할게요", "더 시키겠습니다"
+- "다른 것도 주문", "또 주문", "추가 주문"
+
+응답: YES 또는 NO만 답해주세요.
+
+2025-08-10 14:47:43 [http-nio-8080-exec-6] DEBUG o.s.w.c.HttpMessageConverterExtractor - Reading to [com.example.unithon.global.client.gemini.GeminiResponse]
+2025-08-10 14:47:43 [http-nio-8080-exec-6] INFO  c.e.u.g.client.gemini.GeminiService - Received response from Gemini API: NO
+
+2025-08-10 14:47:43 [http-nio-8080-exec-6] INFO  c.e.u.d.menu.service.MenuService - 메뉴 검색 시작: 아아 줘
+2025-08-10 14:47:43 [http-nio-8080-exec-6] INFO  c.e.u.d.menu.service.MenuService - DB 동의어 매칭 성공: 아아 줘 → 아메리카노
+2025-08-10 14:47:43 [http-nio-8080-exec-6] DEBUG c.e.u.d.c.h.ChatWebSocketHandler - 메시지 전송 [5ace0ffe-68e2-adf2-9d0f-9ec1940cd875]: bot.reply
+2025-08-10 14:48:30 [http-nio-8080-exec-7] INFO  c.e.u.d.c.h.ChatWebSocketHandler - 수신 메시지 [5ace0ffe-68e2-adf2-9d0f-9ec1940cd875]: {"type":"client.text","message":"래귤러"}
+2025-08-10 14:48:30 [http-nio-8080-exec-7] INFO  c.e.u.d.c.h.ChatWebSocketHandler - 텍스트 메시지 처리 [5ace0ffe-68e2-adf2-9d0f-9ec1940cd875]: 래귤러
+2025-08-10 14:48:30 [http-nio-8080-exec-7] INFO  c.e.u.d.chat.service.ChatService - 메시지 처리 [5ace0ffe-68e2-adf2-9d0f-9ec1940cd875]: 래귤러
+2025-08-10 14:48:30 [http-nio-8080-exec-7] INFO  c.e.u.g.client.gemini.GeminiService - Calling Gemini API with prompt: 사용자 메시지: "래귤러"
+
+이 메시지가 주문을 마치고 결제하려는 의도인지 판단해주세요.
+
+주문 완료 의도 예시:
+- "주문 마칠게요", "이걸로 끝", "계산해주세요"
+- "주문 마친다", "이것만 주문할게요", "결제할게요"
+- "다 됐어요", "이게 다예요", "더 이상 안 시켜요"
+
+응답: YES 또는 NO만 답해주세요.
+
+2025-08-10 14:48:31 [http-nio-8080-exec-7] DEBUG o.s.w.c.HttpMessageConverterExtractor - Reading to [com.example.unithon.global.client.gemini.GeminiResponse]
+2025-08-10 14:48:31 [http-nio-8080-exec-7] INFO  c.e.u.g.client.gemini.GeminiService - Received response from Gemini API: NO
+
+2025-08-10 14:48:31 [http-nio-8080-exec-7] INFO  c.e.u.g.client.gemini.GeminiService - Calling Gemini API with prompt: 사용자 메시지: "래귤러"
+
+이 메시지가 메뉴를 더 추가 주문하려는 의도인지 판단해주세요.
+
+메뉴 추가 의도 예시:
+- "하나 더요", "추가로 주문할게요", "더 시키겠습니다"
+- "다른 것도 주문", "또 주문", "추가 주문"
+
+응답: YES 또는 NO만 답해주세요.
+
+2025-08-10 14:48:32 [http-nio-8080-exec-7] DEBUG o.s.w.c.HttpMessageConverterExtractor - Reading to [com.example.unithon.global.client.gemini.GeminiResponse]
+2025-08-10 14:48:32 [http-nio-8080-exec-7] INFO  c.e.u.g.client.gemini.GeminiService - Received response from Gemini API: NO
+
+2025-08-10 14:48:32 [http-nio-8080-exec-7] DEBUG c.e.u.d.c.h.ChatWebSocketHandler - 메시지 전송 [5ace0ffe-68e2-adf2-9d0f-9ec1940cd875]: bot.reply
+2025-08-10 14:48:38 [http-nio-8080-exec-8] INFO  c.e.u.d.c.h.ChatWebSocketHandler - 수신 메시지 [5ace0ffe-68e2-adf2-9d0f-9ec1940cd875]: {"type":"client.text","message":"레귤러"}
+2025-08-10 14:48:38 [http-nio-8080-exec-8] INFO  c.e.u.d.c.h.ChatWebSocketHandler - 텍스트 메시지 처리 [5ace0ffe-68e2-adf2-9d0f-9ec1940cd875]: 레귤러
+2025-08-10 14:48:38 [http-nio-8080-exec-8] INFO  c.e.u.d.chat.service.ChatService - 메시지 처리 [5ace0ffe-68e2-adf2-9d0f-9ec1940cd875]: 레귤러
+2025-08-10 14:48:38 [http-nio-8080-exec-8] INFO  c.e.u.g.client.gemini.GeminiService - Calling Gemini API with prompt: 사용자 메시지: "레귤러"
+
+이 메시지가 주문을 마치고 결제하려는 의도인지 판단해주세요.
+
+주문 완료 의도 예시:
+- "주문 마칠게요", "이걸로 끝", "계산해주세요"
+- "주문 마친다", "이것만 주문할게요", "결제할게요"
+- "다 됐어요", "이게 다예요", "더 이상 안 시켜요"
+
+응답: YES 또는 NO만 답해주세요.
+
+2025-08-10 14:48:38 [http-nio-8080-exec-8] DEBUG o.s.w.c.HttpMessageConverterExtractor - Reading to [com.example.unithon.global.client.gemini.GeminiResponse]
+2025-08-10 14:48:38 [http-nio-8080-exec-8] INFO  c.e.u.g.client.gemini.GeminiService - Received response from Gemini API: NO
+
+2025-08-10 14:48:38 [http-nio-8080-exec-8] INFO  c.e.u.g.client.gemini.GeminiService - Calling Gemini API with prompt: 사용자 메시지: "레귤러"
+
+이 메시지가 메뉴를 더 추가 주문하려는 의도인지 판단해주세요.
+
+메뉴 추가 의도 예시:
+- "하나 더요", "추가로 주문할게요", "더 시키겠습니다"
+- "다른 것도 주문", "또 주문", "추가 주문"
+
+응답: YES 또는 NO만 답해주세요.
+
+2025-08-10 14:48:39 [http-nio-8080-exec-8] DEBUG o.s.w.c.HttpMessageConverterExtractor - Reading to [com.example.unithon.global.client.gemini.GeminiResponse]
+2025-08-10 14:48:39 [http-nio-8080-exec-8] INFO  c.e.u.g.client.gemini.GeminiService - Received response from Gemini API: NO
+
+2025-08-10 14:48:39 [http-nio-8080-exec-8] DEBUG c.e.u.d.c.h.ChatWebSocketHandler - 메시지 전송 [5ace0ffe-68e2-adf2-9d0f-9ec1940cd875]: bot.reply

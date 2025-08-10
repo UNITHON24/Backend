@@ -83,17 +83,29 @@ public class ChatService {
      */
     private String handleMenuSelection(String sessionId, String message) {
         ChatSession session = getSession(sessionId);
-
+        
         MenuSearchResult result = menuService.searchMenu(message);
         
         switch (result.getType()) {
             case DIRECT_MATCH:
                 Menu menu = result.getMenu();
-                session.setCurrentItem(new OrderItem(menu));
-
+                OrderItem orderItem = new OrderItem(menu);
+                
+                // 특별한 동의어 처리 (옵션이 미리 포함된 경우)
+                handleSpecialSynonyms(message, orderItem);
+                
+                session.setCurrentItem(orderItem);
+                
                 if (hasRequiredOptions(menu)) {
-                    session.setState(ConversationState.OPTION_SELECTION);
-                    return buildOptionSelectionMessage(menu);
+                    // 이미 모든 옵션이 설정되었는지 확인
+                    if (isOptionComplete(orderItem)) {
+                        session.setState(ConversationState.QUANTITY_SELECTION);
+                        return String.format("%s %s 몇 개 드릴까요?", 
+                            buildSelectedOptionsText(orderItem), menu.getDisplayName());
+                    } else {
+                        session.setState(ConversationState.OPTION_SELECTION);
+                        return buildOptionSelectionMessage(menu, orderItem);
+                    }
                 } else {
                     session.setState(ConversationState.QUANTITY_SELECTION);
                     return String.format("%s 몇 개 드릴까요?", menu.getDisplayName());
@@ -114,6 +126,35 @@ public class ChatService {
             
             default:
                 return "주문하실 메뉴를 말씀해주세요.";
+        }
+    }
+
+    /**
+     * 특별한 동의어 처리 (옵션이 미리 포함된 경우)
+     */
+    private void handleSpecialSynonyms(String userInput, OrderItem orderItem) {
+        Menu menu = orderItem.getMenu();
+        String normalizedInput = userInput.replaceAll("\\s+", ""); // 공백 제거
+        
+        // "아아" 관련 = 아이스 아메리카노 (온도만 설정, 사이즈는 여전히 선택)
+        if ((normalizedInput.contains("아아") || normalizedInput.contains("아이스아메리카노")) 
+            && menu.getName().equals("americano")) {
+            orderItem.setTemperature("ICE");
+        }
+        
+        // "따아" 관련 = 핫 아메리카노 (온도만 설정)
+        else if ((normalizedInput.contains("따아") || normalizedInput.contains("핫아메리카노")) 
+                 && menu.getName().equals("americano")) {
+            orderItem.setTemperature("HOT");
+        }
+        
+        // "아이스라떼" 관련 = 카페라떼 + 아이스 (사이즈는 별도 선택)
+        else if (normalizedInput.contains("아이스라떼") && menu.getName().equals("cafe_latte")) {
+            orderItem.setTemperature("ICE");
+        }
+        // "핫라떼" 관련 = 카페라떼 + 핫 (사이즈는 별도 선택)
+        else if (normalizedInput.contains("핫라떼") && menu.getName().equals("cafe_latte")) {
+            orderItem.setTemperature("HOT");
         }
     }
 
@@ -248,7 +289,7 @@ public class ChatService {
     /**
      * 옵션 선택 메시지 생성
      */
-    private String buildOptionSelectionMessage(Menu menu) {
+    private String buildOptionSelectionMessage(Menu menu, OrderItem orderItem) {
         StringBuilder message = new StringBuilder();
         message.append(String.format("%s를 선택하셨습니다.\n", menu.getDisplayName()));
         
@@ -313,13 +354,12 @@ public class ChatService {
     }
 
     /**
-     * 수량 추출
+     * 메시지에서 수량 추출
      */
     private int extractQuantity(String message) {
-        // 숫자 추출 로직
         String numberStr = message.replaceAll("[^0-9]", "");
         if (numberStr.isEmpty()) {
-            return 1; // 기본값
+            return 0; // 수량이 없으면 0 반환 (무조건 질문하게)
         }
         return Integer.parseInt(numberStr);
     }

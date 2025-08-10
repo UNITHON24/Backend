@@ -58,12 +58,14 @@ public class MenuService {
             
             log.info("Gemini 응답: {}", geminiResponse);
 
+            if (isGeneralQuestion(userInput)) {
+                return MenuSearchResult.geminiSuggestion(geminiResponse, new ArrayList<>());
+            }
             List<Menu> recommendedMenus = parseGeminiResponse(geminiResponse, allMenus);
             
             if (!recommendedMenus.isEmpty()) {
                 return MenuSearchResult.geminiSuggestion(geminiResponse, recommendedMenus);
             } else {
-                // NO_MATCH인 경우 사용자 친화적 메시지로 변경
                 if (geminiResponse.contains("NO_MATCH")) {
                     String userMessage = "죄송합니다. '" + userInput + "'은(는) 저희 매장에서 판매하지 않는 메뉴입니다. 다른 메뉴를 말씀해 주세요.";
                     return MenuSearchResult.geminiSuggestion(userMessage, new ArrayList<>());
@@ -79,6 +81,11 @@ public class MenuService {
 
 
     private String buildMenuRecommendationPrompt(String userInput, List<Menu> menus) {
+        if (isGeneralQuestion(userInput)) {
+            return buildRAGPrompt(userInput);
+        }
+
+        // 기존 메뉴 추천 프롬프트
         StringBuilder prompt = new StringBuilder();
         prompt.append("사용자가 '").append(userInput).append("'를 주문했습니다.\n");
         prompt.append("이것은 맥도날드 매장입니다. 다음은 현재 판매 중인 메뉴입니다:\n\n");
@@ -121,8 +128,7 @@ public class MenuService {
     private List<Menu> parseGeminiResponse(String geminiResponse, List<Menu> allMenus) {
         try {
             List<Menu> recommendedMenus = new ArrayList<>();
-            
-            // NO_MATCH 체크 먼저
+
             if (geminiResponse.contains("NO_MATCH")) {
                 log.info("Gemini 응답: 맥도날드 메뉴와 관련 없는 요청으로 판단됨");
                 return new ArrayList<>(); // 빈 리스트 반환
@@ -147,8 +153,6 @@ public class MenuService {
                     }
                 }
             }
-
-            // 파싱 실패시 텍스트에서 직접 찾기 (NO_MATCH가 아닌 경우만)
             if (recommendedMenus.isEmpty() && !geminiResponse.contains("NO_MATCH")) {
                 for (Menu menu : allMenus) {
                     if (geminiResponse.contains(menu.getDisplayName())) {
@@ -209,6 +213,112 @@ public class MenuService {
 
     public List<Menu> getAllActiveMenus() {
         return menuRepository.findActiveMenus();
+    }
+
+    /**
+     * RAG용 메뉴 데이터 텍스트 변환
+     */
+    private String getAllMenuDataAsText() {
+        StringBuilder data = new StringBuilder();
+        List<Menu> menus = menuRepository.findActiveMenus();
+        
+        data.append("=== 맥도날드 메뉴 데이터 ===\n");
+
+        data.append("\n[버거/세트]\n");
+        menus.stream()
+            .filter(menu -> menu.getCategory().getName().equals("burger") || 
+                           menu.getCategory().getName().equals("burger_set"))
+            .forEach(menu -> data.append(String.format("- %s: %,d원%s%s\n", 
+                menu.getDisplayName(), 
+                menu.getBasePrice().intValue(),
+                menu.getHasTemperature() ? " (온도선택가능)" : "",
+                menu.getHasSize() ? " (사이즈선택가능)" : "")));
+        
+        data.append("\n[커피]\n");
+        menus.stream()
+            .filter(menu -> menu.getCategory().getName().equals("coffee"))
+            .forEach(menu -> data.append(String.format("- %s: %,d원%s%s\n", 
+                menu.getDisplayName(), 
+                menu.getBasePrice().intValue(),
+                menu.getHasTemperature() ? " (온도선택가능)" : "",
+                menu.getHasSize() ? " (사이즈선택가능)" : "")));
+        
+        data.append("\n[음료]\n");
+        menus.stream()
+            .filter(menu -> menu.getCategory().getName().equals("beverage"))
+            .forEach(menu -> data.append(String.format("- %s: %,d원%s%s\n", 
+                menu.getDisplayName(), 
+                menu.getBasePrice().intValue(),
+                menu.getHasTemperature() ? " (온도선택가능)" : "",
+                menu.getHasSize() ? " (사이즈선택가능)" : "")));
+        
+        data.append("\n[사이드/디저트]\n");
+        menus.stream()
+            .filter(menu -> menu.getCategory().getName().equals("side") || 
+                           menu.getCategory().getName().equals("dessert"))
+            .forEach(menu -> data.append(String.format("- %s: %,d원%s%s\n", 
+                menu.getDisplayName(), 
+                menu.getBasePrice().intValue(),
+                menu.getHasTemperature() ? " (온도선택가능)" : "",
+                menu.getHasSize() ? " (사이즈선택가능)" : "")));
+        
+        return data.toString();
+    }
+
+    /**
+     * RAG 기반 일반 질문 처리 프롬프트
+     */
+    private String buildRAGPrompt(String userInput) {
+        StringBuilder prompt = new StringBuilder();
+        
+        // 메뉴 데이터 포함
+        prompt.append(getAllMenuDataAsText());
+        
+        prompt.append("\n\n=== 사용자 질문 ===\n");
+        prompt.append(userInput);
+        
+        prompt.append("\n\n=== 응답 규칙 ===\n");
+        prompt.append("위의 메뉴 데이터를 정확히 참고해서 사용자의 질문에 답변해주세요.\n");
+        prompt.append("- 가격 정보는 정확한 금액을 명시해주세요\n");
+        prompt.append("- 메뉴명은 정확히 표기해주세요\n");
+        prompt.append("- 카테고리별로 분류해서 답변하면 더 좋습니다\n");
+        prompt.append("- 친근하고 자연스러운 톤으로 답변해주세요\n");
+        prompt.append("- 맥도날드 직원처럼 응답해주세요\n\n");
+        
+        prompt.append("응답 형식: 일반 텍스트 (JSON 아님)");
+        
+        return prompt.toString();
+    }
+
+    /**
+     * 일반적인 질문인지 판단
+     */
+    private boolean isGeneralQuestion(String userInput) {
+        String[] questionKeywords = {
+            "뭐", "무엇", "어떤", "얼마", "가격", "비싼", "싼", "저렴", "제일", "가장", 
+            "추천", "인기", "맛있는", "몇개", "몇 개", "얼마나", "어디", "언제", 
+            "왜", "어떻게", "몇시", "몇 시", "정보", "알려", "궁금", "문의"
+        };
+        
+        for (String keyword : questionKeywords) {
+            if (userInput.contains(keyword)) {
+                return true;
+            }
+        }
+        
+        return false;
+    }
+
+    /**
+     * 의도 판단을 위한 간단한 Gemini 호출
+     */
+    public String callGeminiForIntent(String prompt) {
+        try {
+            return geminiService.generateText(prompt);
+        } catch (Exception e) {
+            log.error("Gemini 의도 판단 호출 실패: {}", e.getMessage(), e);
+            return null;
+        }
     }
 
 

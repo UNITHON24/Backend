@@ -72,8 +72,7 @@ public class ChatWebSocketHandler implements WebSocketHandler {
         String botResponse = chatService.processMessage(sessionId, userMessage);
 
         sendMessage(session, "bot.reply", botResponse);
-        
-        // 주문 완료 시 연결 종료
+
         if (botResponse.contains("결제 해주시길 바랍니다")) {
             log.info("주문 완료로 인한 WebSocket 연결 종료 [{}]", sessionId);
             try {
@@ -117,7 +116,6 @@ public class ChatWebSocketHandler implements WebSocketHandler {
     private void sendMessage(WebSocketSession session, String type, String message) throws IOException {
         if (session.isOpen()) {
             try {
-                // JSON 안전한 메시지 생성
                 Map<String, Object> messageData = new HashMap<>();
                 messageData.put("type", type);
                 messageData.put("message", message);
@@ -143,8 +141,7 @@ public class ChatWebSocketHandler implements WebSocketHandler {
     public void afterConnectionClosed(WebSocketSession session, CloseStatus closeStatus) throws Exception {
         String sessionId = session.getId();
         sessions.remove(sessionId);
-        
-        // 세션 정리
+
         chatService.clearSession(sessionId);
         
         log.info("WebSocket 연결 종료 [{}]: {}", sessionId, closeStatus);
