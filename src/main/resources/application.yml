@@ -72,6 +72,11 @@ management:
     health:
       show-details: always
 
+# 기능 플래그
+feature:
+  stt: true
+  tts: true
+
 # 매크로팀 연동 설정
 macro:
   webhook:

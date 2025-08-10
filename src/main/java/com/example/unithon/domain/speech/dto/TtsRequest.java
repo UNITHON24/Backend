@@ -1,4 +1,4 @@
-package com.example.unithon.domain.tts.dto;
+package com.example.unithon.domain.speech.dto;
 
 import lombok.Getter;
 import lombok.Setter;

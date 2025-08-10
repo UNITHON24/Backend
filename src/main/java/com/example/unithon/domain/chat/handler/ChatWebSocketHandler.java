@@ -6,6 +6,10 @@ import com.example.unithon.domain.chat.dto.MacroTriggerEvent;
 import com.example.unithon.domain.chat.dto.DialogState;
 import com.example.unithon.domain.chat.dto.DialogStateEvent;
 import com.example.unithon.domain.chat.dto.ServerErrorEvent;
+import com.example.unithon.global.gcp.SttStreamingService;
+import com.example.unithon.global.gcp.TtsStreamingService;
+
+import org.springframework.beans.factory.annotation.Value;
 
 import org.springframework.context.event.EventListener;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -26,7 +30,12 @@ import java.util.concurrent.ConcurrentHashMap;
 public class ChatWebSocketHandler implements WebSocketHandler {
 
     private final ChatService chatService;
+    private final SttStreamingService sttStreamingService;
+    private final TtsStreamingService ttsStreamingService;
     private final ObjectMapper objectMapper = new ObjectMapper();
+
+    @Value("${feature.tts:false}")
+    private boolean ttsEnabled;
 
     private final ConcurrentHashMap<String, WebSocketSession> sessions = new ConcurrentHashMap<>();
 
@@ -56,6 +65,15 @@ public class ChatWebSocketHandler implements WebSocketHandler {
                     break;
                 case "client.command":
                     handleCommandMessage(session, messageNode);
+                    break;
+                case "audio.start":
+                    handleAudioStart(session, messageNode);
+                    break;
+                case "audio.chunk":
+                    handleAudioChunk(session, messageNode);
+                    break;
+                case "audio.end":
+                    handleAudioEnd(session, messageNode);
                     break;
                 default:
                     log.warn("알 수 없는 메시지 타입: {}", type);
@@ -132,6 +150,12 @@ public class ChatWebSocketHandler implements WebSocketHandler {
                 
                 session.sendMessage(new TextMessage(jsonMessage));
                 log.debug("메시지 전송 [{}]: {}", session.getId(), type);
+                
+                // TTS가 활성화되고 bot.reply인 경우 음성 합성
+                if (ttsEnabled && "bot.reply".equals(type)) {
+                    startTtsSynthesis(session, message);
+                }
+                
             } catch (Exception e) {
                 log.error("메시지 전송 실패 [{}]: {}", session.getId(), e.getMessage());
             }
@@ -247,7 +271,152 @@ public class ChatWebSocketHandler implements WebSocketHandler {
                 log.warn("server.error 발송 완료 [{}]: {}", sessionId, errorEvent.getErrorCode());
             } catch (Exception e) {
                 log.error("server.error 발송 실패 [{}]: {}", sessionId, e.getMessage(), e);
+                         }
+         }
+     }
+
+    /**
+     * 오디오 스트리밍 시작 처리
+     */
+    private void handleAudioStart(WebSocketSession session, JsonNode messageNode) {
+        String sessionId = session.getId();
+        log.info("오디오 스트리밍 시작 [{}]", sessionId);
+        
+        // STT 스트리밍 세션 시작
+        sttStreamingService.startStreaming(
+            sessionId,
+            // 중간 결과 처리 (transcript.partial)
+            (partialTranscript) -> {
+                try {
+                    sendTranscriptPartial(session, partialTranscript);
+                } catch (Exception e) {
+                    log.error("중간 결과 전송 실패 [{}]: {}", sessionId, e.getMessage());
+                }
+            },
+            // 최종 결과 처리 (transcript.final)
+            (finalTranscript) -> {
+                try {
+                    sendTranscriptFinal(session, finalTranscript);
+                    // 최종 결과를 ChatService로 전달
+                    String botResponse = chatService.processMessage(sessionId, finalTranscript);
+                    sendMessage(session, "bot.reply", botResponse);
+                } catch (Exception e) {
+                    log.error("최종 결과 처리 실패 [{}]: {}", sessionId, e.getMessage());
+                }
             }
+        );
+    }
+
+    /**
+     * 오디오 청크 처리
+     */
+    private void handleAudioChunk(WebSocketSession session, JsonNode messageNode) {
+        String sessionId = session.getId();
+        
+        try {
+            String audioDataBase64 = messageNode.get("audioData").asText();
+            byte[] audioData = java.util.Base64.getDecoder().decode(audioDataBase64);
+            
+            // STT 서비스로 오디오 청크 전송
+            sttStreamingService.sendAudioChunk(sessionId, audioData);
+            
+            log.debug("오디오 청크 처리 [{}]: {} bytes", sessionId, audioData.length);
+        } catch (Exception e) {
+            log.error("오디오 청크 처리 실패 [{}]: {}", sessionId, e.getMessage(), e);
+        }
+    }
+
+    /**
+     * 오디오 스트리밍 종료 처리
+     */
+    private void handleAudioEnd(WebSocketSession session, JsonNode messageNode) {
+        String sessionId = session.getId();
+        log.info("오디오 스트리밍 종료 [{}]", sessionId);
+
+        sttStreamingService.stopStreaming(sessionId);
+    }
+
+    /**
+     * STT 중간 결과 전송 (transcript.partial)
+     */
+    private void sendTranscriptPartial(WebSocketSession session, String transcript) throws Exception {
+        Map<String, Object> message = new HashMap<>();
+        message.put("type", "transcript.partial");
+        message.put("transcript", transcript);
+        
+        String jsonMessage = objectMapper.writeValueAsString(message);
+        session.sendMessage(new TextMessage(jsonMessage));
+    }
+
+    /**
+     * STT 최종 결과 전송 (transcript.final)
+     */
+    private void sendTranscriptFinal(WebSocketSession session, String transcript) throws Exception {
+        Map<String, Object> message = new HashMap<>();
+        message.put("type", "transcript.final");
+        message.put("transcript", transcript);
+        
+        String jsonMessage = objectMapper.writeValueAsString(message);
+        session.sendMessage(new TextMessage(jsonMessage));
+    }
+
+    /**
+     * TTS 음성 합성 시작
+     */
+    private void startTtsSynthesis(WebSocketSession session, String text) {
+        String sessionId = session.getId();
+        
+        // 비동기로 TTS 처리
+        new Thread(() -> {
+            ttsStreamingService.synthesizeAndStream(
+                sessionId,
+                text,
+                // 오디오 청크 콜백
+                (audioChunk) -> {
+                    try {
+                        sendTtsChunk(session, audioChunk);
+                    } catch (Exception e) {
+                        log.error("TTS 청크 전송 실패 [{}]: {}", sessionId, e.getMessage());
+                    }
+                },
+                // 완료 콜백
+                (ignored) -> {
+                    try {
+                        sendTtsComplete(session);
+                    } catch (Exception e) {
+                        log.error("TTS 완료 전송 실패 [{}]: {}", sessionId, e.getMessage());
+                    }
+                }
+            );
+        }).start();
+    }
+
+    /**
+     * TTS 오디오 청크 전송
+     */
+    private void sendTtsChunk(WebSocketSession session, byte[] audioChunk) throws Exception {
+        if (session.isOpen()) {
+            Map<String, Object> message = new HashMap<>();
+            message.put("type", "tts.chunk");
+            message.put("audioData", java.util.Base64.getEncoder().encodeToString(audioChunk));
+            message.put("timestamp", System.currentTimeMillis());
+            
+            String jsonMessage = objectMapper.writeValueAsString(message);
+            session.sendMessage(new TextMessage(jsonMessage));
+        }
+    }
+
+    /**
+     * TTS 완료 알림
+     */
+    private void sendTtsComplete(WebSocketSession session) throws Exception {
+        if (session.isOpen()) {
+            Map<String, Object> message = new HashMap<>();
+            message.put("type", "tts.complete");
+            message.put("timestamp", System.currentTimeMillis());
+            
+            String jsonMessage = objectMapper.writeValueAsString(message);
+            session.sendMessage(new TextMessage(jsonMessage));
         }
     }
 } 

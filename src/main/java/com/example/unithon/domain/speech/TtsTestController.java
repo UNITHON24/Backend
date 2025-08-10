@@ -1,6 +1,6 @@
-package com.example.unithon.domain.tts;
+package com.example.unithon.domain.speech;
 
-import com.example.unithon.domain.tts.dto.TtsRequest;
+import com.example.unithon.domain.speech.dto.TtsRequest;
 import com.example.unithon.global.gcp.TtsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;

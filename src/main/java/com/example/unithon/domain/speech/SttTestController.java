@@ -1,4 +1,4 @@
-package com.example.unithon.domain.tts;
+package com.example.unithon.domain.speech;
 
 import com.example.unithon.global.gcp.SttService;
 import com.example.unithon.global.response.ApiResponse;

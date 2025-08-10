@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>맥도날드 키오스크 챗봇 테스트</title>
+    <title>맥도날드 음성 키오스크 테스트</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -48,251 +48,517 @@
             background-color: #007bff;
             color: white;
             text-align: right;
-            margin-left: 20%;
         }
         .bot-message {
-            background-color: #e9ecef;
-            color: #333;
-            margin-right: 20%;
+            background-color: #28a745;
+            color: white;
         }
         .system-message {
-            background-color: #fff3cd;
-            color: #856404;
-            text-align: center;
+            background-color: #ffc107;
+            color: #212529;
             font-style: italic;
         }
-        .input-area {
+        .transcript-message {
+            background-color: #17a2b8;
+            color: white;
+            font-style: italic;
+        }
+        .controls {
             display: flex;
             gap: 10px;
             margin: 20px 0;
+            flex-wrap: wrap;
         }
+        button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .btn-primary { background-color: #007bff; color: white; }
+        .btn-success { background-color: #28a745; color: white; }
+        .btn-danger { background-color: #dc3545; color: white; }
+        .btn-warning { background-color: #ffc107; color: #212529; }
+        .btn-info { background-color: #17a2b8; color: white; }
+        .btn-secondary { background-color: #6c757d; color: white; }
+        button:hover { opacity: 0.8; }
+        button:disabled { opacity: 0.5; cursor: not-allowed; }
         input[type="text"] {
             flex: 1;
             padding: 10px;
             border: 1px solid #ddd;
             border-radius: 5px;
-            font-size: 16px;
         }
-        button {
-            padding: 10px 20px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        button:hover {
-            background-color: #0056b3;
-        }
-        .command-buttons {
+        .voice-controls {
             display: flex;
+            align-items: center;
             gap: 10px;
-            justify-content: center;
             margin: 10px 0;
+            padding: 15px;
+            background-color: #e9ecef;
+            border-radius: 5px;
         }
-        .command-btn {
-            background-color: #6c757d;
-            font-size: 14px;
-            padding: 8px 16px;
+        .recording {
+            background-color: #dc3545 !important;
+            animation: pulse 1s infinite;
         }
-        .command-btn:hover {
-            background-color: #545b62;
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.7; }
+            100% { opacity: 1; }
+        }
+        .volume-indicator {
+            width: 100px;
+            height: 10px;
+            background-color: #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        .volume-bar {
+            height: 100%;
+            background-color: #28a745;
+            width: 0%;
+            transition: width 0.1s;
         }
         .examples {
-            background-color: #e7f3ff;
-            padding: 15px;
-            border-radius: 5px;
             margin: 20px 0;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
         }
         .examples h3 {
             margin-top: 0;
-            color: #0066cc;
+            color: #495057;
         }
         .example-item {
             margin: 5px 0;
             cursor: pointer;
-            color: #0066cc;
+            color: #007bff;
             text-decoration: underline;
         }
         .example-item:hover {
-            background-color: #f0f8ff;
-            padding: 2px 5px;
-            border-radius: 3px;
+            color: #0056b3;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>🍔 맥도날드 키오스크 챗봇 테스트</h1>
+        <h1>🍟 맥도날드 음성 키오스크 테스트</h1>
         
-        <div id="status" class="status disconnected">연결 해제됨</div>
+        <div id="status" class="status disconnected">연결되지 않음</div>
         
+        <div class="controls">
+            <button id="connect" class="btn-primary">WebSocket 연결</button>
+            <button id="disconnect" class="btn-secondary" disabled>연결 끊기</button>
+        </div>
+
+        <!-- 음성 제어 -->
+        <div class="voice-controls">
+            <button id="startRecording" class="btn-success" disabled>🎤 음성 녹음 시작</button>
+            <button id="stopRecording" class="btn-danger" disabled>🛑 녹음 중지</button>
+            <div class="volume-indicator">
+                <div id="volumeBar" class="volume-bar"></div>
+            </div>
+            <span id="recordingStatus">준비됨</span>
+        </div>
+
+        <!-- 텍스트 입력 (기존 기능) -->
+        <div class="controls">
+            <input type="text" id="messageInput" placeholder="메시지를 입력하세요..." />
+            <button id="sendMessage" class="btn-info" disabled>전송</button>
+        </div>
+
+        <div id="chat" class="chat-container"></div>
+
+        <!-- 예시 메시지 -->
         <div class="examples">
-            <h3>📝 테스트 예제 (클릭하면 자동 입력)</h3>
-            <div class="example-item" onclick="sendExample('아아')">🔹 아아 (DB 동의어 테스트)</div>
-            <div class="example-item" onclick="sendExample('라떼')">🔹 라떼 (DB 동의어 테스트)</div>
-            <div class="example-item" onclick="sendExample('감튀')">🔹 감튀 (DB 동의어 테스트)</div>
-            <div class="example-item" onclick="sendExample('바닐라 플랫화이트')">🔹 바닐라 플랫화이트 (Gemini 추천 테스트)</div>
-            <div class="example-item" onclick="sendExample('치즈버거')">🔹 치즈버거 (Gemini 추천 테스트)</div>
-            <div class="example-item" onclick="sendExample('짜장면')">🔹 짜장면 (NO_MATCH 테스트)</div>
-        </div>
-        
-        <div id="chatContainer" class="chat-container"></div>
-        
-        <div class="input-area">
-            <input type="text" id="messageInput" placeholder="메뉴를 말씀해주세요..." onkeypress="handleKeyPress(event)">
-            <button onclick="sendMessage()">전송</button>
-        </div>
-        
-        <div class="command-buttons">
-            <button class="command-btn" onclick="sendCommand('confirm')">주문 확정</button>
-            <button class="command-btn" onclick="sendCommand('cancel')">주문 취소</button>
-            <button class="command-btn" onclick="sendCommand('repeat')">다시 듣기</button>
-        </div>
-        
-        <div class="command-buttons">
-            <button class="command-btn" onclick="connect()">연결</button>
-            <button class="command-btn" onclick="disconnect()">연결 해제</button>
-            <button class="command-btn" onclick="clearChat()">채팅 지우기</button>
+            <h3>📝 테스트 예시</h3>
+            <div class="example-item" onclick="sendExampleMessage('아메리카노 주세요')">아메리카노 주세요</div>
+            <div class="example-item" onclick="sendExampleMessage('빅맥 세트 주문할게요')">빅맥 세트 주문할게요</div>
+            <div class="example-item" onclick="sendExampleMessage('제일 싼 메뉴가 뭐에요?')">제일 싼 메뉴가 뭐에요?</div>
+            <div class="example-item" onclick="sendExampleMessage('주문 완료')">주문 완료</div>
+            <div class="example-item" onclick="sendCommand('cancel')">주문 취소 (명령)</div>
+            <div class="example-item" onclick="sendCommand('repeat')">마지막 질문 반복 (명령)</div>
         </div>
     </div>
 
     <script>
-        let ws = null;
-        const chatContainer = document.getElementById('chatContainer');
-        const statusElement = document.getElementById('status');
+        let socket = null;
+        let mediaRecorder = null;
+        let audioContext = null;
+        let analyser = null;
+        let microphone = null;
+        let isRecording = false;
+        let audioChunks = [];
+        let currentAudio = null; // 현재 재생 중인 오디오
+
+        // DOM 요소
+        const statusDiv = document.getElementById('status');
+        const chatDiv = document.getElementById('chat');
+        const connectBtn = document.getElementById('connect');
+        const disconnectBtn = document.getElementById('disconnect');
         const messageInput = document.getElementById('messageInput');
+        const sendBtn = document.getElementById('sendMessage');
+        const startRecordingBtn = document.getElementById('startRecording');
+        const stopRecordingBtn = document.getElementById('stopRecording');
+        const volumeBar = document.getElementById('volumeBar');
+        const recordingStatus = document.getElementById('recordingStatus');
+
+        // WebSocket 연결
+        connectBtn.addEventListener('click', connect);
+        disconnectBtn.addEventListener('click', disconnect);
+        sendBtn.addEventListener('click', sendTextMessage);
+        messageInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') sendTextMessage();
+        });
+
+        // 음성 녹음 제어
+        startRecordingBtn.addEventListener('click', startRecording);
+        stopRecordingBtn.addEventListener('click', stopRecording);
 
         function connect() {
-            if (ws && ws.readyState === WebSocket.OPEN) {
-                addMessage('이미 연결되어 있습니다.', 'system');
-                return;
-            }
-
-            ws = new WebSocket('ws://localhost:8080/api/chat');
-
-            ws.onopen = function() {
-                updateStatus('connected', '연결됨');
-                addMessage('WebSocket 연결이 성공했습니다.', 'system');
-            };
-
-            ws.onmessage = function(event) {
-                try {
-                    const data = JSON.parse(event.data);
-                    console.log('수신:', data);
-                    
-                    let messageType = '';
-                    switch(data.type) {
-                        case 'connection':
-                            messageType = '🔗 ';
-                            break;
-                        case 'bot.reply':
-                            messageType = '🤖 ';
-                            break;
-                        case 'macro.trigger':
-                            messageType = '🎯 매크로: ';
-                            break;
-                        case 'server.error':
-                            messageType = '❌ 오류: ';
-                            break;
-                        default:
-                            messageType = '📄 ';
+            try {
+                socket = new WebSocket('ws://localhost:8080/api/chat');
+                
+                socket.onopen = () => {
+                    updateStatus('연결됨', 'connected');
+                    connectBtn.disabled = true;
+                    disconnectBtn.disabled = false;
+                    sendBtn.disabled = false;
+                    startRecordingBtn.disabled = false;
+                    addMessage('시스템', '✅ WebSocket 연결 성공', 'system-message');
+                    initializeAudio();
+                };
+                
+                socket.onmessage = (event) => {
+                    try {
+                        const data = JSON.parse(event.data);
+                        handleServerMessage(data);
+                    } catch (e) {
+                        console.error('메시지 파싱 오류:', e);
+                        addMessage('시스템', '⚠️ 메시지 파싱 오류', 'system-message');
                     }
-                    
-                    addMessage(messageType + data.message, 'bot');
-                } catch (e) {
-                    addMessage('메시지 파싱 오류: ' + event.data, 'system');
-                }
-            };
-
-            ws.onclose = function() {
-                updateStatus('disconnected', '연결 해제됨');
-                addMessage('WebSocket 연결이 해제되었습니다.', 'system');
-            };
-
-            ws.onerror = function(error) {
-                updateStatus('disconnected', '연결 오류');
-                addMessage('WebSocket 오류가 발생했습니다.', 'system');
-                console.error('WebSocket 오류:', error);
-            };
+                };
+                
+                socket.onclose = () => {
+                    updateStatus('연결 종료됨', 'disconnected');
+                    connectBtn.disabled = false;
+                    disconnectBtn.disabled = true;
+                    sendBtn.disabled = true;
+                    startRecordingBtn.disabled = true;
+                    stopRecordingBtn.disabled = true;
+                    addMessage('시스템', '❌ WebSocket 연결이 해제되었습니다.', 'system-message');
+                };
+                
+                socket.onerror = (error) => {
+                    console.error('WebSocket 오류:', error);
+                    addMessage('시스템', '🚨 WebSocket 오류가 발생했습니다.', 'system-message');
+                };
+                
+            } catch (error) {
+                console.error('연결 실패:', error);
+                addMessage('시스템', '🚨 연결에 실패했습니다.', 'system-message');
+            }
         }
 
         function disconnect() {
-            if (ws) {
-                ws.close();
+            if (socket) {
+                socket.close();
+                socket = null;
+            }
+            if (mediaRecorder && isRecording) {
+                stopRecording();
             }
         }
 
-        function sendMessage() {
+        function updateStatus(message, className) {
+            statusDiv.textContent = message;
+            statusDiv.className = `status ${className}`;
+        }
+
+        // 서버 메시지 처리
+        function handleServerMessage(data) {
+            switch (data.type) {
+                case 'bot.reply':
+                    addMessage('봇', data.message, 'bot-message');
+                    break;
+                case 'transcript.partial':
+                    updateTranscript('(인식 중) ' + data.transcript, true);
+                    break;
+                case 'transcript.final':
+                    updateTranscript(data.transcript, false);
+                    addMessage('사용자', data.transcript, 'user-message');
+                    break;
+                case 'tts.chunk':
+                    handleTtsChunk(data.audioData);
+                    break;
+                case 'tts.complete':
+                    console.log('TTS 완료');
+                    break;
+                case 'dialog.state':
+                    console.log('대화 상태:', data.state);
+                    break;
+                case 'server.error':
+                    addMessage('오류', `${data.errorCode}: ${data.message}`, 'system-message');
+                    break;
+                case 'macro.trigger':
+                    addMessage('시스템', '💳 주문이 매크로팀에게 전달되었습니다.', 'system-message');
+                    break;
+                default:
+                    console.log('알 수 없는 메시지:', data);
+            }
+        }
+
+        // TTS 오디오 청크 처리
+        function handleTtsChunk(audioDataBase64) {
+            try {
+                const audioData = base64ToArrayBuffer(audioDataBase64);
+                playAudioChunk(audioData);
+            } catch (e) {
+                console.error('TTS 오디오 재생 오류:', e);
+            }
+        }
+
+        // Base64를 ArrayBuffer로 변환
+        function base64ToArrayBuffer(base64) {
+            const binaryString = window.atob(base64);
+            const len = binaryString.length;
+            const bytes = new Uint8Array(len);
+            for (let i = 0; i < len; i++) {
+                bytes[i] = binaryString.charCodeAt(i);
+            }
+            return bytes.buffer;
+        }
+
+        // 오디오 청크 재생
+        function playAudioChunk(audioData) {
+            if (!audioContext) return;
+            
+            audioContext.decodeAudioData(audioData)
+                .then(audioBuffer => {
+                    const source = audioContext.createBufferSource();
+                    source.buffer = audioBuffer;
+                    source.connect(audioContext.destination);
+                    source.start();
+                })
+                .catch(e => console.error('오디오 디코딩 오류:', e));
+        }
+
+        // 오디오 초기화
+        async function initializeAudio() {
+            try {
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                console.log('오디오 컨텍스트 초기화 완료');
+            } catch (e) {
+                console.error('오디오 컨텍스트 초기화 실패:', e);
+            }
+        }
+
+        // 음성 녹음 시작
+        async function startRecording() {
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ 
+                    audio: {
+                        sampleRate: 16000,
+                        channelCount: 1,
+                        echoCancellation: true,
+                        noiseSuppression: true
+                    } 
+                });
+
+                // 음성 레벨 분석을 위한 설정
+                if (!audioContext) {
+                    audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                }
+                
+                analyser = audioContext.createAnalyser();
+                microphone = audioContext.createMediaStreamSource(stream);
+                microphone.connect(analyser);
+                analyser.fftSize = 256;
+
+                // 음성 레벨 모니터링 시작
+                monitorVolume();
+
+                mediaRecorder = new MediaRecorder(stream, {
+                    mimeType: 'audio/webm;codecs=opus'
+                });
+
+                audioChunks = [];
+                
+                mediaRecorder.ondataavailable = (event) => {
+                    if (event.data.size > 0) {
+                        audioChunks.push(event.data);
+                        // 실시간으로 청크 전송
+                        sendAudioChunk(event.data);
+                    }
+                };
+
+                mediaRecorder.onstart = () => {
+                    isRecording = true;
+                    startRecordingBtn.disabled = true;
+                    stopRecordingBtn.disabled = false;
+                    startRecordingBtn.classList.add('recording');
+                    recordingStatus.textContent = '🔴 녹음 중...';
+                    
+                    // 녹음 시작 신호 전송
+                    sendAudioStart();
+                };
+
+                mediaRecorder.onstop = () => {
+                    isRecording = false;
+                    startRecordingBtn.disabled = false;
+                    stopRecordingBtn.disabled = true;
+                    startRecordingBtn.classList.remove('recording');
+                    recordingStatus.textContent = '준비됨';
+                    volumeBar.style.width = '0%';
+                    
+                    // 녹음 종료 신호 전송
+                    sendAudioEnd();
+                    
+                    // 스트림 정리
+                    stream.getTracks().forEach(track => track.stop());
+                };
+
+                // 100ms마다 데이터 수집
+                mediaRecorder.start(100);
+                
+            } catch (error) {
+                console.error('마이크 접근 실패:', error);
+                addMessage('시스템', '🎤 마이크 접근에 실패했습니다.', 'system-message');
+            }
+        }
+
+        function stopRecording() {
+            if (mediaRecorder && isRecording) {
+                mediaRecorder.stop();
+            }
+        }
+
+        // 음성 레벨 모니터링
+        function monitorVolume() {
+            if (!analyser || !isRecording) return;
+
+            const bufferLength = analyser.frequencyBinCount;
+            const dataArray = new Uint8Array(bufferLength);
+            analyser.getByteFrequencyData(dataArray);
+
+            let sum = 0;
+            for (let i = 0; i < bufferLength; i++) {
+                sum += dataArray[i];
+            }
+            const average = sum / bufferLength;
+            const volumePercent = (average / 255) * 100;
+            
+            volumeBar.style.width = volumePercent + '%';
+
+            if (isRecording) {
+                requestAnimationFrame(monitorVolume);
+            }
+        }
+
+        // 오디오 시작 신호 전송
+        function sendAudioStart() {
+            if (socket && socket.readyState === WebSocket.OPEN) {
+                const message = {
+                    type: 'audio.start',
+                    config: {
+                        sampleRate: 16000,
+                        channels: 1,
+                        encoding: 'WEBM_OPUS'
+                    }
+                };
+                socket.send(JSON.stringify(message));
+                console.log('오디오 시작 신호 전송');
+            }
+        }
+
+        // 오디오 청크 전송
+        function sendAudioChunk(audioBlob) {
+            if (socket && socket.readyState === WebSocket.OPEN) {
+                const reader = new FileReader();
+                reader.onload = () => {
+                    const arrayBuffer = reader.result;
+                    const base64 = btoa(String.fromCharCode(...new Uint8Array(arrayBuffer)));
+                    
+                    const message = {
+                        type: 'audio.chunk',
+                        audioData: base64
+                    };
+                    socket.send(JSON.stringify(message));
+                };
+                reader.readAsArrayBuffer(audioBlob);
+            }
+        }
+
+        // 오디오 종료 신호 전송
+        function sendAudioEnd() {
+            if (socket && socket.readyState === WebSocket.OPEN) {
+                const message = {
+                    type: 'audio.end'
+                };
+                socket.send(JSON.stringify(message));
+                console.log('오디오 종료 신호 전송');
+            }
+        }
+
+        // 텍스트 메시지 전송 (기존 기능)
+        function sendTextMessage() {
             const message = messageInput.value.trim();
-            if (!message) return;
-
-            if (!ws || ws.readyState !== WebSocket.OPEN) {
-                addMessage('WebSocket이 연결되지 않았습니다. 먼저 연결해주세요.', 'system');
-                return;
+            if (message && socket && socket.readyState === WebSocket.OPEN) {
+                socket.send(JSON.stringify({
+                    type: 'client.text',
+                    message: message
+                }));
+                addMessage('사용자', message, 'user-message');
+                messageInput.value = '';
             }
-
-            addMessage('👤 ' + message, 'user');
-            
-            const messageData = {
-                type: 'client.text',
-                message: message
-            };
-
-            ws.send(JSON.stringify(messageData));
-            messageInput.value = '';
         }
 
+        // 명령 전송
         function sendCommand(action) {
-            if (!ws || ws.readyState !== WebSocket.OPEN) {
-                addMessage('WebSocket이 연결되지 않았습니다.', 'system');
-                return;
+            if (socket && socket.readyState === WebSocket.OPEN) {
+                socket.send(JSON.stringify({
+                    type: 'client.command',
+                    action: action
+                }));
+                addMessage('사용자', `[명령] ${action}`, 'user-message');
             }
-
-            addMessage(`👤 [${action.toUpperCase()}]`, 'user');
-            
-            const commandData = {
-                type: 'client.command',
-                action: action
-            };
-
-            ws.send(JSON.stringify(commandData));
         }
 
-        function sendExample(message) {
+        // 예시 메시지 전송
+        function sendExampleMessage(message) {
             messageInput.value = message;
-            sendMessage();
+            sendTextMessage();
         }
 
-        function addMessage(message, type) {
+        // 메시지 추가
+        function addMessage(sender, message, className) {
             const messageDiv = document.createElement('div');
-            messageDiv.className = `message ${type}-message`;
-            messageDiv.textContent = message;
-            
-            chatContainer.appendChild(messageDiv);
-            chatContainer.scrollTop = chatContainer.scrollHeight;
+            messageDiv.className = `message ${className}`;
+            messageDiv.innerHTML = `<strong>${sender}:</strong> ${message}`;
+            chatDiv.appendChild(messageDiv);
+            chatDiv.scrollTop = chatDiv.scrollHeight;
         }
 
-        function updateStatus(statusType, statusText) {
-            statusElement.className = `status ${statusType}`;
-            statusElement.textContent = statusText;
-        }
-
-        function clearChat() {
-            chatContainer.innerHTML = '';
-        }
-
-        function handleKeyPress(event) {
-            if (event.key === 'Enter') {
-                sendMessage();
+        // 실시간 transcript 업데이트
+        let transcriptDiv = null;
+        function updateTranscript(transcript, isPartial) {
+            if (isPartial) {
+                if (!transcriptDiv) {
+                    transcriptDiv = document.createElement('div');
+                    transcriptDiv.className = 'message transcript-message';
+                    chatDiv.appendChild(transcriptDiv);
+                }
+                transcriptDiv.innerHTML = `<strong>인식:</strong> ${transcript}`;
+            } else {
+                if (transcriptDiv) {
+                    transcriptDiv.remove();
+                    transcriptDiv = null;
+                }
             }
+            chatDiv.scrollTop = chatDiv.scrollHeight;
         }
-
-        // 페이지 로드 시 자동 연결
-        window.onload = function() {
-            connect();
-        };
     </script>
 </body>
 </html> 
