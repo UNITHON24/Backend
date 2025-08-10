@@ -7,14 +7,18 @@ import java.util.concurrent.ConcurrentHashMap;
 import org.springframework.stereotype.Service;
 
 import com.example.unithon.domain.menu.entity.Menu;
-import com.example.unithon.domain.menu.entity.MenuOption;
 import com.example.unithon.domain.menu.service.MenuSearchResult;
-import com.example.unithon.domain.menu.service.MenuSearchResultType;
 import com.example.unithon.domain.menu.service.MenuService;
+import com.example.unithon.domain.chat.dto.MacroOrderData;
+import com.example.unithon.domain.chat.dto.MacroOrderItem;
+import com.example.unithon.domain.chat.dto.MacroTriggerEvent;
+
+import org.springframework.context.ApplicationEventPublisher;
 
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+
 
 @Service
 @RequiredArgsConstructor
@@ -22,8 +26,12 @@ import lombok.extern.slf4j.Slf4j;
 public class ChatService {
 
     private final MenuService menuService;
+    private final ApplicationEventPublisher eventPublisher;
+    private final MacroWebhookService macroWebhookService;
 
     private final ConcurrentHashMap<String, ChatSession> sessions = new ConcurrentHashMap<>();
+
+
 
     /**
      * 사용자 메시지 처리
@@ -261,18 +269,46 @@ public class ChatService {
             return "장바구니가 비어있습니다. 메뉴를 주문해주세요.";
         }
 
-        StringBuilder orderSummary = new StringBuilder("🧾 주문 내역:\n");
+        StringBuilder orderSummary = new StringBuilder("주문 내역:\n");
         int totalPrice = 0;
+
+        List<MacroOrderItem> macroItems = new ArrayList<>();
         
         for (OrderItem item : session.getCart()) {
             String optionText = buildSelectedOptionsText(item);
+            int itemTotalPrice = item.getMenu().getBasePrice().intValue() * item.getQuantity();
+
             orderSummary.append(String.format("- %s %s %d개\n", 
                 optionText, item.getMenu().getDisplayName(), item.getQuantity()));
-            totalPrice += item.getMenu().getBasePrice().intValue() * item.getQuantity();
+            totalPrice += itemTotalPrice;
+
+            macroItems.add(new MacroOrderItem(
+                item.getMenu().getName(),
+                item.getMenu().getDisplayName(),
+                item.getTemperature(),
+                item.getSize(),
+                item.getQuantity(),
+                item.getMenu().getBasePrice().intValue(),
+                itemTotalPrice
+            ));
         }
         
         orderSummary.append(String.format("\n💰 총 금액: %,d원\n\n", totalPrice));
         orderSummary.append("결제 해주시길 바랍니다.");
+		
+        MacroOrderData macroData = new MacroOrderData(
+            sessionId,
+            macroItems,
+            totalPrice,
+            java.time.LocalDateTime.now().toString()
+        );
+        
+        // 매크로팀에게 주문 데이터 전송 (HTTP Webhook)
+        macroWebhookService.sendOrderToMacro(macroData);
+        
+        // WebSocket으로도 macro.trigger 이벤트 발송 (에이전트용)
+        eventPublisher.publishEvent(new MacroTriggerEvent(sessionId, macroData));
+        log.info("💳 주문 완료 처리 완료 [{}]", sessionId);
 
         clearSession(sessionId);
         

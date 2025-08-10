@@ -71,3 +71,8 @@ management:
   endpoint:
     health:
       show-details: always
+
+# 매크로팀 연동 설정
+macro:
+  webhook:
+    url: http://localhost:9999/api/orders #임시 url

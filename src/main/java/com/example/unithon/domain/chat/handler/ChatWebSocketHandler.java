@@ -1,6 +1,10 @@
 package com.example.unithon.domain.chat.handler;
 
 import com.example.unithon.domain.chat.service.ChatService;
+import com.example.unithon.domain.chat.dto.MacroOrderData;
+import com.example.unithon.domain.chat.dto.MacroTriggerEvent;
+
+import org.springframework.context.event.EventListener;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
@@ -150,5 +154,36 @@ public class ChatWebSocketHandler implements WebSocketHandler {
     @Override
     public boolean supportsPartialMessages() {
         return false;
+    }
+
+    /**
+     * macro.trigger 이벤트 리스너
+     */
+    @EventListener
+    public void handleMacroTriggerEvent(MacroTriggerEvent event) {
+        sendMacroTrigger(event.getSessionId(), event.getOrderData());
+    }
+
+    /**
+     * 매크로팀에게 macro.trigger 이벤트 발송
+     */
+    public void sendMacroTrigger(String sessionId, MacroOrderData orderData) {
+        WebSocketSession session = sessions.get(sessionId);
+        if (session != null && session.isOpen()) {
+            try {
+                Map<String, Object> macroEvent = new HashMap<>();
+                macroEvent.put("type", "macro.trigger");
+                macroEvent.put("orderData", orderData);
+                
+                String jsonMessage = objectMapper.writeValueAsString(macroEvent);
+                session.sendMessage(new TextMessage(jsonMessage));
+                
+                log.info("macro.trigger 이벤트 발송 완료 [{}]", sessionId);
+            } catch (Exception e) {
+                log.error("macro.trigger 이벤트 발송 실패 [{}]: {}", sessionId, e.getMessage(), e);
+            }
+        } else {
+            log.warn("WebSocket 세션을 찾을 수 없음: {}", sessionId);
+        }
     }
 } 

@@ -4267,3 +4267,42 @@ Caused by: java.nio.channels.ClosedChannelException: null
 2025-08-10 14:48:39 [http-nio-8080-exec-8] INFO  c.e.u.g.client.gemini.GeminiService - Received response from Gemini API: NO
 
 2025-08-10 14:48:39 [http-nio-8080-exec-8] DEBUG c.e.u.d.c.h.ChatWebSocketHandler - 메시지 전송 [5ace0ffe-68e2-adf2-9d0f-9ec1940cd875]: bot.reply
+2025-08-10 14:58:38 [main] INFO  c.example.unithon.UnithonApplication - Starting UnithonApplication using Java 21.0.4 with PID 83881 (/Users/yunjeong/Desktop/unithon/build/classes/java/main started by yunjeong in /Users/yunjeong/Desktop/unithon)
+2025-08-10 14:58:38 [main] DEBUG c.example.unithon.UnithonApplication - Running with Spring Boot v3.5.4, Spring v6.2.9
+2025-08-10 14:58:38 [main] INFO  c.example.unithon.UnithonApplication - No active profile set, falling back to 1 default profile: "default"
+2025-08-10 14:58:38 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-08-10 14:58:38 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 19 ms. Found 3 JPA repository interfaces.
+2025-08-10 14:58:38 [main] INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=a942e31c-ca38-3fd1-bbc9-8e04d9a2759c
+2025-08-10 14:58:38 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-08-10 14:58:38 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-08-10 14:58:38 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.43]
+2025-08-10 14:58:38 [main] INFO  o.a.c.c.C.[.[localhost].[/api] - Initializing Spring embedded WebApplicationContext
+2025-08-10 14:58:38 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 604 ms
+2025-08-10 14:58:39 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-08-10 14:58:39 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.22.Final
+2025-08-10 14:58:39 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-08-10 14:58:39 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-08-10 14:58:39 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-08-10 14:58:39 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5ea9373e
+2025-08-10 14:58:39 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-08-10 14:58:39 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-08-10 14:58:39 [main] WARN  org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-08-10 14:58:39 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-08-10 14:58:39 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-08-10 14:58:39 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-08-10 14:58:39 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-08-10 14:58:40 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-08-10 14:58:40 [main] DEBUG o.s.w.s.s.s.WebSocketHandlerMapping - Patterns [/chat] in 'webSocketHandlerMapping'
+2025-08-10 14:58:40 [main] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - 15 mappings in 'requestMappingHandlerMapping'
+2025-08-10 14:58:40 [main] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Patterns [/webjars/**, /**, /swagger-ui*/*swagger-initializer.js, /swagger-ui*/**] in 'resourceHandlerMapping'
+2025-08-10 14:58:40 [main] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerAdapter - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-08-10 14:58:40 [main] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-08-10 14:58:41 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/api'
+2025-08-10 14:58:41 [main] INFO  c.example.unithon.UnithonApplication - Started UnithonApplication in 2.887 seconds (process running for 3.155)
