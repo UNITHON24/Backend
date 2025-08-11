@@ -1,10 +1,5 @@
 -- 카페 메뉴 시드 데이터
 
--- 기존 데이터 삭제
-DELETE FROM menu_synonym;
-DELETE FROM menu;
-DELETE FROM menu_category;
-
 -- 카테고리 추가
 INSERT INTO menu_category (id, name, display_name) VALUES
 (1, 'coffee', '커피'),
@@ -78,7 +73,9 @@ INSERT INTO menu_synonym (menu_id, synonym, priority) VALUES
 -- 아메리카노 동의어
 (1, '따뜻한아메리카노', 1),
 (1, '따아', 2),
-(1, '핫아메리카노', 3),
+(1, '아메리카노', 3),
+(1, '핫아메리카노', 4),
+
 (2, '아이스아메리카노', 1),
 (2, '아아', 2),
 (2, '아이스아메', 3),

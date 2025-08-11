@@ -31,87 +31,81 @@ public class SttStreamingService {
     /**
      * STT 스트리밍 세션 시작
      */
-    public void startStreaming(String sessionId, Consumer<String> onTranscript, Consumer<String> onFinalTranscript) {
+    public void startStreaming(String sessionId, Consumer<String> onPartialResult, Consumer<String> onFinalResult) {
         try {
-            // 기존 세션이 있으면 먼저 정리
-            stopStreaming(sessionId);
-            
-            log.info("새로운 STT 세션 시작 [{}]", sessionId);
-            // Spring에서 주입받은 SpeechClient 사용
-            RecognitionConfig recognitionConfig = RecognitionConfig.newBuilder()
-                .setEncoding(RecognitionConfig.AudioEncoding.WEBM_OPUS)  // WebSocket에서 많이 사용
-                .setSampleRateHertz(16000)
-                .setLanguageCode("ko-KR")
-                .setEnableAutomaticPunctuation(true)
-                .setModel("latest_short")
-                .build();
-
-            StreamingRecognitionConfig streamingConfig = StreamingRecognitionConfig.newBuilder()
-                .setConfig(recognitionConfig)
-                .setInterimResults(true)  // 중간 결과도 받기
-                .setSingleUtterance(false)  // 연속 인식
-                .build();
-
-            ResponseObserver<StreamingRecognizeResponse> responseObserver = new ResponseObserver<StreamingRecognizeResponse>() {
+            ResponseObserver<StreamingRecognizeResponse> responseObserver = new ResponseObserver<>() {
                 @Override
                 public void onStart(StreamController controller) {
-                    log.info("STT 스트리밍 시작 [{}]", sessionId);
+                    log.debug("STT 스트리밍 시작됨 [{}]", sessionId);
                 }
 
                 @Override
                 public void onResponse(StreamingRecognizeResponse response) {
+                    StreamingSession session = streamingSessions.get(sessionId);
+                    // 세션이 이미 종료된 후 도착하는 응답은 무시
+                    if (session == null) return;
+
                     for (StreamingRecognitionResult result : response.getResultsList()) {
-                        SpeechRecognitionAlternative alternative = result.getAlternativesList().get(0);
-                        String transcript = alternative.getTranscript();
-                        
-                        if (result.getIsFinal()) {
-                            log.info("STT 최종 결과 [{}]: {}", sessionId, transcript);
-                            // 최종 결과를 받았으므로 타임아웃 태스크 취소
-                            StreamingSession session = streamingSessions.get(sessionId);
-                            if (session != null && session.timeoutTask != null && !session.timeoutTask.isDone()) {
-                                session.timeoutTask.cancel(false);
-                                log.info("STT 최종 결과 수신으로 타임아웃 태스크 취소 [{}]", sessionId);
+                        if (result.getAlternativesCount() > 0) {
+                            SpeechRecognitionAlternative alternative = result.getAlternatives(0);
+                            String transcript = alternative.getTranscript();
+
+                            if (result.getIsFinal()) {
+                                log.info("STT 최종 결과 [{}]: {}", sessionId, transcript);
+                                session.cancelTimeoutTask(); // 최종 결과를 받았으므로 타임아웃 취소
+                                onFinalResult.accept(transcript);
+                            } else {
+                                log.debug("STT 중간 결과 [{}]: {}", sessionId, transcript);
+                                onPartialResult.accept(transcript);
                             }
-                            onFinalTranscript.accept(transcript);
-                        } else {
-                            log.debug("STT 중간 결과 [{}]: {}", sessionId, transcript);
-                            onTranscript.accept(transcript);
                         }
                     }
                 }
 
                 @Override
                 public void onError(Throwable t) {
-                    log.error("STT 스트리밍 오류 [{}]: {}", sessionId, t.getMessage(), t);
-                    stopStreaming(sessionId);
+                    log.error("STT 스트리밍 오류 [{}]: {}", sessionId, t.getMessage());
+                    // 오류 발생 시에도 리소스 정리
+                    cleanupSession(sessionId);
                 }
 
                 @Override
                 public void onComplete() {
-                    log.info("STT 스트리밍 완료 [{}]", sessionId);
-                    stopStreaming(sessionId);
+                    log.info("STT 스트리밍 완료 (onComplete) [{}]", sessionId);
+                    // Google 서버가 스트림을 닫았을 때 호출됨. 리소스만 정리.
+                    cleanupSession(sessionId);
                 }
             };
 
-            ClientStream<StreamingRecognizeRequest> clientStream = speechClient.streamingRecognizeCallable()
-                .splitCall(responseObserver);
+            ClientStream<StreamingRecognizeRequest> clientStream = speechClient.streamingRecognizeCallable().splitCall(responseObserver);
+
+            RecognitionConfig recognitionConfig = RecognitionConfig.newBuilder()
+                    .setEncoding(RecognitionConfig.AudioEncoding.WEBM_OPUS)
+                    .setSampleRateHertz(16000)
+                    .setLanguageCode("ko-KR")
+                    .setEnableAutomaticPunctuation(true)
+                    .setModel("latest_short")
+                    .build();
+
+            StreamingRecognitionConfig streamingConfig = StreamingRecognitionConfig.newBuilder()
+                    .setConfig(recognitionConfig)
+                    .setInterimResults(true)
+                    .setSingleUtterance(true)
+                    .build();
 
             StreamingRecognizeRequest configRequest = StreamingRecognizeRequest.newBuilder()
-                .setStreamingConfig(streamingConfig)
-                .build();
+                    .setStreamingConfig(streamingConfig)
+                    .build();
             clientStream.send(configRequest);
 
             // 10초 후 자동 종료 스케줄링
             ScheduledFuture<?> timeoutTask = scheduler.schedule(() -> {
-                log.info("STT 세션 타임아웃 [{}] - 10초 경과로 강제 종료", sessionId);
-                if (onFinalTranscript != null) {
-                    onFinalTranscript.accept(""); // 빈 결과라도 final transcript 전송
-                }
-                stopStreaming(sessionId);
+                log.warn("STT 세션 타임아웃 [{}] - 10초 경과로 종료", sessionId);
+                onFinalResult.accept(""); // 타임아웃 시 빈 최종 결과 전송
+                endAudioStream(sessionId); // 스트림을 정상적으로 종료 시도
             }, 10, TimeUnit.SECONDS);
 
-            StreamingSession session = new StreamingSession(clientStream, timeoutTask);
-            streamingSessions.put(sessionId, session);
+            streamingSessions.put(sessionId, new StreamingSession(clientStream, timeoutTask));
 
         } catch (Exception e) {
             log.error("STT 스트리밍 시작 실패 [{}]: {}", sessionId, e.getMessage(), e);
@@ -123,19 +117,15 @@ public class SttStreamingService {
      */
     public void sendAudioChunk(String sessionId, byte[] audioData) {
         StreamingSession session = streamingSessions.get(sessionId);
-        if (session != null && session.clientStream != null) {
+        if (session != null && !session.isClosing()) {
             try {
                 StreamingRecognizeRequest audioRequest = StreamingRecognizeRequest.newBuilder()
-                    .setAudioContent(ByteString.copyFrom(audioData))
-                    .build();
+                        .setAudioContent(ByteString.copyFrom(audioData))
+                        .build();
                 session.clientStream.send(audioRequest);
-                
-                log.debug("오디오 청크 전송 [{}]: {} bytes", sessionId, audioData.length);
             } catch (Exception e) {
-                log.error("오디오 청크 전송 실패 [{}]: {}", sessionId, e.getMessage(), e);
+                log.error("오디오 청크 전송 실패 [{}]: {}", sessionId, e.getMessage());
             }
-        } else {
-            log.warn("STT 세션을 찾을 수 없음: {}", sessionId);
         }
     }
 
@@ -144,15 +134,14 @@ public class SttStreamingService {
      */
     public void endAudioStream(String sessionId) {
         StreamingSession session = streamingSessions.get(sessionId);
-        if (session != null && session.clientStream != null) {
+        if (session != null && session.setClosing()) { // setClosing()이 true를 반환할 때만 실행 (최초 1회)
             try {
+                log.info("STT 오디오 스트림 종료 신호 전송 [{}]", sessionId);
                 session.clientStream.closeSend();
-                log.info("STT 오디오 스트림 종료 [{}]", sessionId);
             } catch (Exception e) {
-                log.error("STT 오디오 스트림 종료 실패 [{}]: {}", sessionId, e.getMessage(), e);
+                log.error("STT 오디오 스트림 종료 실패 [{}]: {}", sessionId, e.getMessage());
+                cleanupSession(sessionId); // 실패 시에도 리소스 정리
             }
-        } else {
-            log.warn("STT 세션을 찾을 수 없음 (endAudioStream): {}", sessionId);
         }
     }
 
@@ -160,38 +149,61 @@ public class SttStreamingService {
      * STT 스트리밍 세션 종료
      */
     public void stopStreaming(String sessionId) {
-        StreamingSession session = streamingSessions.remove(sessionId);
+        StreamingSession session = streamingSessions.get(sessionId);
         if (session != null) {
-            try {
-                // 타임아웃 태스크 취소
-                if (session.timeoutTask != null && !session.timeoutTask.isDone()) {
-                    session.timeoutTask.cancel(false);
-                    log.info("STT 세션 타임아웃 태스크 취소 [{}]", sessionId);
-                }
-                
-                if (session.clientStream != null) {
+            if (session.setClosing()) { // 아직 닫는 중이 아닐 경우에만 closeSend() 호출
+                try {
                     session.clientStream.closeSend();
+                    log.info("STT 스트리밍 강제 종료 [{}]", sessionId);
+                } catch (Exception e) {
+                    log.error("STT 세션 강제 종료 중 오류 [{}]: {}", sessionId, e.getMessage());
                 }
-                // SpeechClient는 Spring에서 관리하므로 여기서 닫지 않음
-                log.info("STT 스트리밍 세션 종료 [{}]", sessionId);
-            } catch (Exception e) {
-                log.error("STT 세션 종료 중 오류 [{}]: {}", sessionId, e.getMessage(), e);
             }
+            cleanupSession(sessionId);
         }
     }
 
-    /**
-     * 스트리밍 세션 정보
-     */
+    private void cleanupSession(String sessionId) {
+        StreamingSession session = streamingSessions.remove(sessionId);
+        if (session != null) {
+            session.cancelTimeoutTask();
+            log.info("STT 세션 리소스 정리 완료 [{}]", sessionId);
+        }
+    }
+
     private static class StreamingSession {
         final ClientStream<StreamingRecognizeRequest> clientStream;
-        final long startTime;
         final ScheduledFuture<?> timeoutTask;
+        private boolean closing = false;
 
         StreamingSession(ClientStream<StreamingRecognizeRequest> clientStream, ScheduledFuture<?> timeoutTask) {
             this.clientStream = clientStream;
-            this.startTime = System.currentTimeMillis();
             this.timeoutTask = timeoutTask;
+        }
+
+        /**
+         * 스트림이 닫히고 있는지 확인
+         */
+        synchronized boolean isClosing() {
+            return closing;
+        }
+
+        /**
+         * 스트림을 닫는 상태로 설정.
+         * @return 성공적으로 상태를 변경했으면 true (최초 1회), 이미 닫는 중이면 false
+         */
+        synchronized boolean setClosing() {
+            if (closing) {
+                return false;
+            }
+            this.closing = true;
+            return true;
+        }
+
+        void cancelTimeoutTask() {
+            if (this.timeoutTask != null && !this.timeoutTask.isDone()) {
+                this.timeoutTask.cancel(false);
+            }
         }
     }
 } 

@@ -122,7 +122,14 @@ public class ChatService {
                 session.setState(ConversationState.QUANTITY_SELECTION);
                 return String.format("%s 몇 개 드릴까요?", menu.getDisplayName());
 
-            
+            case AMBIGUOUS_MATCH:
+                List<Menu> menus = result.getAmbiguousMenus();
+                return String.format("혹시 다음 메뉴 중에서 찾으시는 게 있나요?\n%s",
+                    menus.stream()
+                        .map(Menu::getDisplayName)
+                        .reduce((a, b) -> a + ", " + b)
+                        .orElse(""));
+
             case GEMINI_SUGGESTION:
                 if (result.getSuggestions() == null || result.getSuggestions().isEmpty()) {
                     return result.getGeminiResponse();
@@ -132,7 +139,7 @@ public class ChatService {
                         .map(Menu::getDisplayName)
                         .reduce((a, b) -> a + ", " + b)
                         .orElse(""));
-            
+
             case NO_MATCH:
                 return "죄송합니다. 해당 메뉴를 찾을 수 없습니다. 다른 메뉴로 말씀해주세요.";
             
