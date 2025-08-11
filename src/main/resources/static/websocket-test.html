@@ -196,6 +196,7 @@
         let autoRestartTimeout = null; // 자동 재시작 타이머
         let silenceTimeout = null; // 무음 감지 타이머
         let lastVolumeTime = Date.now(); // 마지막 음성 감지 시간
+        let recordingMode = 'button'; // 'streaming' 또는 'button'
 
         // DOM 요소
         const statusDiv = document.getElementById('status');

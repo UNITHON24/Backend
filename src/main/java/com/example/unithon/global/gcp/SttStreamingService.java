@@ -12,6 +12,10 @@ import org.springframework.stereotype.Service;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ScheduledFuture;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 import java.util.function.Consumer;
 
 @Service
@@ -22,6 +26,7 @@ public class SttStreamingService {
 
     private final SpeechClient speechClient;
     private final Map<String, StreamingSession> streamingSessions = new ConcurrentHashMap<>();
+    private final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(5);
 
     /**
      * STT 스트리밍 세션 시작
@@ -61,6 +66,12 @@ public class SttStreamingService {
                         
                         if (result.getIsFinal()) {
                             log.info("STT 최종 결과 [{}]: {}", sessionId, transcript);
+                            // 최종 결과를 받았으므로 타임아웃 태스크 취소
+                            StreamingSession session = streamingSessions.get(sessionId);
+                            if (session != null && session.timeoutTask != null && !session.timeoutTask.isDone()) {
+                                session.timeoutTask.cancel(false);
+                                log.info("STT 최종 결과 수신으로 타임아웃 태스크 취소 [{}]", sessionId);
+                            }
                             onFinalTranscript.accept(transcript);
                         } else {
                             log.debug("STT 중간 결과 [{}]: {}", sessionId, transcript);
@@ -90,7 +101,16 @@ public class SttStreamingService {
                 .build();
             clientStream.send(configRequest);
 
-            StreamingSession session = new StreamingSession(clientStream);
+            // 10초 후 자동 종료 스케줄링
+            ScheduledFuture<?> timeoutTask = scheduler.schedule(() -> {
+                log.info("STT 세션 타임아웃 [{}] - 10초 경과로 강제 종료", sessionId);
+                if (onFinalTranscript != null) {
+                    onFinalTranscript.accept(""); // 빈 결과라도 final transcript 전송
+                }
+                stopStreaming(sessionId);
+            }, 10, TimeUnit.SECONDS);
+
+            StreamingSession session = new StreamingSession(clientStream, timeoutTask);
             streamingSessions.put(sessionId, session);
 
         } catch (Exception e) {
@@ -143,6 +163,12 @@ public class SttStreamingService {
         StreamingSession session = streamingSessions.remove(sessionId);
         if (session != null) {
             try {
+                // 타임아웃 태스크 취소
+                if (session.timeoutTask != null && !session.timeoutTask.isDone()) {
+                    session.timeoutTask.cancel(false);
+                    log.info("STT 세션 타임아웃 태스크 취소 [{}]", sessionId);
+                }
+                
                 if (session.clientStream != null) {
                     session.clientStream.closeSend();
                 }
@@ -159,9 +185,13 @@ public class SttStreamingService {
      */
     private static class StreamingSession {
         final ClientStream<StreamingRecognizeRequest> clientStream;
+        final long startTime;
+        final ScheduledFuture<?> timeoutTask;
 
-        StreamingSession(ClientStream<StreamingRecognizeRequest> clientStream) {
+        StreamingSession(ClientStream<StreamingRecognizeRequest> clientStream, ScheduledFuture<?> timeoutTask) {
             this.clientStream = clientStream;
+            this.startTime = System.currentTimeMillis();
+            this.timeoutTask = timeoutTask;
         }
     }
 } 
