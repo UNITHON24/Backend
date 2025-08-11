@@ -1,8 +1,6 @@
 package com.example.unithon.domain.menu.service;
 
 import com.example.unithon.domain.menu.entity.Menu;
-import com.example.unithon.domain.menu.entity.MenuOption;
-import com.example.unithon.domain.menu.repository.MenuOptionRepository;
 import com.example.unithon.domain.menu.repository.MenuRepository;
 import com.example.unithon.domain.menu.repository.MenuSynonymRepository;
 import com.example.unithon.global.client.gemini.GeminiService;
@@ -23,7 +21,6 @@ public class MenuService {
 
     private final MenuRepository menuRepository;
     private final MenuSynonymRepository menuSynonymRepository;
-    private final MenuOptionRepository menuOptionRepository;
     private final GeminiService geminiService;
 
     /**
@@ -59,9 +56,9 @@ public class MenuService {
      */
     private MenuSearchResult searchWithGemini(String userInput) {
         try {
-            List<Menu> allMenus = menuRepository.findActiveMenus();
+            List<Menu> allMenus = menuRepository.findAll();
             
-            String prompt = buildMenuRecommendationPrompt(userInput, allMenus);
+            String prompt = buildMenuRecommendationPrompt(userInput);
             String geminiResponse = geminiService.generateText(prompt);
             
             log.info("Gemini 응답: {}", geminiResponse);
@@ -88,40 +85,39 @@ public class MenuService {
     }
 
 
-    private String buildMenuRecommendationPrompt(String userInput, List<Menu> menus) {
+    private String buildMenuRecommendationPrompt(String userInput) {
         if (isGeneralQuestion(userInput)) {
             return buildRAGPrompt(userInput);
         }
 
-        // 기존 메뉴 추천 프롬프트
+        // 카페 메뉴 추천 프롬프트
         StringBuilder prompt = new StringBuilder();
         prompt.append("사용자가 '").append(userInput).append("'를 주문했습니다.\n");
-        prompt.append("이것은 맥도날드 매장입니다. 다음은 현재 판매 중인 메뉴입니다:\n\n");
+        prompt.append("이것은 카페 매장입니다. 다음은 현재 판매 중인 메뉴입니다:\n\n");
         
         // 카테고리별로 메뉴 정리
-        prompt.append("버거/세트: 빅맥, 쿼터파운더, 맥스파이시 상하이 버거, 불고기 버거\n");
-        prompt.append("커피: 아메리카노, 카페라떼, 카푸치노, 캐러멜 마키아토\n");
-        prompt.append("음료: 코카콜라, 코카콜라 제로, 스프라이트, 오렌지 주스\n");
-        prompt.append("사이드: 프렌치프라이, 치킨 너겟, 애플파이\n");
-        prompt.append("디저트: 맥플러리 오레오, 소프트 콘\n\n");
+        prompt.append("커피: 아메리카노, 에스프레소, 카페라떼, 바닐라라떼, 카라멜마키아토, 카푸치노, 카페모카, 플랫화이트, 헤이즐넛라떼, 콜드브루, 디카페인 등\n");
+        prompt.append("음료: 딸기스무디, 망고스무디, 블루베리스무디, 오렌지주스, 레몬에이드, 자몽에이드, 청포도에이드, 초코라떼, 녹차라떼, 말차라떼, 복숭아아이스티, 유자차, 밀크티 등\n");
+        prompt.append("디저트: 뉴욕치즈케이크, 초코칩쿠키, 초콜릿브라우니, 레드벨벳케이크, 크루아상, 에그타르트, 블루베리머핀, 마카롱세트, 시나몬롤 등\n\n");
         
         prompt.append("판단 기준:\n");
-        prompt.append("1. 요청한 음식이 맥도날드에서 파는 종류의 음식인가?\n");
+        prompt.append("1. 요청한 음식이 카페에서 파는 종류의 음식인가?\n");
         prompt.append("2. 위 메뉴와 유사한 것이 있는가?\n\n");
         
         prompt.append("응답 규칙:\n");
-        prompt.append("- 맥도날드와 전혀 관련 없는 음식(짜장면, 김치찌개, 초밥 등)이면 → NO_MATCH\n");
+        prompt.append("- 카페와 전혀 관련 없는 음식(짜장면, 김치찌개, 초밥, 햄버거 등)이면 → NO_MATCH\n");
         prompt.append("- 유사한 메뉴가 있으면 → 다음 기준으로 추천:\n");
-        prompt.append("  1. 카테고리가 같은 메뉴를 우선 추천 (커피→커피, 버거→버거)\n");
+        prompt.append("  1. 카테고리가 같은 메뉴를 우선 추천 (커피→커피, 음료→음료, 디저트→디저트)\n");
         prompt.append("  2. 맛, 재료, 특성이 유사한 메뉴를 선택\n");
         prompt.append("  3. 가격대가 비슷한 메뉴를 우선 고려\n");
         prompt.append("  4. 반드시 위 메뉴 목록에 있는 정확한 메뉴명만 추천\n\n");
         
         prompt.append("예시:\n");
-        prompt.append("바닐라 라떼' → '카페라떼', '캐러멜 마키아토' 추천\n");
-        prompt.append("'치즈버거' → '빅맥', '불고기 버거' 추천\n");
-        prompt.append("'짜장면' → NO_MATCH (맥도날드 음식이 아님)\n");
-        prompt.append("'김치찌개' → NO_MATCH (맥도날드 음식이 아님)\n\n");
+        prompt.append("'바닐라라떼' → '바닐라 라떼', '카라멜 마키아토' 추천\n");
+        prompt.append("'딸기음료' → '딸기 스무디', '딸기 에이드' 추천\n");
+        prompt.append("'치즈케익' → '뉴욕 치즈 케이크' 추천\n");
+        prompt.append("'짜장면' → NO_MATCH (카페 음식이 아님)\n");
+        prompt.append("'햄버거' → NO_MATCH (카페 음식이 아님)\n\n");
         
         prompt.append("응답 형식: JSON\n");
         prompt.append("{\n");
@@ -132,13 +128,12 @@ public class MenuService {
         return prompt.toString();
     }
 
-
     private List<Menu> parseGeminiResponse(String geminiResponse, List<Menu> allMenus) {
         try {
             List<Menu> recommendedMenus = new ArrayList<>();
 
             if (geminiResponse.contains("NO_MATCH")) {
-                log.info("Gemini 응답: 맥도날드 메뉴와 관련 없는 요청으로 판단됨");
+                log.info("Gemini 응답: 카페 메뉴와 관련 없는 요청으로 판단됨");
                 return new ArrayList<>(); // 빈 리스트 반환
             }
             
@@ -215,63 +210,46 @@ public class MenuService {
                    .replaceAll("[.,!?]", ""); // 구두점 제거
     }
 
-    public List<MenuOption> getMenuOptions(Long menuId, MenuOption.OptionType optionType) {
-        return menuOptionRepository.findActiveOptionsByMenuIdAndType(menuId, optionType);
-    }
-
-    public List<Menu> getAllActiveMenus() {
-        return menuRepository.findActiveMenus();
-    }
-
     /**
      * RAG용 메뉴 데이터 텍스트 변환
      */
     private String getAllMenuDataAsText() {
         StringBuilder data = new StringBuilder();
-        List<Menu> menus = menuRepository.findActiveMenus();
+        List<Menu> menus = menuRepository.findAll();
         
-        data.append("=== 맥도날드 메뉴 데이터 ===\n");
-
-        data.append("\n[버거/세트]\n");
-        menus.stream()
-            .filter(menu -> menu.getCategory().getName().equals("burger") || 
-                           menu.getCategory().getName().equals("burger_set"))
-            .forEach(menu -> data.append(String.format("- %s: %,d원%s%s\n", 
-                menu.getDisplayName(), 
-                menu.getBasePrice().intValue(),
-                menu.getHasTemperature() ? " (온도선택가능)" : "",
-                menu.getHasSize() ? " (사이즈선택가능)" : "")));
+        data.append("=== 우리 카페 메뉴 ===\n");
         
-        data.append("\n[커피]\n");
+        data.append("\n[커피 메뉴]\n");
         menus.stream()
             .filter(menu -> menu.getCategory().getName().equals("coffee"))
-            .forEach(menu -> data.append(String.format("- %s: %,d원%s%s\n", 
+            .forEach(menu -> data.append(String.format("- %s: %,d원 (%s)\n", 
                 menu.getDisplayName(), 
                 menu.getBasePrice().intValue(),
-                menu.getHasTemperature() ? " (온도선택가능)" : "",
-                menu.getHasSize() ? " (사이즈선택가능)" : "")));
-        
-        data.append("\n[음료]\n");
+                menu.getDescription() != null ? menu.getDescription() : "")));
+
+        data.append("\n[음료 메뉴]\n");
         menus.stream()
             .filter(menu -> menu.getCategory().getName().equals("beverage"))
-            .forEach(menu -> data.append(String.format("- %s: %,d원%s%s\n", 
+            .forEach(menu -> data.append(String.format("- %s: %,d원 (%s)\n", 
                 menu.getDisplayName(), 
                 menu.getBasePrice().intValue(),
-                menu.getHasTemperature() ? " (온도선택가능)" : "",
-                menu.getHasSize() ? " (사이즈선택가능)" : "")));
-        
-        data.append("\n[사이드/디저트]\n");
+                menu.getDescription() != null ? menu.getDescription() : "")));
+
+        data.append("\n[디저트 메뉴]\n");
         menus.stream()
-            .filter(menu -> menu.getCategory().getName().equals("side") || 
-                           menu.getCategory().getName().equals("dessert"))
-            .forEach(menu -> data.append(String.format("- %s: %,d원%s%s\n", 
+            .filter(menu -> menu.getCategory().getName().equals("dessert"))
+            .forEach(menu -> data.append(String.format("- %s: %,d원 (%s)\n", 
                 menu.getDisplayName(), 
                 menu.getBasePrice().intValue(),
-                menu.getHasTemperature() ? " (온도선택가능)" : "",
-                menu.getHasSize() ? " (사이즈선택가능)" : "")));
-        
+                menu.getDescription() != null ? menu.getDescription() : "")));
+
+        data.append("\n=== 카테고리별 요약 ===\n");
+        data.append("- 커피: 아메리카노, 라떼, 에스프레소, 카푸치노, 모카 등 20종\n");
+        data.append("- 음료: 스무디, 주스, 에이드, 차류, 밀크티 등 23종\n");
+        data.append("- 디저트: 케이크, 쿠키, 브라우니, 마카롱 등 10종\n");
+
         return data.toString();
-        }
+    }
 
     /**
      * RAG 기반 일반 질문 처리 프롬프트
@@ -291,7 +269,7 @@ public class MenuService {
         prompt.append("- 메뉴명은 정확히 표기해주세요\n");
         prompt.append("- 카테고리별로 분류해서 답변하면 더 좋습니다\n");
         prompt.append("- 친근하고 자연스러운 톤으로 답변해주세요\n");
-        prompt.append("- 맥도날드 직원처럼 응답해주세요\n\n");
+        prompt.append("- 카페 종업원처럼 응답해주세요\n\n");
         
         prompt.append("응답 형식: 일반 텍스트 (JSON 아님)");
         

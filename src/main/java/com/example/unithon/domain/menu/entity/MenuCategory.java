@@ -27,12 +27,6 @@ public class MenuCategory {
     @Column(nullable = false, length = 100)
     private String displayName;
 
-    @Column(columnDefinition = "INT DEFAULT 0")
-    private Integer displayOrder = 0;
-
-    @Column(columnDefinition = "BOOLEAN DEFAULT true")
-    private Boolean isActive = true;
-
     @CreationTimestamp
     @Column(updatable = false)
     private LocalDateTime createdAt;
@@ -43,9 +37,9 @@ public class MenuCategory {
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Menu> menus = new ArrayList<>();
 
-    public MenuCategory(String name, String displayName, Integer displayOrder) {
+    public MenuCategory(String name,
+                        String displayName) {
         this.name = name;
         this.displayName = displayName;
-        this.displayOrder = displayOrder;
     }
 } 

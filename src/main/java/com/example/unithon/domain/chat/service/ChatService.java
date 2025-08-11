@@ -37,8 +37,6 @@ public class ChatService {
 
     private final ConcurrentHashMap<String, ChatSession> sessions = new ConcurrentHashMap<>();
 
-
-
     /**
      * 사용자 메시지 처리
      */
@@ -118,26 +116,12 @@ public class ChatService {
             case DIRECT_MATCH:
                 Menu menu = result.getMenu();
                 OrderItem orderItem = new OrderItem(menu);
-
-                // 특별한 동의어 처리 (옵션이 미리 포함된 경우)
-                handleSpecialSynonyms(message, orderItem);
                 
                 session.setCurrentItem(orderItem);
                 
-                if (hasRequiredOptions(menu)) {
-                    // 이미 모든 옵션이 설정되었는지 확인
-                    if (isOptionComplete(orderItem)) {
-                        session.setState(ConversationState.QUANTITY_SELECTION);
-                        return String.format("%s %s 몇 개 드릴까요?", 
-                            buildSelectedOptionsText(orderItem), menu.getDisplayName());
-                    } else {
-                        session.setState(ConversationState.OPTION_SELECTION);
-                        return buildOptionSelectionMessage(menu, orderItem);
-                    }
-                } else {
-                    session.setState(ConversationState.QUANTITY_SELECTION);
-                    return String.format("%s 몇 개 드릴까요?", menu.getDisplayName());
-                }
+                session.setState(ConversationState.QUANTITY_SELECTION);
+                return String.format("%s 몇 개 드릴까요?", menu.getDisplayName());
+
             
             case GEMINI_SUGGESTION:
                 if (result.getSuggestions() == null || result.getSuggestions().isEmpty()) {
@@ -158,35 +142,6 @@ public class ChatService {
     }
 
     /**
-     * 특별한 동의어 처리 (옵션이 미리 포함된 경우)
-     */
-    private void handleSpecialSynonyms(String userInput, OrderItem orderItem) {
-        Menu menu = orderItem.getMenu();
-        String normalizedInput = userInput.replaceAll("\\s+", ""); // 공백 제거
-        
-        // "아아" 관련 = 아이스 아메리카노 (온도만 설정, 사이즈는 여전히 선택)
-        if ((normalizedInput.contains("아아") || normalizedInput.contains("아이스아메리카노")) 
-            && menu.getName().equals("americano")) {
-            orderItem.setTemperature("ICE");
-        }
-        
-        // "따아" 관련 = 핫 아메리카노 (온도만 설정)
-        else if ((normalizedInput.contains("따아") || normalizedInput.contains("핫아메리카노")) 
-                 && menu.getName().equals("americano")) {
-            orderItem.setTemperature("HOT");
-        }
-        
-        // "아이스라떼" 관련 = 카페라떼 + 아이스 (사이즈는 별도 선택)
-        else if (normalizedInput.contains("아이스라떼") && menu.getName().equals("cafe_latte")) {
-            orderItem.setTemperature("ICE");
-        }
-        // "핫라떼" 관련 = 카페라떼 + 핫 (사이즈는 별도 선택)
-        else if (normalizedInput.contains("핫라떼") && menu.getName().equals("cafe_latte")) {
-            orderItem.setTemperature("HOT");
-        }
-    }
-
-    /**
      * 옵션 선택 처리
      */
     private String handleOptionSelection(String sessionId, String message) {
@@ -196,27 +151,6 @@ public class ChatService {
         if (currentItem == null) {
             session.setState(ConversationState.MENU_SELECTION);
             return "주문하실 메뉴를 다시 말씀해주세요.";
-        }
-        
-        // 온도 옵션 처리
-        if (currentItem.getMenu().getHasTemperature() && currentItem.getTemperature() == null) {
-            if (message.contains("아이스") || message.contains("차가운") || message.contains("시원한")) {
-                currentItem.setTemperature("ICE");
-            } else if (message.contains("핫") || message.contains("따뜻한") || message.contains("뜨거운")) {
-                currentItem.setTemperature("HOT");
-            } else {
-                return "아이스 또는 핫 중에서 선택해주세요.";
-            }
-        }
-
-        if (currentItem.getMenu().getHasSize() && currentItem.getSize() == null) {
-            if (message.contains("레귤러") || message.contains("R") || message.contains("작은")) {
-                currentItem.setSize("REGULAR");
-            } else if (message.contains("라지") || message.contains("L") || message.contains("큰")) {
-                currentItem.setSize("LARGE");
-            } else {
-                return "레귤러 또는 라지 중에서 선택해주세요.";
-            }
         }
 
         if (isOptionComplete(currentItem)) {
@@ -336,24 +270,11 @@ public class ChatService {
     }
 
     /**
-     * 필수 옵션 존재 여부 확인
-     */
-    private boolean hasRequiredOptions(Menu menu) {
-        return menu.getHasTemperature() || menu.getHasSize();
-    }
-
-    /**
      * 옵션 선택 메시지 생성
      */
     private String buildOptionSelectionMessage(Menu menu, OrderItem orderItem) {
         StringBuilder message = new StringBuilder();
         message.append(String.format("%s를 선택하셨습니다.\n", menu.getDisplayName()));
-        
-        if (menu.getHasTemperature()) {
-            message.append("아이스 또는 핫 중에서 선택해주세요.");
-        } else if (menu.getHasSize()) {
-            message.append("레귤러 또는 라지 중에서 선택해주세요.");
-        }
         
         return message.toString();
     }
@@ -381,14 +302,6 @@ public class ChatService {
     private boolean isOptionComplete(OrderItem item) {
         Menu menu = item.getMenu();
         
-        if (menu.getHasTemperature() && item.getTemperature() == null) {
-            return false;
-        }
-        
-        if (menu.getHasSize() && item.getSize() == null) {
-            return false;
-        }
-        
         return true;
     }
 
@@ -397,14 +310,6 @@ public class ChatService {
      */
     private String getNextOptionQuestion(OrderItem item) {
         Menu menu = item.getMenu();
-        
-        if (menu.getHasTemperature() && item.getTemperature() == null) {
-            return "아이스 또는 핫 중에서 선택해주세요.";
-        }
-        
-        if (menu.getHasSize() && item.getSize() == null) {
-            return "레귤러 또는 라지 중에서 선택해주세요.";
-        }
         
         return "옵션을 선택해주세요.";
     }
@@ -507,12 +412,6 @@ public class ChatService {
             case MENU_SELECTION:
                 return "메뉴 이름을 말씀해주세요";
             case OPTION_SELECTION:
-                OrderItem currentItem = session.getCurrentItem();
-                if (currentItem != null && currentItem.getMenu().getHasTemperature() && currentItem.getTemperature() == null) {
-                    return "아이스 또는 핫 중에서 선택해주세요";
-                } else if (currentItem != null && currentItem.getMenu().getHasSize() && currentItem.getSize() == null) {
-                    return "레귤러 또는 라지 중에서 선택해주세요";
-                }
                 return "옵션을 선택해주세요";
             case QUANTITY_SELECTION:
                 return "수량을 말씀해주세요";

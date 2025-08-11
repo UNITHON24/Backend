@@ -1,7 +1,6 @@
 package com.example.unithon.domain.menu.controller;
 
 import com.example.unithon.domain.menu.entity.Menu;
-import com.example.unithon.domain.menu.entity.MenuOption;
 import com.example.unithon.domain.menu.service.MenuSearchResult;
 import com.example.unithon.domain.menu.service.MenuService;
 import com.example.unithon.global.response.ApiResponse;
@@ -37,31 +36,6 @@ public class MenuController {
         return ResponseEntity.ok(ApiResponse.success("메뉴 검색이 완료되었습니다.", response));
     }
 
-    @GetMapping("/all")
-    public ResponseEntity<List<Menu>> getAllMenus() {
-        List<Menu> menus = menuService.getAllActiveMenus();
-        return ResponseEntity.ok(menus);
-    }
-
-    @GetMapping("/{menuId}/options")
-    public ResponseEntity<List<MenuOption>> getMenuOptions(
-            @PathVariable Long menuId,
-            @RequestParam(required = false) String optionType) {
-        
-        if (optionType != null) {
-            MenuOption.OptionType type = MenuOption.OptionType.valueOf(optionType.toUpperCase());
-            List<MenuOption> options = menuService.getMenuOptions(menuId, type);
-            return ResponseEntity.ok(options);
-        }
-
-        List<MenuOption> allOptions = List.of();
-        for (MenuOption.OptionType type : MenuOption.OptionType.values()) {
-            allOptions = menuService.getMenuOptions(menuId, type);
-            if (!allOptions.isEmpty()) break;
-        }
-        
-        return ResponseEntity.ok(allOptions);
-    }
     @Getter
     @Setter
     public static class MenuSearchResponse {
@@ -88,7 +62,6 @@ public class MenuController {
             
             return response;
         }
-
     }
     @GetMapping("/search/simple")
     public ResponseEntity<ApiResponse<MenuSearchResponse>> searchMenuSimple(@RequestParam String query) {

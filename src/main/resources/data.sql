@@ -1,162 +1,163 @@
--- 맥도날드 메뉴 시드 데이터
+-- 카페 메뉴 시드 데이터
 
 -- 기존 데이터 삭제
-DELETE FROM menu_option;
 DELETE FROM menu_synonym;
 DELETE FROM menu;
 DELETE FROM menu_category;
 
 -- 카테고리 추가
-INSERT INTO menu_category (id, name, display_name, display_order) VALUES
-(1, 'coffee', '커피', 1),
-(2, 'beverage', '음료', 2),
-(3, 'burger_set', '버거 세트', 3),
-(4, 'burger', '버거', 4),
-(5, 'side', '사이드', 5),
-(6, 'dessert', '디저트', 6);
+INSERT INTO menu_category (id, name, display_name) VALUES
+(1, 'coffee', '커피'),
+(2, 'beverage', '음료'),
+(3, 'dessert', '디저트');
 
 -- 커피 메뉴 추가
-INSERT INTO menu (id, category_id, name, display_name, description, base_price, has_temperature, has_size) VALUES
-(1, 1, 'americano', '아메리카노', '깔끔하고 진한 커피의 맛', 1500.00, true, true),
-(2, 1, 'cafe_latte', '카페라떼', '부드러운 우유와 에스프레소의 조화', 2000.00, true, true),
-(3, 1, 'cappuccino', '카푸치노', '거품이 풍성한 이탈리안 커피', 2200.00, true, true),
-(4, 1, 'caramel_macchiato', '캐러멜 마키아토', '달콤한 캐러멜과 에스프레소', 2500.00, true, true);
+INSERT INTO menu (id, category_id, name, display_name, description, base_price) VALUES
+(1, 1, 'hot_americano', '따뜻한 아메리카노', '진한 에스프레소에 뜨거운 물을 넣어 만든 깔끔한 맛의 커피', 4500.00),
+(2, 1, 'iced_americano', '아이스 아메리카노', '진한 에스프레소에 차가운 물과 얼음을 넣어 시원하게 즐기는 커피', 4500.00),
+(3, 1, 'espresso', '에스프레소', '진한 에스프레소 원액 그대로의 깊은 맛', 4000.00),
+(4, 1, 'double_espresso', '더블 에스프레소', '두 배 진한 에스프레소로 더욱 풍부한 커피 맛', 4500.00),
+(5, 1, 'cafe_latte', '카페 라떼', '부드러운 스팀밀크와 에스프레소의 완벽한 조화', 5000.00),
+(6, 1, 'vanilla_latte', '바닐라 라떼', '달콤한 바닐라 시럽과 함께하는 부드러운 라떼', 5300.00),
+(7, 1, 'caramel_macchiato', '카라멜 마키아토', '달콤한 카라멜과 에스프레소가 만나는 특별한 맛', 5600.00),
+(8, 1, 'cappuccino', '카푸치노', '풍성한 거품과 함께하는 이탈리아 전통 커피', 5200.00),
+(9, 1, 'cafe_mocha', '카페 모카', '진한 초콜릿과 에스프레소가 어우러진 달콤한 커피', 5600.00),
+(10, 1, 'flat_white', '플랫 화이트', '진한 에스프레소와 벨벳 같은 밀크의 완벽한 균형', 5200.00),
+(11, 1, 'hazelnut_latte', '헤이즐넛 라떼', '고소한 헤이즐넛 향이 가득한 라떼', 5400.00),
+(12, 1, 'cold_brew', '콜드브루', '찬물로 장시간 추출한 깔끔하고 부드러운 커피', 5200.00),
+(13, 1, 'cold_brew_latte', '콜드브루 라떼', '콜드브루와 우유가 만나 더욱 부드러운 맛', 5600.00),
+(14, 1, 'decaf_americano', '디카페인 아메리카노', '카페인을 제거한 부담 없는 아메리카노', 4700.00),
+(15, 1, 'decaf_latte', '디카페인 라떼', '카페인을 제거한 부드러운 라떼', 5200.00),
+(16, 1, 'einspanner', '아인슈페너', '진한 에스프레소 위에 휘핑크림을 올린 오스트리아 전통 커피', 5800.00),
+(17, 1, 'condensed_milk_latte', '연유 라떼', '달콤한 연유가 들어간 특별한 라떼', 5600.00),
+(18, 1, 'caramel_latte', '카라멜 라떼', '진한 카라멜 맛이 가득한 달콤한 라떼', 5600.00),
+(19, 1, 'white_mocha', '화이트 모카', '부드러운 화이트 초콜릿과 에스프레소의 조화', 5800.00),
+(20, 1, 'long_black', '롱블랙', '에스프레소를 뜨거운 물에 부어 만든 깊은 맛의 커피', 4800.00);
 
 -- 음료 메뉴 추가
-INSERT INTO menu (id, category_id, name, display_name, description, base_price, has_size) VALUES
-(5, 2, 'coca_cola', '코카콜라', '시원한 콜라', 1200.00, true),
-(6, 2, 'coca_cola_zero', '코카콜라 제로', '제로 칼로리 콜라', 1200.00, true),
-(7, 2, 'sprite', '스프라이트', '상쾌한 사이다', 1200.00, true),
-(8, 2, 'orange_juice', '오렌지 주스', '신선한 오렌지 주스', 1500.00, true);
-
--- 버거 세트 메뉴 추가
-INSERT INTO menu (id, category_id, name, display_name, description, base_price, has_set_option) VALUES
-(9, 3, 'bigmac_set', '빅맥 세트', '빅맥 + 사이드 + 음료', 5900.00, true),
-(10, 3, 'quarterpounder_set', '쿼터파운더 세트', '쿼터파운더 + 사이드 + 음료', 6500.00, true),
-(11, 3, 'mcspicy_shanghai_set', '맥스파이시 상하이 버거 세트', '맥스파이시 상하이 버거 + 사이드 + 음료', 6200.00, true),
-(12, 3, 'bulgogi_set', '불고기 버거 세트', '불고기 버거 + 사이드 + 음료', 5200.00, true);
-
--- 버거 단품 메뉴 추가
 INSERT INTO menu (id, category_id, name, display_name, description, base_price) VALUES
-(13, 4, 'bigmac', '빅맥', '맥도날드 대표 버거', 4200.00),
-(14, 4, 'quarterpounder', '쿼터파운더', '1/4파운드 순쇠고기 패티', 4800.00),
-(15, 4, 'mcspicy_shanghai', '맥스파이시 상하이 버거', '매콤한 치킨 버거', 4500.00),
-(16, 4, 'bulgogi_burger', '불고기 버거', '한국식 불고기 버거', 3500.00);
-
--- 사이드 메뉴 추가
-INSERT INTO menu (id, category_id, name, display_name, description, base_price, has_size) VALUES
-(17, 5, 'french_fries', '프렌치프라이', '바삭한 감자튀김', 1800.00, true),
-(18, 5, 'chicken_nuggets', '치킨 너겟', '바삭한 치킨 너겟', 2200.00, false),
-(19, 5, 'apple_pie', '애플파이', '따뜻한 애플파이', 1500.00, false);
+(21, 2, 'strawberry_smoothie', '딸기 스무디', '신선한 딸기로 만든 상큼한 스무디', 6000.00),
+(22, 2, 'mango_smoothie', '망고 스무디', '달콤한 망고의 진한 맛이 가득한 스무디', 5500.00),
+(23, 2, 'orange_juice', '오렌지 주스', '신선한 오렌지 100% 착즙 주스', 5000.00),
+(24, 2, 'lemonade', '레몬에이드', '상큼한 레몬과 탄산이 만나는 시원한 음료', 5200.00),
+(25, 2, 'grapefruit_ade', '자몽에이드', '씁쓸달콤한 자몽의 깔끔한 맛', 5200.00),
+(26, 2, 'green_grape_ade', '청포도에이드', '달콤한 청포도 맛의 상큼한 에이드', 5200.00),
+(27, 2, 'blueberry_smoothie', '블루베리 스무디', '항산화 성분이 풍부한 블루베리 스무디', 6200.00),
+(28, 2, 'yogurt_smoothie', '요거트 스무디', '건강한 요거트와 과일이 만나는 스무디', 6200.00),
+(29, 2, 'chocolate_latte', '초코라떼', '진한 초콜릿의 달콤함이 가득한 라떼', 5200.00),
+(30, 2, 'green_tea_latte', '녹차라떼', '고급 녹차와 우유의 부드러운 만남', 5200.00),
+(31, 2, 'matcha_latte', '말차라떼', '진한 말차 맛과 우유의 완벽한 조화', 5500.00),
+(32, 2, 'peach_iced_tea', '복숭아 아이스티', '달콤한 복숭아 향이 가득한 아이스티', 4800.00),
+(33, 2, 'lemon_iced_tea', '레몬 아이스티', '상큼한 레몬이 들어간 시원한 아이스티', 4800.00),
+(34, 2, 'citron_tea', '유자차', '비타민 C가 풍부한 따뜻한 유자차', 4800.00),
+(35, 2, 'ginger_tea', '생강차', '몸을 따뜻하게 해주는 건강한 생강차', 4800.00),
+(36, 2, 'watermelon_juice', '수박 주스', '시원하고 달콤한 여름 대표 과일 주스', 5500.00),
+(37, 2, 'banana_smoothie', '바나나 스무디', '부드럽고 달콤한 바나나 스무디', 5500.00),
+(38, 2, 'lime_ade', '라임에이드', '상큼한 라임의 톡톡한 맛이 살아있는 에이드', 5200.00),
+(39, 2, 'cherry_ade', '체리에이드', '달콤새콤한 체리 맛의 에이드', 5200.00),
+(40, 2, 'milk_tea', '밀크티', '진한 홍차와 우유의 클래식한 조합', 5200.00),
+(41, 2, 'taro_milk_tea', '타로 밀크티', '고소한 타로 맛의 특별한 밀크티', 5500.00),
+(42, 2, 'latte_frappe', '라떼 프라페', '시원한 얼음과 라떼가 만나는 여름 음료', 5800.00),
+(43, 2, 'strawberry_ade', '딸기 에이드', '새콤달콤한 딸기가 들어간 상큼한 에이드', 5200.00);
 
 -- 디저트 메뉴 추가
 INSERT INTO menu (id, category_id, name, display_name, description, base_price) VALUES
-(20, 6, 'mcflurry_oreo', '맥플러리 오레오', '오레오가 들어간 아이스크림', 2500.00),
-(21, 6, 'soft_serve_cone', '소프트 콘', '부드러운 소프트 아이스크림', 800.00);
+(44, 3, 'ny_cheesecake', '뉴욕 치즈 케이크', '진한 크림치즈로 만든 정통 뉴욕 스타일 치즈케이크', 6500.00),
+(45, 3, 'chocolate_chip_cookie', '초코칩 쿠키', '바삭하고 달콤한 초코칩이 가득한 수제 쿠키', 3000.00),
+(46, 3, 'chocolate_brownie', '초콜릿 브라우니', '진한 초콜릿이 듬뿍 들어간 촉촉한 브라우니', 3800.00),
+(47, 3, 'red_velvet_cake', '레드벨벳 케이크', '부드러운 크림치즈 프로스팅과 붉은 케이크의 조화', 6800.00),
+(48, 3, 'croissant', '크루아상', '버터 향이 풍부한 프랑스 전통 페이스트리', 3500.00),
+(49, 3, 'egg_tart', '에그 타르트', '부드러운 커스터드가 들어간 포르투갈 전통 타르트', 3200.00),
+(50, 3, 'blueberry_muffin', '블루베리 머핀', '신선한 블루베리가 가득한 촉촉한 머핀', 3300.00),
+(51, 3, 'macaron_set', '마카롱 세트', '다양한 맛의 프리미엄 마카롱 6개 세트', 7200.00),
+(52, 3, 'cinnamon_roll', '시나몬 롤', '달콤한 시나몬과 설탕이 들어간 부드러운 페이스트리', 4200.00),
+(53, 3, 'honey_butter_bread', '허니버터 브레드', '달콤한 꿀과 고소한 버터가 어우러진 빵', 4800.00);
 
--- 메뉴 동의어 추가 (문서에서 언급된 동의어들 포함)
+-- 메뉴 동의어 추가
 INSERT INTO menu_synonym (menu_id, synonym, priority) VALUES
 -- 아메리카노 동의어
-(1, '아아', 1),
+(1, '따뜻한아메리카노', 1),
 (1, '따아', 2),
-(1, '아메', 3),
-(1, '커피', 4),
+(1, '핫아메리카노', 3),
+(2, '아이스아메리카노', 1),
+(2, '아아', 2),
+(2, '아이스아메', 3),
 
--- 카페라떼 동의어
-(2, '라떼', 1),
+-- 에스프레소 동의어
+(3, '에스프레소', 1),
+(4, '더블에스프레소', 1),
+(4, '더블', 2),
 
--- 콜라 동의어
-(5, '콜라', 1),
-(5, '코카', 2),
+-- 라떼류 동의어
+(5, '라떼', 1),
+(5, '카페라떼', 2),
+(6, '바닐라라떼', 1),
+(7, '마키아토', 1),
+(8, '카푸치노', 1),
+(9, '모카', 1),
+(10, '플랫화이트', 1),
+(11, '헤이즐넛라떼', 1),
+(12, '콜드브루', 1),
+(13, '콜드브루라떼', 1),
+(14, '디카페인', 1),
+(15, '디카페인라떼', 1),
+(16, '아인슈페너', 1),
+(17, '연유라떼', 1),
+(18, '카라멜라떼', 1),
+(19, '화이트모카', 1),
+(20, '롱블랙', 1),
 
--- 제로콜라 동의어
-(6, '제로', 1),
-(6, '제로콜라', 2),
-(6, '콜라제로', 3),
+-- 스무디 동의어
+(21, '딸기스무디', 1),
+(21, '딸기', 2),
+(22, '망고스무디', 1),
+(22, '망고', 2),
+(27, '블루베리스무디', 1),
+(28, '요거트스무디', 1),
+(37, '바나나스무디', 1),
 
--- 세트 메뉴 동의어
-(9, '빅맥세트', 1),
-(11, '상하이세트', 1),
-(11, '상하이 세트', 2),
-(11, '맥스파이시세트', 3),
+-- 주스 동의어
+(23, '오렌지주스', 1),
+(23, '오렌지', 2),
+(36, '수박주스', 1),
 
--- 감자튀김 동의어
-(17, '감튀', 1),
-(17, '감자튀김', 2),
-(17, '프라이', 3),
+-- 에이드 동의어
+(24, '레몬에이드', 1),
+(25, '자몽에이드', 1),
+(26, '청포도에이드', 1),
+(38, '라임에이드', 1),
+(39, '체리에이드', 1),
+(43, '딸기에이드', 1),
 
--- 치킨너겟 동의어
-(18, '너겟', 1),
-(18, '치킨', 2);
+-- 라떼 음료 동의어
+(29, '초콜릿라떼', 1),
+(29, '초코라떼', 2),
+(30, '녹차라떼', 1),
+(31, '말차라떼', 1),
 
--- 커피 온도 옵션
-INSERT INTO menu_option (menu_id, option_type, option_name, option_value, additional_price, is_default) VALUES
-(1, 'TEMPERATURE', '아이스', 'ice', 0.00, true),
-(1, 'TEMPERATURE', '핫', 'hot', 0.00, false),
-(2, 'TEMPERATURE', '아이스', 'ice', 0.00, true),
-(2, 'TEMPERATURE', '핫', 'hot', 0.00, false),
-(3, 'TEMPERATURE', '아이스', 'ice', 0.00, false),
-(3, 'TEMPERATURE', '핫', 'hot', 0.00, true),
-(4, 'TEMPERATURE', '아이스', 'ice', 0.00, true),
-(4, 'TEMPERATURE', '핫', 'hot', 0.00, false);
+-- 아이스티 동의어
+(32, '복숭아아이스티', 1),
+(33, '레몬아이스티', 1),
 
--- 커피 사이즈 옵션
-INSERT INTO menu_option (menu_id, option_type, option_name, option_value, additional_price, is_default) VALUES
-(1, 'SIZE', 'S', 'S', 0.00, false),
-(1, 'SIZE', 'M', 'M', 300.00, true),
-(1, 'SIZE', 'L', 'L', 600.00, false),
-(2, 'SIZE', 'S', 'S', 0.00, false),
-(2, 'SIZE', 'M', 'M', 300.00, true),
-(2, 'SIZE', 'L', 'L', 600.00, false),
-(3, 'SIZE', 'S', 'S', 0.00, false),
-(3, 'SIZE', 'M', 'M', 300.00, true),
-(3, 'SIZE', 'L', 'L', 600.00, false),
-(4, 'SIZE', 'S', 'S', 0.00, false),
-(4, 'SIZE', 'M', 'M', 300.00, true),
-(4, 'SIZE', 'L', 'L', 600.00, false);
+-- 차 동의어
+(34, '유자차', 1),
+(35, '생강차', 1),
 
--- 음료 사이즈 옵션
-INSERT INTO menu_option (menu_id, option_type, option_name, option_value, additional_price, is_default) VALUES
-(5, 'SIZE', 'M', 'M', 0.00, true),
-(5, 'SIZE', 'L', 'L', 300.00, false),
-(6, 'SIZE', 'M', 'M', 0.00, true),
-(6, 'SIZE', 'L', 'L', 300.00, false),
-(7, 'SIZE', 'M', 'M', 0.00, true),
-(7, 'SIZE', 'L', 'L', 300.00, false),
-(8, 'SIZE', 'M', 'M', 0.00, true),
-(8, 'SIZE', 'L', 'L', 300.00, false);
+-- 밀크티 동의어
+(40, '밀크티', 1),
+(41, '타로밀크티', 1),
 
--- 세트 사이드 옵션
-INSERT INTO menu_option (menu_id, option_type, option_name, option_value, additional_price, is_default) VALUES
-(9, 'SET_SIDE', '프렌치프라이', 'french_fries', 0.00, true),
-(9, 'SET_SIDE', '치킨너겟', 'chicken_nuggets', 400.00, false),
-(10, 'SET_SIDE', '프렌치프라이', 'french_fries', 0.00, true),
-(10, 'SET_SIDE', '치킨너겟', 'chicken_nuggets', 400.00, false),
-(11, 'SET_SIDE', '프렌치프라이', 'french_fries', 0.00, true),
-(11, 'SET_SIDE', '치킨너겟', 'chicken_nuggets', 400.00, false),
-(12, 'SET_SIDE', '프렌치프라이', 'french_fries', 0.00, true),
-(12, 'SET_SIDE', '치킨너겟', 'chicken_nuggets', 400.00, false);
+-- 기타 음료 동의어
+(42, '프라페', 1),
 
--- 세트 음료 옵션
-INSERT INTO menu_option (menu_id, option_type, option_name, option_value, additional_price, is_default) VALUES
-(9, 'SET_DRINK', '코카콜라', 'coca_cola', 0.00, true),
-(9, 'SET_DRINK', '코카콜라 제로', 'coca_cola_zero', 0.00, false),
-(9, 'SET_DRINK', '스프라이트', 'sprite', 0.00, false),
-(9, 'SET_DRINK', '오렌지 주스', 'orange_juice', 300.00, false),
-(10, 'SET_DRINK', '코카콜라', 'coca_cola', 0.00, true),
-(10, 'SET_DRINK', '코카콜라 제로', 'coca_cola_zero', 0.00, false),
-(10, 'SET_DRINK', '스프라이트', 'sprite', 0.00, false),
-(10, 'SET_DRINK', '오렌지 주스', 'orange_juice', 300.00, false),
-(11, 'SET_DRINK', '코카콜라', 'coca_cola', 0.00, true),
-(11, 'SET_DRINK', '코카콜라 제로', 'coca_cola_zero', 0.00, false),
-(11, 'SET_DRINK', '스프라이트', 'sprite', 0.00, false),
-(11, 'SET_DRINK', '오렌지 주스', 'orange_juice', 300.00, false),
-(12, 'SET_DRINK', '코카콜라', 'coca_cola', 0.00, true),
-(12, 'SET_DRINK', '코카콜라 제로', 'coca_cola_zero', 0.00, false),
-(12, 'SET_DRINK', '스프라이트', 'sprite', 0.00, false),
-(12, 'SET_DRINK', '오렌지 주스', 'orange_juice', 300.00, false);
-
--- 감자튀김 사이즈 옵션
-INSERT INTO menu_option (menu_id, option_type, option_name, option_value, additional_price, is_default) VALUES
-(17, 'SIZE', 'M', 'M', 0.00, true),
-(17, 'SIZE', 'L', 'L', 500.00, false); 
+-- 디저트 동의어
+(44, '치즈케이크', 1),
+(45, '쿠키', 1),
+(46, '브라우니', 1),
+(47, '케이크', 1),
+(48, '크루아상', 1),
+(49, '타르트', 1),
+(50, '머핀', 1),
+(51, '마카롱', 1),
+(52, '시나몬롤', 1),
+(53, '허니버터브레드', 1);

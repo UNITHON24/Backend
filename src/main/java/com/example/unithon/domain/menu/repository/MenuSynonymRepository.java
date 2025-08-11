@@ -11,6 +11,6 @@ import com.example.unithon.domain.menu.entity.Menu;
 
 public interface MenuSynonymRepository extends JpaRepository<MenuSynonym, Long> {
 
-    @Query("SELECT ms.menu FROM MenuSynonym ms WHERE ms.synonym = :synonym AND ms.menu.isActive = true ORDER BY ms.priority")
+    @Query("SELECT ms.menu FROM MenuSynonym ms WHERE ms.synonym = :synonym ORDER BY ms.priority")
     Optional<Menu> findMenuBySynonym(@Param("synonym") String synonym);
 } 

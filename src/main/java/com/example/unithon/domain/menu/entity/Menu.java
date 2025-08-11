@@ -38,21 +38,6 @@ public class Menu {
     @Column(nullable = false, precision = 10, scale = 2)
     private BigDecimal basePrice;
 
-    @Column(columnDefinition = "BOOLEAN DEFAULT true")
-    private Boolean isActive = true;
-
-    @Column(columnDefinition = "BOOLEAN DEFAULT false")
-    private Boolean hasTemperature = false;
-
-    @Column(columnDefinition = "BOOLEAN DEFAULT false")
-    private Boolean hasSize = false;
-
-    @Column(columnDefinition = "BOOLEAN DEFAULT false")
-    private Boolean hasSetOption = false;
-
-    @Column(columnDefinition = "INT DEFAULT 0")
-    private Integer displayOrder = 0;
-
     @CreationTimestamp
     @Column(updatable = false)
     private LocalDateTime createdAt;
@@ -63,18 +48,12 @@ public class Menu {
     @OneToMany(mappedBy = "menu", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<MenuSynonym> synonyms = new ArrayList<>();
 
-    @OneToMany(mappedBy = "menu", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<MenuOption> options = new ArrayList<>();
-
     public Menu(MenuCategory category, String name, String displayName, String description, 
-                BigDecimal basePrice, Boolean hasTemperature, Boolean hasSize, Boolean hasSetOption) {
+                BigDecimal basePrice) {
         this.category = category;
         this.name = name;
         this.displayName = displayName;
         this.description = description;
         this.basePrice = basePrice;
-        this.hasTemperature = hasTemperature;
-        this.hasSize = hasSize;
-        this.hasSetOption = hasSetOption;
     }
 } 
