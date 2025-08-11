@@ -31,7 +31,7 @@ public class MenuService {
      */
     public MenuSearchResult searchMenu(String userInput) {
         log.info("메뉴 검색 시작: {}", userInput);
-
+        
         // 여러 키워드로 검색 시도
         List<String> keywords = extractKeywords(userInput);
         
@@ -48,7 +48,7 @@ public class MenuService {
             if (synonymMatch.isPresent()) {
                 log.info("DB 동의어 매칭 성공: {} → {}", userInput, synonymMatch.get().getDisplayName());
                 return MenuSearchResult.directMatch(synonymMatch.get());
-            }
+        }
         }
 
         return searchWithGemini(userInput);
@@ -60,12 +60,12 @@ public class MenuService {
     private MenuSearchResult searchWithGemini(String userInput) {
         try {
             List<Menu> allMenus = menuRepository.findActiveMenus();
-
+            
             String prompt = buildMenuRecommendationPrompt(userInput, allMenus);
             String geminiResponse = geminiService.generateText(prompt);
             
             log.info("Gemini 응답: {}", geminiResponse);
-
+            
             if (isGeneralQuestion(userInput)) {
                 return MenuSearchResult.geminiSuggestion(geminiResponse, new ArrayList<>());
             }
@@ -271,7 +271,7 @@ public class MenuService {
                 menu.getHasSize() ? " (사이즈선택가능)" : "")));
         
         return data.toString();
-    }
+        }
 
     /**
      * RAG 기반 일반 질문 처리 프롬프트

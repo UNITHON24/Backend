@@ -155,12 +155,14 @@
 
         <!-- 음성 제어 -->
         <div class="voice-controls">
-            <button id="startRecording" class="btn-success" disabled>🎤 음성 대화 시작</button>
-            <button id="stopRecording" class="btn-danger" disabled>🛑 대화 종료</button>
+            <button id="startRecording" class="btn-success" disabled>🎤 음성 주문 시작</button>
             <div class="volume-indicator">
                 <div id="volumeBar" class="volume-bar"></div>
             </div>
             <span id="recordingStatus">준비됨</span>
+            <div class="voice-guide">
+                <small>💡 "주문 완료" 또는 "결제할게요"라고 말하면 주문이 종료됩니다</small>
+            </div>
         </div>
 
         <!-- 텍스트 입력 (기존 기능) -->
@@ -195,6 +197,7 @@
         let isConversationActive = false; // 연속 대화 세션 활성화 여부
         let autoRestartTimeout = null; // 자동 재시작 타이머
         let silenceTimeout = null; // 무음 감지 타이머
+        let recordingTimeout = null; // 10초 녹음 제한 타이머
         let lastVolumeTime = Date.now(); // 마지막 음성 감지 시간
         let recordingMode = 'button'; // 'streaming' 또는 'button'
 
@@ -206,7 +209,6 @@
         const messageInput = document.getElementById('messageInput');
         const sendBtn = document.getElementById('sendMessage');
         const startRecordingBtn = document.getElementById('startRecording');
-        const stopRecordingBtn = document.getElementById('stopRecording');
         const volumeBar = document.getElementById('volumeBar');
         const recordingStatus = document.getElementById('recordingStatus');
 
@@ -219,8 +221,13 @@
         });
 
         // 음성 녹음 제어
-        startRecordingBtn.addEventListener('click', startConversation);
-        stopRecordingBtn.addEventListener('click', stopConversation);
+        startRecordingBtn.addEventListener('click', () => {
+            if (!isConversationActive) {
+                startConversation();
+            } else {
+                stopConversation(); // 수동 종료 (비상용)
+            }
+        });
 
         function connect() {
             try {
@@ -425,28 +432,45 @@
 
                 mediaRecorder.onstart = () => {
                     isRecording = true;
-                    startRecordingBtn.disabled = true;
-                    stopRecordingBtn.disabled = false;
                     startRecordingBtn.classList.add('recording');
                     recordingStatus.textContent = '🔴 녹음 중...';
                     
                     // 녹음 시작 신호 전송
                     sendAudioStart();
+                    
+                    // 10초 후 자동 녹음 종료
+                    recordingTimeout = setTimeout(() => {
+                        if (isRecording) {
+                            console.log('10초 타임아웃으로 녹음 자동 종료');
+                            recordingStatus.textContent = '⏱️ 10초 타임아웃';
+                            stopRecording();
+                        }
+                    }, 5000); // 10초
                 };
 
                 mediaRecorder.onstop = () => {
                     isRecording = false;
-                    startRecordingBtn.disabled = false;
-                    stopRecordingBtn.disabled = true;
                     startRecordingBtn.classList.remove('recording');
-                    recordingStatus.textContent = '준비됨';
                     volumeBar.style.width = '0%';
+                    
+                    // 타이머 정리
+                    if (recordingTimeout) {
+                        clearTimeout(recordingTimeout);
+                        recordingTimeout = null;
+                    }
                     
                     // 녹음 종료 신호 전송
                     sendAudioEnd();
                     
                     // 스트림 정리
                     stream.getTracks().forEach(track => track.stop());
+                    
+                    // 연속 대화 모드에서만 자동 재시작
+                    if (isConversationActive) {
+                        recordingStatus.textContent = '⏳ 응답 대기 중...';
+                    } else {
+                        recordingStatus.textContent = '준비됨';
+                    }
                 };
 
                 // 100ms마다 데이터 수집
@@ -467,13 +491,11 @@
         // 연속 대화 시작
         function startConversation() {
             isConversationActive = true;
-            startRecordingBtn.disabled = true;
-            stopRecordingBtn.disabled = false;
-            startRecordingBtn.textContent = '🎤 대화 진행 중...';
-            stopRecordingBtn.textContent = '🛑 대화 종료';
-            recordingStatus.textContent = '🟢 대화 활성화';
+            startRecordingBtn.textContent = '🛑 음성 주문 종료';
+            recordingStatus.textContent = '🟢 음성 주문 진행 중';
             
-            addMessage('시스템', '🎤 음성 대화가 시작되었습니다. 말씀해 주세요!', 'system-message');
+            addMessage('시스템', '🎤 음성 주문이 시작되었습니다. 메뉴를 말씀해 주세요!', 'system-message');
+            addMessage('시스템', '💡 "주문 완료" 또는 "결제할게요"라고 말하면 주문이 종료됩니다.', 'system-message');
             
             // 첫 번째 녹음 시작
             startRecording();
@@ -488,7 +510,7 @@
                 stopRecording();
             }
             
-            // 자동 재시작 타이머 클리어
+            // 모든 타이머 클리어
             if (autoRestartTimeout) {
                 clearTimeout(autoRestartTimeout);
                 autoRestartTimeout = null;
@@ -499,13 +521,15 @@
                 silenceTimeout = null;
             }
             
-            startRecordingBtn.disabled = false;
-            stopRecordingBtn.disabled = true;
-            startRecordingBtn.textContent = '🎤 음성 대화 시작';
-            stopRecordingBtn.textContent = '🛑 대화 종료';
+            if (recordingTimeout) {
+                clearTimeout(recordingTimeout);
+                recordingTimeout = null;
+            }
+            
+            startRecordingBtn.textContent = '🎤 음성 주문 시작';
             recordingStatus.textContent = '준비됨';
             
-            addMessage('시스템', '🛑 음성 대화가 종료되었습니다.', 'system-message');
+            addMessage('시스템', '🛑 음성 주문이 종료되었습니다.', 'system-message');
         }
 
         // 음성 레벨 모니터링

@@ -81,7 +81,7 @@ public class ChatService {
                     response = "안녕하세요! 주문하실 메뉴를 말씀해주세요.";
             }
         }
-        
+
         // 응답 후 dialog.state 이벤트 발송 (주문 완료 시 제외)
         if (!response.contains("결제 해주시길 바랍니다")) {
             DialogState dialogState = buildDialogState(sessionId);
@@ -118,7 +118,7 @@ public class ChatService {
             case DIRECT_MATCH:
                 Menu menu = result.getMenu();
                 OrderItem orderItem = new OrderItem(menu);
-                
+
                 // 특별한 동의어 처리 (옵션이 미리 포함된 경우)
                 handleSpecialSynonyms(message, orderItem);
                 
@@ -413,11 +413,41 @@ public class ChatService {
      * 메시지에서 수량 추출
      */
     private int extractQuantity(String message) {
+        // 1단계: 기본 숫자 패턴 확인
         String numberStr = message.replaceAll("[^0-9]", "");
-        if (numberStr.isEmpty()) {
-            return 0; // 수량이 없으면 0 반환 (무조건 질문하게)
+        if (!numberStr.isEmpty()) {
+            return Integer.parseInt(numberStr);
         }
-        return Integer.parseInt(numberStr);
+        
+        // 2단계: 간단한 한국어 패턴 확인
+        message = message.toLowerCase();
+        if (message.contains("하나") || message.contains("한개") || message.contains("한 개") || message.contains("한잔") || message.contains("한 잔")) {
+            return 1;
+        } else if (message.contains("둘") || message.contains("두개") || message.contains("두 개") || message.contains("두잔") || message.contains("두 잔")) {
+            return 2;
+        } else if (message.contains("셋") || message.contains("세개") || message.contains("세 개") || message.contains("세잔") || message.contains("세 잔")) {
+            return 3;
+        }
+        
+        // 3단계: MenuService의 Gemini로 고급 수량 추출
+        try {
+            String quantityPrompt = String.format("""
+                다음 텍스트에서 수량을 추출해주세요:
+                "%s"
+                
+                규칙:
+                - 숫자나 한국어 수량 표현 (하나, 둘, 셋, 한잔, 두잔, 많이, 조금 등)을 찾아주세요
+                - "많이"는 3개, "조금"은 1개로 해석해주세요
+                - 수량이 명확하지 않으면 0을 반환해주세요
+                - 숫자만 답변해주세요 (1, 2, 3, 0 등)
+                """, message);
+                
+            String response = menuService.callGeminiForIntent(quantityPrompt);
+            return Integer.parseInt(response.trim());
+        } catch (Exception e) {
+            log.warn("Gemini 수량 추출 실패: {}", e.getMessage());
+            return 0; // 실패 시 0 반환 (질문하게)
+        }
     }
 
     /**
