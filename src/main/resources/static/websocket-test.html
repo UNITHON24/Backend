@@ -220,7 +220,7 @@
 
     function connect() {
         try {
-            socket = new WebSocket('ws://localhost:8080/api/chat');
+            socket = new WebSocket('ws://localhost:8080/chat');
 
             socket.onopen = () => {
                 updateStatus('연결됨', 'connected');

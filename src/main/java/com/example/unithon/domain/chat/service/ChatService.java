@@ -63,10 +63,6 @@ public class ChatService {
                     response = handleMenuSelection(sessionId, message);
                     break;
                 
-                case OPTION_SELECTION:
-                    response = handleOptionSelection(sessionId, message);
-                    break;
-                
                 case QUANTITY_SELECTION:
                     response = handleQuantitySelection(sessionId, message);
                     break;
@@ -146,27 +142,6 @@ public class ChatService {
             default:
                 return "주문하실 메뉴를 말씀해주세요.";
         }
-    }
-
-    /**
-     * 옵션 선택 처리
-     */
-    private String handleOptionSelection(String sessionId, String message) {
-        ChatSession session = getSession(sessionId);
-        OrderItem currentItem = session.getCurrentItem();
-        
-        if (currentItem == null) {
-            session.setState(ConversationState.MENU_SELECTION);
-            return "주문하실 메뉴를 다시 말씀해주세요.";
-        }
-
-        if (isOptionComplete(currentItem)) {
-            session.setState(ConversationState.QUANTITY_SELECTION);
-            return String.format("%s %s 몇 개 드릴까요?", 
-                buildSelectedOptionsText(currentItem), currentItem.getMenu().getDisplayName());
-        }
-
-        return getNextOptionQuestion(currentItem);
     }
 
     /**
@@ -277,16 +252,6 @@ public class ChatService {
     }
 
     /**
-     * 옵션 선택 메시지 생성
-     */
-    private String buildOptionSelectionMessage(Menu menu, OrderItem orderItem) {
-        StringBuilder message = new StringBuilder();
-        message.append(String.format("%s를 선택하셨습니다.\n", menu.getDisplayName()));
-        
-        return message.toString();
-    }
-
-    /**
      * 선택된 옵션 텍스트 생성
      */
     private String buildSelectedOptionsText(OrderItem item) {
@@ -301,24 +266,6 @@ public class ChatService {
         }
         
         return text.toString().trim();
-    }
-
-    /**
-     * 옵션 완료 여부 확인
-     */
-    private boolean isOptionComplete(OrderItem item) {
-        Menu menu = item.getMenu();
-        
-        return true;
-    }
-
-    /**
-     * 다음 옵션 질문 생성
-     */
-    private String getNextOptionQuestion(OrderItem item) {
-        Menu menu = item.getMenu();
-        
-        return "옵션을 선택해주세요.";
     }
 
     /**
@@ -418,8 +365,6 @@ public class ChatService {
                 return "주문하실 메뉴를 말씀해주세요";
             case MENU_SELECTION:
                 return "메뉴 이름을 말씀해주세요";
-            case OPTION_SELECTION:
-                return "옵션을 선택해주세요";
             case QUANTITY_SELECTION:
                 return "수량을 말씀해주세요";
             case ORDER_CONFIRMATION:
@@ -461,7 +406,8 @@ public class ChatService {
     private boolean isOrderComplete(String message) {
         String[] completeKeywords = {
             "주문완료", "주문 완료", "결제", "끝", "마무리", "이게다", "이게 다", 
-            "마치겠습니다", "완료", "주문마치기", "주문 마치기", "그만", "종료"
+            "마치겠습니다", "완료", "주문마치기", "주문 마치기", "그만", "종료", "종료하겠습니다",
+                "마칠게", "마치겠", "마칠게여", "마치겠음"
         };
         
         for (String keyword : completeKeywords) {
@@ -511,7 +457,6 @@ public class ChatService {
         return switch (session.getState()) {
             case GREETING -> "안녕하세요! 주문하실 메뉴를 말씀해주세요.";
             case MENU_SELECTION -> "주문하실 메뉴를 말씀해주세요.";
-            case OPTION_SELECTION -> getNextOptionQuestion(session.getCurrentItem());
             case QUANTITY_SELECTION -> "몇 개 드릴까요?";
             case ORDER_CONFIRMATION -> "메뉴를 더 담겠습니까? 주문을 마치겠습니까?";
         };
@@ -535,7 +480,6 @@ public class ChatService {
     public enum ConversationState {
         GREETING,
         MENU_SELECTION,
-        OPTION_SELECTION,
         QUANTITY_SELECTION,
         ORDER_CONFIRMATION
     }
