@@ -43,7 +43,7 @@ public class TtsStreamingService {
                 
                 // 스트리밍 시뮬레이션을 위한 짧은 지연
                 try {
-                    Thread.sleep(50); // 50ms 지연
+                    Thread.sleep(20); // 50ms 지연
                 } catch (InterruptedException e) {
                     Thread.currentThread().interrupt();
                     break;

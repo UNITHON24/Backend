@@ -52,7 +52,7 @@ public class SttStreamingService {
 
                             if (result.getIsFinal()) {
                                 log.info("STT 최종 결과 [{}]: {}", sessionId, transcript);
-                                session.cancelTimeoutTask(); // 최종 결과를 받았으므로 타임아웃 취소
+                                session.cancelTimeoutTask(); // ㄹ최종 결과를 받았으므로 타임아웃 취소
                                 onFinalResult.accept(transcript);
                             } else {
                                 log.debug("STT 중간 결과 [{}]: {}", sessionId, transcript);

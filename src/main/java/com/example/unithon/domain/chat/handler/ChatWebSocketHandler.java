@@ -63,7 +63,6 @@ public class ChatWebSocketHandler implements WebSocketHandler {
     private final ConcurrentHashMap<String, WebSocketSession> sessions = new ConcurrentHashMap<>();
     private final ConcurrentHashMap<String, SessionState> sessionStates = new ConcurrentHashMap<>();
 
-    // ✅ 수정된 생성자: 모든 의존성을 주입받도록 변경
     @Autowired
     public ChatWebSocketHandler(ChatService chatService,
                                 @Autowired(required = false) SttStreamingService sttStreamingService,

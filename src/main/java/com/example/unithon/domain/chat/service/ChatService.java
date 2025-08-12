@@ -229,7 +229,7 @@ public class ChatService {
             ));
         }
         
-        orderSummary.append(String.format("\n💰 총 금액: %,d원\n\n", totalPrice));
+        orderSummary.append(String.format("\n총 금액: %,d원\n\n", totalPrice));
         orderSummary.append("결제 해주시길 바랍니다.");
 		
         MacroOrderData macroData = new MacroOrderData(
@@ -244,7 +244,7 @@ public class ChatService {
         
         // WebSocket으로도 macro.trigger 이벤트 발송 (에이전트용)
         eventPublisher.publishEvent(new MacroTriggerEvent(sessionId, macroData));
-        log.info("💳 주문 완료 처리 완료 [{}]", sessionId);
+        log.info("주문 완료 처리 완료 [{}]", sessionId);
 
         clearSession(sessionId);
         
