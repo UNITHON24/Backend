@@ -12,3 +12,5 @@ env.properties
 .env.local
 src/main/resources/unithon-*.json
 src/main/resources/*credentials*.json
+logs/
+logs/
