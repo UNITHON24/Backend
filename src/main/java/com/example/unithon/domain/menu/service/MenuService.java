@@ -9,9 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 @Transactional(readOnly = true)
@@ -26,29 +24,45 @@ public class MenuService {
     /**
      * DB 동의어 우선 -> Gemini 보완
      */
-    public MenuSearchResult searchMenu(String userInput) {
+    public MenuSearchResult searchMenu(String userInput) { //아메리카노 한잔줘
         log.info("메뉴 검색 시작: {}", userInput);
-        
-        // 여러 키워드로 검색 시도
-        List<String> keywords = extractKeywords(userInput);
-        
+
+        // 사용자 입력에서 검색 키워드들을 추출
+        List<String> keywords = extractKeywords(userInput); //아메리카노
+
+        // 중복을 허용하지 않는 Set으로 검색 결과를 통합
+        Set<Menu> foundMenus = new LinkedHashSet<>();
+
         for (String keyword : keywords) {
-            // 1. 메뉴 display_name 직접 매칭
-            Optional<Menu> displayNameMatch = menuRepository.findByDisplayNameContaining(keyword);
-            if (displayNameMatch.isPresent()) {
-                log.info("DB display_name 매칭 성공: {} → {}", userInput, displayNameMatch.get().getDisplayName());
-                return MenuSearchResult.directMatch(displayNameMatch.get());
-            }
-            
+            // 1. 메뉴 display_name 직접 검색 (Containing -> EqualsIgnoreCase로 변경하여 정확도 향상)
+            menuRepository.findByDisplayNameContaining(keyword).forEach(foundMenus::add);
+
             // 2. 동의어 테이블 검색
-            Optional<Menu> synonymMatch = menuSynonymRepository.findMenuBySynonym(keyword);
-            if (synonymMatch.isPresent()) {
-                log.info("DB 동의어 매칭 성공: {} → {}", userInput, synonymMatch.get().getDisplayName());
-                return MenuSearchResult.directMatch(synonymMatch.get());
-        }
+            menuSynonymRepository.findMenuBySynonym(keyword).forEach(foundMenus::add);
         }
 
-        return searchWithGemini(userInput);
+        // 만약 정확한 매칭 결과가 없다면, Containing 으로 넓게 다시 검색
+        if (foundMenus.isEmpty()) {
+            for (String keyword : keywords) {
+                menuRepository.findByDisplayNameContaining(keyword).forEach(foundMenus::add);
+            }
+        }
+
+        List<Menu> resultList = new ArrayList<>(foundMenus);
+
+        if (resultList.size() == 1) {
+            // 정확히 하나의 메뉴를 찾은 경우
+            log.info("DB 직접 매칭 성공: {}", resultList.get(0).getDisplayName());
+            return MenuSearchResult.directMatch(resultList.get(0));
+        } else if (resultList.size() > 1) {
+            // 여러 개의 메뉴가 검색된 경우 (모호한 경우)
+            log.info("DB 모호한 매칭: {} 개의 결과 발견", resultList.size());
+            return MenuSearchResult.ambiguousMatch(resultList);
+        } else {
+            // DB에서 메뉴를 찾지 못한 경우, Gemini로 검색
+            log.info("DB 매칭 실패. Gemini 검색으로 전환.");
+            return searchWithGemini(userInput);
+        }
     }
 
     /**
@@ -180,25 +194,45 @@ public class MenuService {
     /**
      * 사용자 입력에서 메뉴 키워드 추출
      */
-    private List<String> extractKeywords(String input) {
-        if (input == null) return new ArrayList<>();
-        
-        List<String> keywords = new ArrayList<>();
-        
-        // 1. 전체 정규화
-        String normalized = normalizeInput(input);
-        keywords.add(normalized);
-        
-        // 2. 공백 기준 단어 분리 후 정규화
-        String[] words = input.trim().split("\\s+");
-        for (String word : words) {
-            String normalizedWord = normalizeInput(word);
-            if (!normalizedWord.isEmpty() && !keywords.contains(normalizedWord)) {
-                keywords.add(normalizedWord);
+    private List<String> extractKeywords(String userInput) {
+        if (userInput == null || userInput.isBlank()) {
+            return new ArrayList<>();
+        }
+
+        // 1. DB에서 모든 메뉴명과 동의어 목록을 가져옵니다.
+        // 중복을 미리 제거하여 성능을 개선합니다.
+        Set<String> allMenuKeywordsSet = new HashSet<>();
+        menuRepository.findAll().forEach(menu -> {
+            allMenuKeywordsSet.add(menu.getDisplayName());
+            menu.getSynonyms().forEach(synonym -> allMenuKeywordsSet.add(synonym.getSynonym()));
+        });
+
+        // 2. 키워드를 글자 길이의 역순으로 정렬합니다. (매우 중요!)
+        List<String> allMenuKeywords = allMenuKeywordsSet.stream()
+                .sorted(Comparator.comparingInt(String::length).reversed())
+                .toList();
+
+        Set<String> foundKeywords = new LinkedHashSet<>();
+        String remainingInput = userInput;
+
+        // 3. 정렬된 키워드 목록으로 사용자의 문장을 확인합니다.
+        for (String keyword : allMenuKeywords) {
+            // ★★★ 핵심 수정 부분 ★★★
+            // 사용자 입력(remainingInput)에 키워드가 포함되어 있는지 확인합니다.
+            if (remainingInput.contains(keyword)) {
+                foundKeywords.add(keyword);
+                // 찾은 키워드를 문장에서 제거하여 중복 인식을 방지합니다.
+                remainingInput = remainingInput.replace(keyword, "");
             }
         }
-        
-        return keywords;
+
+        if (foundKeywords.isEmpty()) {
+            log.warn("입력 '{}'에서 메뉴 키워드를 찾지 못했습니다. Gemini로 처리를 시도합니다.", userInput);
+            return List.of(userInput);
+        }
+
+        log.info("입력: '{}', 추출된 키워드: {}", userInput, foundKeywords);
+        return new ArrayList<>(foundKeywords);
     }
 
     private String normalizeInput(String input) {
