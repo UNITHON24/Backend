@@ -80,7 +80,7 @@ public class SttStreamingService {
             ClientStream<StreamingRecognizeRequest> clientStream = speechClient.streamingRecognizeCallable().splitCall(responseObserver);
 
             RecognitionConfig recognitionConfig = RecognitionConfig.newBuilder()
-                    .setEncoding(RecognitionConfig.AudioEncoding.WEBM_OPUS)
+                    .setEncoding(RecognitionConfig.AudioEncoding.LINEAR16)
                     .setSampleRateHertz(16000)
                     .setLanguageCode("ko-KR")
                     .setEnableAutomaticPunctuation(true)
@@ -98,12 +98,12 @@ public class SttStreamingService {
                     .build();
             clientStream.send(configRequest);
 
-            // 10초 후 자동 종료 스케줄링
+            // 30초 후 자동 종료 스케줄링 (기존 10초에서 30초로 증가)
             ScheduledFuture<?> timeoutTask = scheduler.schedule(() -> {
-                log.warn("STT 세션 타임아웃 [{}] - 10초 경과로 종료", sessionId);
+                log.warn("STT 세션 타임아웃 [{}] - 30초 경과로 종료", sessionId);
                 onFinalResult.accept(""); // 타임아웃 시 빈 최종 결과 전송
                 endAudioStream(sessionId); // 스트림을 정상적으로 종료 시도
-            }, 10, TimeUnit.SECONDS);
+            }, 30, TimeUnit.SECONDS);
 
             streamingSessions.put(sessionId, new StreamingSession(clientStream, timeoutTask));
 
