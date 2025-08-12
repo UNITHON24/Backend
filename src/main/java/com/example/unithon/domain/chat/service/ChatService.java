@@ -271,43 +271,39 @@ public class ChatService {
     /**
      * 메시지에서 수량 추출
      */
-    private int extractQuantity(String message) {
-        // 1단계: 기본 숫자 패턴 확인
-        String numberStr = message.replaceAll("[^0-9]", "");
-        if (!numberStr.isEmpty()) {
-            return Integer.parseInt(numberStr);
-        }
-        
-        // 2단계: 간단한 한국어 패턴 확인
-        message = message.toLowerCase();
-        if (message.contains("하나") || message.contains("한개") || message.contains("한 개") || message.contains("한잔") || message.contains("한 잔")) {
-            return 1;
-        } else if (message.contains("둘") || message.contains("두개") || message.contains("두 개") || message.contains("두잔") || message.contains("두 잔")) {
-            return 2;
-        } else if (message.contains("셋") || message.contains("세개") || message.contains("세 개") || message.contains("세잔") || message.contains("세 잔")) {
-            return 3;
-        }
-        
-        // 3단계: MenuService의 Gemini로 고급 수량 추출
-        try {
-            String quantityPrompt = String.format("""
-                다음 텍스트에서 수량을 추출해주세요:
-                "%s"
-                
-                규칙:
-                - 숫자나 한국어 수량 표현 (하나, 둘, 셋, 한잔, 두잔, 많이, 조금 등)을 찾아주세요
-                - "많이"는 3개, "조금"은 1개로 해석해주세요
-                - 수량이 명확하지 않으면 0을 반환해주세요
-                - 숫자만 답변해주세요 (1, 2, 3, 0 등)
-                """, message);
-                
-            String response = menuService.callGeminiForIntent(quantityPrompt);
-            return Integer.parseInt(response.trim());
-        } catch (Exception e) {
-            log.warn("Gemini 수량 추출 실패: {}", e.getMessage());
-            return 0; // 실패 시 0 반환 (질문하게)
-        }
-    }
+	private int extractQuantity(String message) {
+		// 1단계: 기본 숫자 패턴 확인
+		String numberStr = message.replaceAll("[^0-9]", "");
+		if (!numberStr.isEmpty()) {
+			return Integer.parseInt(numberStr);
+		}
+
+		// 2단계: 간단한 한국어 패턴 확인
+		message = message.toLowerCase();
+		if (message.contains("하나") || message.contains("한개") || message.contains("한 개") || message.contains("한잔") || message.contains("한 잔")) {
+			return 1;
+		} else if (message.contains("둘") || message.contains("두개") || message.contains("두 개") || message.contains("두잔") || message.contains("두 잔")) {
+			return 2;
+		} else if (message.contains("셋") || message.contains("세개") || message.contains("세 개") || message.contains("세잔") || message.contains("세 잔")) {
+			return 3;
+		} else if (message.contains("네개") || message.contains("네 개") || message.contains("네잔") || message.contains("네 잔")) {
+			return 4;
+		} else if (message.contains("다섯개") || message.contains("다섯 개") || message.contains("다섯 잔") || message.contains("다섯잔")) {
+			return 5;
+		} else if (message.contains("여섯개") || message.contains("여섯 개") || message.contains("여섯 잔") || message.contains("여섯잔")) {
+			return 6;
+		} else if (message.contains("일곱개") || message.contains("일곱 개") || message.contains("일곱 잔") || message.contains("일곱잔")) {
+			return 7;
+		} else if (message.contains("여덟개") || message.contains("여덟 개") || message.contains("여덟 잔") || message.contains("여덟잔")) {
+			return 8;
+		} else if (message.contains("아홉개") || message.contains("아홉 개") || message.contains("아홉 잔") || message.contains("아홉잔")) {
+			return 9;
+		} else if (message.contains("열개") || message.contains("열 개") || message.contains("열잔") || message.contains("열 잔")) {
+			return 10;
+		}
+		return 0;
+	}
+
 
     /**
      * 현재 대화 상태를 DialogState로 변환
