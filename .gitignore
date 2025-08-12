@@ -1,63 +1,14 @@
-HELP.md
-.gradle
+﻿.gradle/
 build/
-!gradle/wrapper/gradle-wrapper.jar
-!**/src/main/**/build/
-!**/src/test/**/build/
-
-### .env ###
-.env.properties
-src/main/resources/application-env.properties
-
-### src/test/resources ###
-src/test/resources/**
-
-### STS ###
-.apt_generated
-.classpath
-.factorypath
-.project
-.settings
-.springBeans
-.sts4-cache
-bin/
-!**/src/main/**/bin/
-!**/src/test/**/bin/
-
-### IntelliJ IDEA ###
-.idea
-*.iws
-*.iml
-*.ipr
 out/
-!**/src/main/**/out/
-!**/src/test/**/out/
-
-### NetBeans ###
-/nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
-
-
-### VS Code ###
-.vscode/
-
-### DS_Store 제거(애플에서 정의한 파일 포맷) ###
+.idea/
+*.iml
+.project
+.classpath
 .DS_Store
-._.DS_Store
-**/.DS_Store
-**/._.DS_Store
-
-# QueryDSL generated classes
-src/main/generated/**/Q*.java
-
-### Logs ###
-logs/
-*.log
-
-# gcp credentials
-src/main/resources/unithon-4b2df7873498.json
-
-#
+Thumbs.db
+.env.properties
+env.properties
+.env.local
+src/main/resources/unithon-*.json
+src/main/resources/*credentials*.json

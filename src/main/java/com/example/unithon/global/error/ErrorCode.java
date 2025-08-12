@@ -15,7 +15,7 @@ public enum ErrorCode {
     MENU_NOT_FOUND("DB_002", "메뉴 정보를 찾을 수 없습니다.", false),
     
     // 사용자 입력 관련
-    INVALID_USER_INPUT("INPUㄹT_001", "올바르지 않은 입력입니다. 다시 말씀해주세요.", false),
+    INVALID_USER_INPUT("INPUT_001", "올바르지 않은 입력입니다. 다시 말씀해주세요.", false),
     INVALID_QUANTITY("INPUT_002", "올바른 수량을 입력해주세요.", false),
     
     // 세션 관련
