@@ -3,6 +3,7 @@ package com.example.unithon.domain.chat.service;
 import com.example.unithon.domain.chat.dto.MacroOrderData;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -11,19 +12,35 @@ import org.springframework.web.client.RestTemplate;
 @Slf4j
 public class MacroWebhookService {
 
-    @Value("${macro.webhook.url:http://localhost:9999/api/orders}")
-    private String macroWebhookUrl;
-
+    private final String macroWebhookUrl;
+    private final String macroWebhookToken;
     private final RestTemplate restTemplate;
 
-    public MacroWebhookService() {
-        this.restTemplate = new RestTemplate();
+    public MacroWebhookService(
+        @Value("${macro.webhook.url:http://localhost:9999/api/orders}") String macroWebhookUrl,
+        @Value("${macro.webhook.token:}") String macroWebhookToken,
+        RestTemplateBuilder restTemplateBuilder
+    ) {
+        this(restTemplateBuilder.build(), macroWebhookUrl, macroWebhookToken);
+    }
+
+    MacroWebhookService(
+        RestTemplate restTemplate,
+        String macroWebhookUrl,
+        String macroWebhookToken
+    ) {
+        this.restTemplate = restTemplate;
+        this.macroWebhookUrl = macroWebhookUrl;
+        this.macroWebhookToken = macroWebhookToken;
     }
 
     public void sendOrderToMacro(MacroOrderData orderData) {
         try {
             HttpHeaders headers = new HttpHeaders();
             headers.setContentType(MediaType.APPLICATION_JSON);
+            if (macroWebhookToken != null && !macroWebhookToken.isBlank()) {
+                headers.set("X-Macro-Token", macroWebhookToken);
+            }
             
             HttpEntity<MacroOrderData> request = new HttpEntity<>(orderData, headers);
             
@@ -46,4 +63,4 @@ public class MacroWebhookService {
                 orderData.getSessionId(), e.getMessage(), e);
         }
     }
-} 
+}
