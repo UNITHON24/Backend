@@ -2,6 +2,7 @@ package com.example.unithon.domain.chat.service;
 
 import com.example.unithon.domain.chat.dto.MacroOrderData;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.*;
@@ -16,6 +17,7 @@ public class MacroWebhookService {
     private final String macroWebhookToken;
     private final RestTemplate restTemplate;
 
+    @Autowired
     public MacroWebhookService(
         @Value("${macro.webhook.url:http://localhost:9999/api/orders}") String macroWebhookUrl,
         @Value("${macro.webhook.token:}") String macroWebhookToken,
