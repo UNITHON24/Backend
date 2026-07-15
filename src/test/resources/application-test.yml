@@ -1,0 +1,33 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:unithon;MODE=MySQL;DB_CLOSE_DELAY=-1;DATABASE_TO_LOWER=TRUE
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+  sql:
+    init:
+      mode: always
+
+google:
+  cloud:
+    credentials:
+      encoded-key: test-only
+
+gemini:
+  api:
+    key: test-only
+
+feature:
+  stt: false
+  tts: false
+
+logging:
+  file:
+    name: build/test-logs/application.log
